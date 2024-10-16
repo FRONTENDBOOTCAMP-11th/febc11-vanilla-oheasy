@@ -1,0 +1,31 @@
+/* reset */
+body{
+    margin: unset;
+    padding: unset;
+}
+/* wrapper */
+.wrapper{
+    width: 360px;
+    background-color: #ffffff;
+    padding:0 16px 0 16px ;
+    box-sizing: border-box;
+}
+/* header */
+.header_icons{
+    height: 60px;
+    background-image: url(img/LOGO.svg);
+    background-repeat: no-repeat;
+    
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 6px;
+}
+.icons{
+    width: 24px;
+    height: 24px;
+}
+
+.product_block{
+    box-shadow: inset 0 0 20px red;
+}
