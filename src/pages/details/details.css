@@ -1,0 +1,33 @@
+/* Reset */
+body {
+  margin: unset;
+}
+
+/* Typography */
+:root {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* Layouts */
+.l_layout {
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+/* Components */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 14px;
+  padding-right: 24px;
+}
+
+.header-controls {
+  display: flex;
+  gap: 4px;
+}
+
+.header-controls img {
+  padding: 6px;
+}
