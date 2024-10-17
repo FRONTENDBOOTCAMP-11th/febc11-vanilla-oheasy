@@ -10,6 +10,8 @@ class HeaderMobile extends HTMLElement {
                   align-items: center;
                   padding-left: 14px;
                   padding-right: 24px;
+                  max-width: 360px;
+                  margin: 0 auto;
               }
   
               .header-controls {

@@ -26,6 +26,11 @@ button {
   all: unset;
 }
 
+a {
+  color: unset;
+  text-decoration: none;
+}
+
 /* Typography */
 :root {
   font-family: 'Noto Sans KR', sans-serif;
@@ -51,6 +56,7 @@ button {
 .l_layout {
   max-width: 360px;
   margin: 0 auto;
+  padding: 0 var(--white-space-m) var(--white-space-m) var(--white-space-m);
 }
 
 /* Components */
@@ -69,11 +75,6 @@ button {
 
 .header-controls img {
   padding: 6px;
-}
-
-.item {
-  padding: 0 var(--white-space-m) var(--white-space-m) var(--white-space-m);
-  box-shadow: inset 0 0 20px green;
 }
 
 .item-info {
@@ -111,7 +112,6 @@ button {
 }
 
 .item-cover {
-  margin: 0 calc(-1 * var(--white-space-m));
   margin-bottom: 42px;
 }
 
@@ -166,12 +166,7 @@ button-white img {
   margin-left: 3px;
 }
 
-button-white {
-  width: 60%;
-}
-
 .description {
-  padding: 0 var(--white-space-m);
   margin-top: 8px;
   line-height: 28px;
   word-break: keep-all;
@@ -186,7 +181,42 @@ button-white {
   margin-bottom: 32px;
 }
 
-#more-btn {
-  line-height: 28px;
+.description-more {
   font-weight: 500;
+  border-bottom: 2px solid var(--color-black);
+}
+
+.foldable {
+  border-bottom: 1px solid var(--color-grey-30);
+}
+
+.foldable-title {
+  padding: 30px 0;
+  display: flex;
+  align-items: center;
+}
+
+.foldable .stars {
+  margin-right: 16px;
+}
+
+.foldable h2 {
+  font-size: 20px;
+  line-height: 35px;
+  font-weight: 500;
+  flex-grow: 1;
+  flex-basis: 0;
+}
+
+.foldable-contents h3 {
+  line-height: 28px;
+  margin-bottom: 12px;
+}
+
+.foldable-contents .list {
+  font-size: 12px;
+}
+
+.foldable-contents .list li + li {
+  margin-top: 1em;
 }
