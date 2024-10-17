@@ -7,41 +7,43 @@
     <link rel="stylesheet" href="auth.css">
   </head>
   <body>
-    <body>
-        <div class="wrapper">
-          <div class="container">
-            <img src="LOGO.png">
+    <div class="wrapper">
+      <div class="container">
+
+          <div class="header">
+            <img src="logo.svg">
             <h1 class="title">이제 나이키 멤버가 되어 볼까요?</h1>
-            <form class="signUp">
-              <div class="input-group">
-                <input type="text" placeholder="이름">
-                <input type="text" placeholder="성">
-              </div>
-              <input class="userPwd" type="password" placeholder="비밀번호">
-              <div class="pwd-warning">
-                <img src="IconCheck.svg">
-                <span>최소 8자</span> <br>
-                <img src="IconCheck.svg"> 
-                <span>알파벳 대문자 및 소문자 조합, 최소 1개 이상의 숫자</span>
-              </div>
-              <input type="date" required aria-required="true">
-              <input type="checkbox" name="terms" value="agree"> 나이키의 <b><u>개인정보 처리방침</u></b> 및 <b><u>이용약관</u></b>에 동의합니다.
-              <button type="submit" class="proceed">계정 만들기</button>
-            </form>                
-        </div>
+          </div>
+
+          <div class="main">
+              <form class="signUp main">
+                  <div class="input-name-container">
+                      <input type="text" placeholder="이름">
+                      <input type="text" placeholder="성">
+                  </div>
+                  
+                  <input type="password" placeholder="비밀번호">
+                  
+                  <div class="pwd-warning">
+                      <img src="../../assets/icons/x.svg">
+                      <span>최소 8자</span> <br>
+                      <img src="../../assets/icons/x.svg">
+                      <span>알파벳 대문자 및 소문자 조합, 최소 1개 이상의 숫자</span>
+                  </div>
+                    
+                  <input type="date" required aria-required="true">
+                  <div class="checkbox-container">
+                      <input type="checkbox" name="terms" value="agree"> 나이키의 <b><u>개인정보 처리방침</u></b> 및 <b><u>이용약관</u></b>에 동의합니다.
+                  </div>
+                  <button type="submit" class="proceed">계정 만들기</button>
+              </form>
+          </div>
+
+          <!-- <div class="footer">
+              d
+          </div> -->
       </div>
-    </body>
-    </html>
+    </div>
+  </body>
+</html>
     
-    <!-- <h1 class="title">이제 나이키 멤버가 되어 볼까요?</h1>
-    <form class="signUp">
-      <div class="">
-        <input type="text" placeholder="이름">
-        <input type="text" placeholder="성">
-        <input type="text" placeholder="비밀번호">
-        <p>최소 8자</p>
-        <p>알파벳 대문자 및 소문자 조합, 최소 1개 이상의 숫자</p>
-        <input type="date" placeholder="생년월일">
-        <input type="checkbox">나이키의 개인정보 처리방침 및 이용약관에 동의합니다.                
-      </div>
-      <button type="submit" class="proceed">계정 만들기</button> -->

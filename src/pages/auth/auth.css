@@ -20,7 +20,6 @@ img {
 
 button {
     all: unset;
-    display: block;
 }
 
 /* CSS variables */
@@ -46,10 +45,16 @@ button {
 
 .container {
     margin: 20px 36px;
-    box-shadow: inset 0 0 20px red;
 }
 
-/* Common */
+/* Commons */
+.header {
+    /* margin-bottom: 26px; */
+}
+
+.main {
+}
+
 .title {
     /* width: 265px; */
     font-size: 28px;
@@ -68,10 +73,12 @@ input {
     font-size: 16px;
 }
 
-.signIn input{
-    width: 100%;
-
+input[type='checkbox'] {
+    margin-top: 20px;
+    width: auto;
+    height: auto;
 }
+
 .description {
     color: var(--color-description);
 }
@@ -94,31 +101,44 @@ input {
 }
 
 /* signIn_main.html */
-.signIn.email input {
-    margin: 26px 0 48px;
-
+.signIn.main input {
+    margin-top: 26px;
+    margin-bottom: 46px;
 }
 
-.signIn.email .proceed {
-    margin-top: 40px;
+.signIn.main .description {
+    margin-bottom: 40px;
+}
+
+.floating-label {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #aaa;
+    transition: 0.3s ease all;
+    pointer-events: none; /* 레이블을 클릭할 수 없게 설정 */
 }
 
 /* signIn_pwd.html */
 .received_email {
-    color: var(--color-black);
     margin: 10px 0 26px;
+}
+
+.signIn.pwd p {
+    margin: 20px 0 90px;
 }
 
 .password-container {
     position: relative;
-    margin-bottom: 20px;
 }
 
-.fas.fa-eye {
+.password-container img {
     position: absolute;
     top: 50%;
     right: 10px;
     transform: translateY(-50%);
+    color: var(--color-description);
 }
 
 .signIn-pwd-btn {
@@ -127,37 +147,45 @@ input {
     justify-content: space-between;
 }
 
-/* signUp_main.html */
-.input-group {
+/* signUp_main */
+.input-name-container {
     display: flex;
     justify-content: space-between;
     gap: 12px;
     margin-bottom: 20px;
 }
 
-.input-group input {
+.input-name-container input {
     width: 50%;
 }
 
-.userPwd {
+
+.input-password-container input {
     width: 100%;
 }
 
 .pwd-warning {
-    /* display: flex; */
     margin: 16px 8px 20px;
     font-size: 12px;
     font-weight: 400;
 }
-  
-input[type='checkbox'] {
-    margin-top: 20px;
-    width: auto;
-    height: auto;
-}
 
-.signUp .proceed {
+.signUp .proceed, .signUp .previous{
     margin-top: 48px;
     width: 100%;
-    borde
+}
+
+/* signUp_term */
+
+.signUp.term {
+    margin-top: 26px;
+}
+
+.signUp.term .description{
+    margin: 24px 0 36px;
+}
+
+.signUp.term .checkbox-container:nth-of-type(1) {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 24px;
 }
