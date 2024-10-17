@@ -14,18 +14,7 @@
   </head>
   <body>
     <div class="l_layout">
-      <header class="header">
-        <img src="./icons/logo.svg" alt="nike logo" />
-        <div class="header-controls">
-          <img src="./icons/search.svg" alt="search" /><img
-            src="./icons/user.svg"
-            alt="user"
-          /><img src="./icons/bag.svg" alt="bag" /><img
-            src="./icons/bar.svg"
-            alt="menu"
-          />
-        </div>
-      </header>
+      <header-mobile></header-mobile>
       <main>
         <section class="item">
           <div class="item-info">
@@ -63,7 +52,13 @@
               <span>사이즈 선택</span>
               <span>사이즈 가이드</span>
             </div>
-            <div class="size-grid">size-grid</div>
+            <div class="size-grid">
+              <span>250</span><span>255</span><span>260</span><span>265</span
+              ><span>270</span><span>275</span><span>280</span><span>285</span
+              ><span>290</span><span class="size-disabled">295</span
+              ><span>300</span><span class="size-disabled">305</span
+              ><span class="size-disabled">310</span>
+            </div>
           </div>
           <div class="item-buttons">
             <button>장바구니</button>
@@ -74,6 +69,7 @@
         <button>장바구니</button>
       </main>
     </div>
+    <script src="../../components/header-mobile.js"></script>
   </body>
 </html>
 
