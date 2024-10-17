@@ -11,12 +11,15 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap"
       rel="stylesheet"
     />
+    <script src="../../components/button-black.js"></script>
+    <script src="../../components/button-white.js"></script>
+    <script src="../../components/header-mobile.js"></script>
   </head>
 
   <body>
     <div class="wrapper">
       <nav class="header">
-        <img class="nike-logo" src="icons/logo.svg" />
+        <img class="nike-logo" src="../../assets/icons/logo.svg" />
         <div class="header-icons">icon-group</div>
       </nav>
 
@@ -26,7 +29,7 @@
             <h1 class="wall-header__title">신제품</h1>
           </div>
 
-          <ul class="l_flex">
+          <ul class="l_flex_row">
             <li class="product-type first-product">신발</li>
             <li class="product-type">탑 & 티셔츠</li>
             <li class="product-type">후디 & 크루</li>
@@ -51,7 +54,7 @@
         <ul class="l_grid">
           <!-- flexbox -->
           <li class="product">
-            <div class="product-image-wrapper">
+            <div class="product-cover">
               <img src="../../assets/images/products_shoes-1.png" />
             </div>
 
@@ -76,7 +79,7 @@
           </li>
 
           <li class="product">
-            <div class="product-image-wrapper">
+            <div class="product-cover">
               <img src="../../assets/images/products_shoes-2.png" />
             </div>
 
@@ -101,7 +104,7 @@
           </li>
 
           <li class="product">
-            <div class="product-image-wrapper">
+            <div class="product-cover">
               <img src="../../assets/images/products_shoes-3.png" />
             </div>
 
@@ -126,7 +129,7 @@
           </li>
 
           <li class="product">
-            <div class="product-image-wrapper">
+            <div class="product-cover">
               <img src="../../assets/images/products_shoes-4.png" />
             </div>
 
@@ -151,7 +154,7 @@
           </li>
 
           <li class="product">
-            <div class="product-image-wrapper">
+            <div class="product-cover">
               <img src="../../assets/images/products_shoes-5.png" />
             </div>
 
@@ -176,7 +179,7 @@
           </li>
 
           <li class="product">
-            <div class="product-image-wrapper">
+            <div class="product-cover">
               <img src="../../assets/images/products_shoes-6.png" />
             </div>
 
@@ -201,7 +204,7 @@
           </li>
 
           <li class="product">
-            <div class="product-image-wrapper">
+            <div class="product-cover">
               <img src="../../assets/images/products_shoes-7.png" />
             </div>
 
@@ -226,7 +229,7 @@
           </li>
 
           <li class="product">
-            <div class="product-image-wrapper">
+            <div class="product-cover">
               <img src="../../assets/images/products_shoes-8.png" />
             </div>
 
@@ -276,7 +279,7 @@
           </li>
 
           <li class="product">
-            <div class="product-image-wrapper">
+            <div class="product-cover">
               <img src="../../assets/images/products_hat.png" />
             </div>
 
@@ -302,7 +305,74 @@
         </ul>
       </main>
 
-      <footer class="footer">footer</footer>
+      <div class="footer-wrapper">
+        <div class="footer">
+          <ul class="mobile-footer-menu">
+            <li class="footer-menu-column active">
+              <div class="footer-menu-header">안내</div>
+              <!-- <ul class="footer-menu-contents">
+                <li>멤버가입</li>
+                <li>매장찾기</li>
+                <li>나이키 저널</li>
+              </ul> -->
+            </li>
+
+            <li class="footer-menu-column">
+              <div class="footer-menu-header">고객센터</div>
+              <!-- <ul class="footer-menu-contents">
+                <li>주문배송조회</li>
+                <li>반품 정책</li>
+                <li>결제 방법</li>
+                <li>공지사항</li>
+                <li>문의하기</li>
+              </ul> -->
+            </li>
+
+            <li class="footer-menu-column">
+              <div class="footer-menu-header">회사소개</div>
+              <!-- <ul class="footer-menu-contents">
+                <li>About Nike</li>
+                <li>소식</li>
+                <li>채용</li>
+                <li>투자자</li>
+                <li>지속가능성</li>
+              </ul> -->
+            </li>
+          </ul>
+
+          <ul class="mobile-footer-list">
+            <li>© 2024 Nike, Inc. All Rights Reserved</li>
+            <li>이용약관</li>
+            <li class="personal-info-policy">개인정보처리방침</li>
+            <li>위치정보이용약관</li>
+            <li>영상정보처리기기 운영 방침</li>
+          </ul>
+
+          <div class="korean-legal-footer-container">
+            <div class="korean-legal-footer-section">
+              <p>
+                (유)나이키코리아 대표 Kimberlee Lynn Chang Mendes, 킴벌리 린 창
+                멘데스 | 서울 강남구 테헤란로 152 강남파이낸스센터 30층 |
+                통신판매업신고번호 2011-서울강남-03461 | 등록번호 220-88-09068
+                <a class="business-info-check">사업자 정보 확인</a>
+              </p>
+              <p>
+                고객센터 전화 문의
+                <span class="cs-number">080-022-0182</span> FAX 02-6744-5880 |
+                이메일 service@nike.co.kr | 호스팅서비스사업자 (유)나이키코리아
+              </p>
+            </div>
+            <div class="korean-legal-footer-section">
+              <p>
+                현금 등으로 결제 시 안전 거래를 위해 나이키 쇼핑몰에서 가입하신
+                한국결제네트웍스 유한회사의 구매안전 서비스(결제대금예치)를
+                이용하실 수 있습니다.
+              </p>
+              <p>콘텐츠산업진흥법에 의한 콘텐츠 보호 안내 자세히 보기</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
