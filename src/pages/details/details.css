@@ -10,10 +10,6 @@ ul {
   padding: unset;
 }
 
-li {
-  list-style: none;
-}
-
 h2,
 h3 {
   margin: unset;
@@ -170,6 +166,10 @@ button-white img {
   margin-left: 3px;
 }
 
+button-white {
+  width: 60%;
+}
+
 .description {
   padding: 0 var(--white-space-m);
   margin-top: 8px;
@@ -179,4 +179,14 @@ button-white img {
 
 .description p {
   margin-bottom: 28px;
+}
+
+.list {
+  padding-left: var(--white-space-m);
+  margin-bottom: 32px;
+}
+
+#more-btn {
+  line-height: 28px;
+  font-weight: 500;
 }
