@@ -6,6 +6,9 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css" />
     <script src="main.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet"/>
   </head>
   <body>
     <div class="wrapper">
@@ -15,11 +18,12 @@
           <img class="icons" src="img/bag.svg">
           <img class="icons" src="img/menu.svg">
         </div>
-        <div class="search_bar">
-          <img class="icons" src="img/search.svg"><input type="text">
-        </div>
       </section>
       <section class="main">
+        <div class="search_bar">
+          <img class="icons" src="img/search.svg">
+          <input type="text" class="invisible_input" placeholder="검색">
+        </div>
         <h1>장바구니</h1>
         <h2>n 개의 제품 | n 원</h2>
         <div class="product_block">

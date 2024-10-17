@@ -1,3 +1,10 @@
+/* Typography */
+:root {
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+
+
+
 /* reset */
 body{
     margin: unset;
@@ -24,6 +31,33 @@ body{
 .icons{
     width: 24px;
     height: 24px;
+}
+
+/* main */
+
+.main{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.search_bar{
+    background-color: #F5F5F5;
+    width: 312px;
+    height: 40px;
+    
+    border-radius: 24px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap:7px;
+}
+.invisible_input{
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 .product_block{
