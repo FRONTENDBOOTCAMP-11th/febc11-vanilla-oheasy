@@ -4,50 +4,72 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="bag.css" />
     <script src="main.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet"/>
   </head>
-  <body>
+  
     <div class="wrapper">
       <section class="header">
         <div class="header_icons">
-          <img class="icons" src="img/id.svg">
-          <img class="icons" src="img/bag.svg">
-          <img class="icons" src="img/menu.svg">
+          <img class="icons" src="/src/assets/icons/user.svg">
+          <img class="icons" src="/src/assets/icons/bag.svg"> <!-- 나중에 bag안에 1 들어가있는걸로 바꾸기-->
+          <img class="icons" src="/src/assets/icons/menu.svg">
         </div>
       </section>
       <section class="main">
         <div class="search_bar">
-          <img class="icons" src="img/search.svg">
+          <img class="icons" src="/src/assets/icons/search.svg">
           <input type="text" class="invisible_input" placeholder="검색">
         </div>
-        <div class="title_section">
-          <h1 class="title_text">장바구니</h1>
-          <p>n 개의 제품 | n 원</p>
+        <div class="move_text">
+          <div class="title_section">
+            <h1 class="title_text">장바구니</h1>
+            <p>1 개의 제품 | 189,000 원</p>
+          </div>
         </div>
-        <div class="product_block">
-          <div>
-            <img src="신발사진">
-            <p id="product_price"> n 원</p>
-            <p id="product_name"> 나이키 줌 보메로 5</p>
-            <p>남성 신발</p>
-            <p>사이즈</p><p>수량</p>
-            <p>275</p><img src="카운트">
+        <div class="product_section">
+          <div class="product_item_section">
+            <div>
+              <img src="/src/assets/img/bag_shoes-1.png">
+            </div>
+            <div class="product_text_section">
+              <div class="black_text">
+                <p id="product_price"> 189,000 원</p>
+                <p id="product_name"> 나이키 줌 보메로 5</p>
+              </div>  
+              <div class="gray_text">
+              <p>남성 신발</p>
+                <div class="size_count_text">
+                  <div class="size_text">
+                    <p>사이즈</p>
+                    <p>275</p>
+                  </div>
+                  <div class="count_text">
+                    <p>수량</p>
+                    <div class="count_number">
+                      <img src="icons/Minus.svg">
+                      <p>1</p>
+                      <img src="icons/Plus.svg">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div>
-            <img src="icon" alt="">
-            <img src="icon" alt="">
+          <div class="product_icon_section">
+            <img src="/src/assets/icons/heart.svg" alt="">
+            <img class="move_icon" src="icons/trash.svg" alt="">
           </div>
-          <div>
-            <p>무료 배송</p>
-            <p>도착 예정일: 7월 26일 (토)배송 지역: 04628</p>
+          <div class="product_delivery_section">
+            <p class="product_delivery_text_title">무료 배송</p>
+            <p class="product_delivery_text">도착 예정일: 7월 26일 (토)배송 지역: 04628</p>
           </div>
         </div>
 
-        <div class="oder_list">
+        <div class="oder_list_section">
           <h1>주문 내역</h1>
           <p>
             상품 금액,...
