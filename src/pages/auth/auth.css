@@ -110,14 +110,21 @@ input[type='checkbox'] {
     margin-bottom: 40px;
 }
 
-.floating-label {
+.input-email-container {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-email-container input:focus + .floating-label {
     position: absolute;
-    top: 50%;
-    left: 10px;
+    top: 20%;
+    left: 12px;
     transform: translateY(-50%);
     color: #aaa;
     transition: 0.3s ease all;
-    pointer-events: none; /* 레이블을 클릭할 수 없게 설정 */
+    pointer-events: none;
+    font-size: 16px;
+
 }
 
 /* signIn_pwd.html */
