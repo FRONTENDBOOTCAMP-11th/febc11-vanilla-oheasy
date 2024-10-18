@@ -199,6 +199,10 @@ button-white img {
   margin-bottom: 32px;
 }
 
+.list a {
+  border-bottom: 1px solid var(--color-black);
+}
+
 .description-more {
   font-weight: 500;
   border-bottom: 2px solid var(--color-black);
