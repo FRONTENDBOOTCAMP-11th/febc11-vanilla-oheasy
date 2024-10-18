@@ -202,32 +202,50 @@ input[type='checkbox'] {
     line-height: 150%;
 }
 
-/* 기존 캘린더 숨기기고 커스텀 적용하기 */
-input[type='date']::-webkit-clear-button,
-input[type='date']::-webkit-inner-spin-button {
+/* calendar icon custom */
+input[type="date"] {
+    position: relative;
+    background: url(../../assets/icons/calendar.svg) no-repeat right 15px center;
+    padding-left: 10px;
+    font-family: 'Pretendard';
+}
+
+/* 기존 placeholder 투명 처리*/
+input[type="date"]::-webkit-clear-button,
+input[type="date"]::-webkit-inner-spin-button {
     display: none;
 }
 
-input[type='date']::-webkit-calendar-picker-indicator {
-    background: transparent;
-    color: transparent;
-} 
-
-input[type="date"] {
-    color: transparent;
-    position: relative;
+/* 기존 calendar icon 투명처리 & 크기 조절*/
+input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
     width: 100%;
-    background: url(../../assets/icons/calendar.svg) no-repeat right 15px center;
+    height: 100%;
+    background:transparent;
+    color: transparent;
+    cursor: pointer;
 }
 
-input[type="date"]:not(.has-value):before{
+/* custom placeholder를 가상요소로 넣음*/
+input[type="date"]::before {
+    content: attr(data-placeholder);
+    width: 100%;
+}
+
+/* 유효한 값이 입력된다면 가상요소를 사라지게 함*/
+input[type="date"]:valid::before {
+    display: none;
+}
+
+input[data-placeholder]::before {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
-    color: var(--color-input);
-    content: attr(placeholder);
+    left: 4%;
+    transform: translateY(-50%); 
+    background: url(../../assets/icons/calendar.svg) no-repeat right 26px center #fff;
     font-family: 'Pretendard';
-}
+    color: var(--color-input);
+} 
 
 .signUp .proceed, .signUp .previous{
     width: 100%;
