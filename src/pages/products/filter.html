@@ -11,7 +11,7 @@
     <div class="filter-section">
       <div class="filter-header">
         <h1 class="filter-header-title">필터</h1>
-        <!-- <img src="../../assets/icons/xbtn-black.svg" /> -->
+        <img src="../../assets/icons/xbtn-black.svg" />
       </div>
 
       <form class="form" action="">
@@ -39,6 +39,53 @@
                 가격순</label
               >
             </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-group-label">성별</label>
+            <div class="form-group-checkbox">
+              <label class="choice type_checkbox" for="men"
+                ><input type="checkbox" name="gender" id="men" />남성
+              </label>
+              <label class="choice type_checkbox" for="woman"
+                ><input type="checkbox" name="gender" id="women" />여성</label
+              >
+              <label class="choice type_checkbox" for="unisex"
+                ><input type="checkbox" name="gender" id="unisex" />
+                유니섹스</label
+              >
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-group-label">가격대</label>
+            <div class="form-group-checkbox">
+              <label class="choice type_checkbox" for="first"
+                ><input type="checkbox" name="price" id="first" />0 - 50,000
+                원</label
+              >
+              <label class="choice type_checkbox" for="second"
+                ><input type="checkbox" name="price" id="second" /> 50,000 -
+                100,000 원</label
+              >
+              <label class="choice type_checkbox" for="third"
+                ><input type="checkbox" name="price" id="third" />100,000 -
+                150,000 원</label
+              >
+              <label class="choice type_checkbox" for="fourth"
+                ><input type="checkbox" name="price" id="fourth" /> 150,000 -
+                200,000 원</label
+              >
+              <label class="choice type_checkbox" for="fifth"
+                ><input type="checkbox" name="price" id="fifth" />200,000 원
+                +</label
+              >
+            </div>
+          </div>
+
+          <div>
+            <button>지우기</button>
+            <button>적용</button>
           </div>
         </fieldset>
       </form>
