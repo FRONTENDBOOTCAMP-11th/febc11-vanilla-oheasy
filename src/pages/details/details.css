@@ -32,6 +32,14 @@ a {
   text-decoration: none;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
+.pointable {
+  cursor: pointer;
+}
+
 /* Typography */
 :root {
   font-family: 'Noto Sans KR', sans-serif;
@@ -117,12 +125,16 @@ a {
 }
 
 .item-cover-main {
+  display: flex;
+  overflow-x: scroll;
   margin-bottom: 3px;
+  aspect-ratio: 36 / 45;
 }
 
 .item-cover-thumbnails {
   display: flex;
   gap: 10px;
+  overflow-x: scroll;
 }
 
 .size-title {
@@ -150,6 +162,10 @@ a {
   align-items: center;
   border: 1px solid var(--color-grey-30);
   border-radius: 4px;
+}
+
+.size-grid span:not(.size-disabled) {
+  cursor: pointer;
 }
 
 .size-grid span.size-disabled {
@@ -225,7 +241,6 @@ button-white img {
 
 .recommends {
   margin-top: 38px;
-  padding-left: var(--white-space-m);
 }
 
 .recommends h3 {
@@ -238,7 +253,6 @@ button-white img {
   display: flex;
   justify-content: flex-end;
   gap: 12px;
-  padding-right: var(--white-space-m);
   margin-bottom: 12px;
 }
 
@@ -249,8 +263,8 @@ button-white img {
 .recommends-items {
   display: flex;
   gap: 12px;
-  overflow: hidden;
   margin-bottom: 50px;
+  overflow-x: scroll;
 }
 
 .recommends-items .card {
