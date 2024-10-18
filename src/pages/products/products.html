@@ -5,25 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="products.css" />
+    <link rel="stylesheet" href="products-filter.css" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap"
       rel="stylesheet"
     />
-    <script src="../../components/button-black.js"></script>
-    <script src="../../components/button-white.js"></script>
-    <script src="../../components/header-mobile.js"></script>
   </head>
 
   <body>
-    <div class="wrapper">
+    <!-- #2 filter page -->
+    <div class="filter-section">
+      <div class="filter-header">
+        <h1 class="filter-header-title">필터</h1>
+        <img src="../../assets/icons/xbtn-black.svg" />
+      </div>
+
+      <form class="form" action="">
+        <fieldset>
+          <div class="form-group">
+            <label class="form-group-label">정렬 기준</label>
+            <div class="form-group-radio">
+              <label class="choice type_radio" for="recommended"
+                ><input
+                  type="radio"
+                  name="standard"
+                  id="recommended"
+                />추천순</label
+              >
+              <label class="choice type_radio" for="latest"
+                ><input type="radio" name="standard" id="latest" />최신순</label
+              >
+              <label class="choice type_radio" for="higher"
+                ><input type="radio" name="standard" id="higher" />높은
+                가격순</label
+              >
+
+              <label class="choice type_radio" for="lower"
+                ><input type="radio" name="standard" id="lower" />낮은
+                가격순</label
+              >
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+
+    <div class="wrapper hidden">
       <nav class="header">
         <img class="nike-logo" src="../../assets/icons/logo.svg" />
         <div class="header-icons">
           <img src="../../assets/icons/search.svg" />
           <img src="../../assets/icons/user.svg" />
-          <img class="bag" src="../../assets/icons/bag.svg" />
+          <img src="../../assets/icons/bag-36.svg" />
           <img src="../../assets/icons/menu.svg" />
         </div>
       </nav>
