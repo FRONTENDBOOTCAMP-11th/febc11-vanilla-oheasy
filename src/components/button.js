@@ -6,6 +6,7 @@ loadHTML('/src/components/button.html', function (response) {
 
   buttonBoxes.forEach(buttonBox => {
     buttonBox.innerHTML = response; // button box의 inner html을 button.html로 교체
+    console.log(buttonBox.children);
     const $button = buttonBox.children[2]; // button box 자식 중 button을 선택
 
     /* button 스타일 수정 */
