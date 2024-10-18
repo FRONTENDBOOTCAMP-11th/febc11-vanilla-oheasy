@@ -11,7 +11,8 @@ ul {
 }
 
 h2,
-h3 {
+h3,
+h4 {
   margin: unset;
   font-size: unset;
   font-weight: unset;
@@ -56,7 +57,7 @@ a {
 .l_layout {
   max-width: 360px;
   margin: 0 auto;
-  padding: 0 var(--white-space-m) var(--white-space-m) var(--white-space-m);
+  padding: 0 var(--white-space-m) 0 var(--white-space-m);
 }
 
 /* Components */
@@ -160,6 +161,7 @@ a {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  margin-bottom: 32px;
 }
 
 button-white img {
@@ -219,4 +221,68 @@ button-white img {
 
 .foldable-contents .list li + li {
   margin-top: 1em;
+}
+
+.recommends {
+  margin-top: 38px;
+  padding-left: var(--white-space-m);
+}
+
+.recommends h3 {
+  font-size: 24px;
+  line-height: 36px;
+  font-weight: 500;
+}
+
+.recommends-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-right: var(--white-space-m);
+  margin-bottom: 12px;
+}
+
+.recommends-buttons img:first-child {
+  opacity: 0.3;
+}
+
+.recommends-items {
+  display: flex;
+  gap: 12px;
+  overflow: hidden;
+  margin-bottom: 50px;
+}
+
+.recommends-items .card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 196px;
+  flex-shrink: 0;
+}
+
+.card-title {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: -12px;
+}
+
+.card-category {
+  font-size: 14px;
+  color: var(--color-grey-70);
+}
+
+.card-price {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.btn-bag {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  text-align: center;
+  height: 67px;
+  line-height: 67px;
+  font-weight: 500;
+  width: 100%;
 }
