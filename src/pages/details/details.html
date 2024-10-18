@@ -4,17 +4,37 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-  </head>
-  <body></body>
-</html>
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <h1>Details</h1>
+    <div id="header-box"></div>
+
+    <!-- Component Test -->
+    <!-- 1. black 100% / 64px button -->
+    <div
+      class="button-box"
+      data-theme="black"
+      data-text="button test1"
+      data-width="100%"
+      data-height="64px"
+    ></div>
+
+    <!-- 2. white 150px 40px button -->
+    <div
+      class="button-box"
+      data-theme="white"
+      data-text="button test2"
+      data-width="150px"
+      data-height="40px"
+    ></div>
+
+    <script type="module" src="../../components/button.js"></script>
+    <script type="module" src="../../components/header-mobile.js"></script>
   </body>
 </html>
