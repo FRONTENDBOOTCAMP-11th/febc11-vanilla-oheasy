@@ -1,0 +1,60 @@
+/* css reset */
+body {
+    margin: unset;
+    padding: unset;
+}
+
+h1, p {
+    margin: unset;
+    padding: unset;
+    font-size: unset;
+    font-weight: unset;
+}
+
+img {
+    vertical-align: top;
+    max-width: 100%;
+}
+
+button {
+    all: unset;
+}
+
+/* Layout */
+.wrapper {
+    margin: 0 auto;
+    max-width: 360px;
+}
+
+.container {
+    margin: 12px 24px 48px;
+    box-shadow: inset 0 0 20px pink;
+}
+
+.header {
+    box-shadow: inset 0 0 20px gold;
+    display: flex;
+    justify-content: space-between;
+    vertical-align: center;
+    
+}
+
+.main {
+    box-shadow: inset 0 0 20px darkgray;
+}
+
+.footer {
+    box-shadow: inset 0 0 20px skyblue;
+}
+
+/* Typography */
+:root {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* Design */
+.header-icons {
+    box-shadow: inset 0 0 20px dodgerblue;
+    display: flex;
+    align-items: center;
+}
