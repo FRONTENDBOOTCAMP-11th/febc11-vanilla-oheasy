@@ -48,13 +48,6 @@ button {
 }
 
 /* Commons */
-.header {
-    /* margin-bottom: 26px; */
-}
-
-.main {
-}
-
 .title {
     /* width: 265px; */
     font-size: 28px;
@@ -73,10 +66,22 @@ input {
     font-size: 16px;
 }
 
-input[type='checkbox'] {
+input:focus {
+    border: 1px solid var(--color-black);
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: flex-start;
     margin-top: 20px;
+}
+
+input[type='checkbox'] {
     width: auto;
     height: auto;
+    margin: 3px 10px 0 0 ;
+    accent-color: var(--color-black);
+    vertical-align: top;
 }
 
 .description {
@@ -100,9 +105,13 @@ input[type='checkbox'] {
     color: var(--color-white);
 }
 
+/* Design */
 /* signIn_main.html */
-.signIn.main input {
+.signIn.main {
     margin-top: 26px;
+}
+
+.signIn.main .input-container {
     margin-bottom: 46px;
 }
 
@@ -110,21 +119,30 @@ input[type='checkbox'] {
     margin-bottom: 40px;
 }
 
-.input-email-container {
+
+.input-container {
     position: relative;
-    margin-bottom: 20px;
+    /* margin-bottom: 46px;  */
 }
 
-.input-email-container input:focus + .floating-label {
+.input-container span {
     position: absolute;
-    top: 20%;
+    top: 50%;
     left: 12px;
     transform: translateY(-50%);
-    color: #aaa;
-    transition: 0.3s ease all;
-    pointer-events: none;
-    font-size: 16px;
+    color: var(--color-input);
+    transition: all 0.3s ease;
+    background-color: var(--color-white);
+    
+}
 
+.input-container input:focus ~ span {
+/* .input-container input:valid ~ span { */
+    top: -10%;
+    left: 12px;
+    transform: translateY(0);
+    transition: all 0.3s ease;
+    /* z-index: 1; */
 }
 
 /* signIn_pwd.html */
@@ -136,16 +154,16 @@ input[type='checkbox'] {
     margin: 20px 0 90px;
 }
 
-.password-container {
-    position: relative;
-}
 
-.password-container img {
+/* .password-container {
+    position: relative;
+} */
+
+.input-container.pwd img {
     position: absolute;
     top: 50%;
     right: 10px;
     transform: translateY(-50%);
-    color: var(--color-description);
 }
 
 .signIn-pwd-btn {
@@ -155,20 +173,15 @@ input[type='checkbox'] {
 }
 
 /* signUp_main */
-.input-name-container {
+.flex-container {
     display: flex;
     justify-content: space-between;
     gap: 12px;
-    margin-bottom: 20px;
+    margin: 20px 0;
 }
 
-.input-name-container input {
-    width: 50%;
-}
-
-
-.input-password-container input {
-    width: 100%;
+.flex-container .input-container {
+    flex: 1;
 }
 
 .pwd-warning {
@@ -177,9 +190,47 @@ input[type='checkbox'] {
     font-weight: 400;
 }
 
-.signUp .proceed, .signUp .previous{
-    margin-top: 48px;
+/* 기존 캘린더 숨기기 */
+input[type='date']::-webkit-clear-button,
+input[type='date']::-webkit-inner-spin-button {
+    display: none;
+}
+
+input[type='date']::-webkit-calendar-picker-indicator {
+    background: transparent;
+    color: transparent;
+} 
+
+input[type="date"] {
+    color: transparent;
+    position: relative;
     width: 100%;
+}
+
+input[type="date"]:not(.has-value):before{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-input);
+    content: attr(placeholder);
+    font-family: 'Pretendard';
+}
+
+
+input[type='date'] {
+    background: url(../../assets/icons/calendar.svg) no-repeat right 15px center;
+}  
+
+.signUp .proceed, .signUp .previous{
+    width: 100%;
+}
+
+.signUp .proceed {
+    margin-top: 48px;
+}
+
+.signUp .previous {
+    margin-top: 12px;
 }
 
 /* signUp_term */
