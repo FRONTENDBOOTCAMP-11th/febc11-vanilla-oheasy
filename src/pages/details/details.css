@@ -144,7 +144,7 @@ a {
   margin-bottom: 9px;
 }
 
-.size-title span:last-child {
+.size-title a {
   color: var(--color-grey-70);
 }
 
