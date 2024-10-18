@@ -20,14 +20,13 @@ body, h1, p{
 
     margin:0 auto;
 }
+
 /* header */
 .header_icons{
     height: 60px;
-    background-image: url(/src/assets/icons/logo.svg);
-    background-repeat: no-repeat;
     
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     gap: 6px;
 }
@@ -61,6 +60,8 @@ body, h1, p{
     border: none;
     outline: none;
     font-family: 'Noto Sans KR', sans-serif;
+
+    flex-grow: 1;
 }
 
 
@@ -336,6 +337,7 @@ body, h1, p{
 
 .oder_button{
     margin-top: 47.5px;
+    margin: 0 auto;
 
     background: var(--111111, #111);
     display: flex;
@@ -351,7 +353,7 @@ body, h1, p{
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
-    line-height: 28px; /* 175% */
+    line-height: 28px;
 
     position: sticky;
     bottom:0;
