@@ -1,4 +1,4 @@
-import { loadHTML } from '../utils/loadHTML';
+import { loadHTML } from '../utils/loadHTML.js';
 
 // html 컴포넌트 파일을 불러와 콜백함수를 실행
 loadHTML('/src/components/button.html', function (response) {
@@ -7,7 +7,7 @@ loadHTML('/src/components/button.html', function (response) {
   buttonBoxes.forEach(buttonBox => {
     buttonBox.innerHTML = response; // button box의 inner html을 button.html로 교체
     console.log(buttonBox.children);
-    const $button = buttonBox.children[2]; // button box 자식 중 button을 선택
+    const $button = buttonBox.children[1]; // button box 자식 중 button을 선택
 
     /* button 스타일 수정 */
     $button.textContent = buttonBox.dataset.text;
