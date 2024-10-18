@@ -15,15 +15,25 @@
   <body>
     <div id="header-box"></div>
 
+    <!-- Component Test -->
+    <!-- 1. black 100% / 64px button -->
     <div
-      id="button-box"
-      data-bgcolor="#fff"
-      data-text="aaaaa"
-      data-color="#111"
-      data-width="50px"
-      data-height="40px"
-      data-bordercolor="black"
+      class="button-box"
+      data-theme="black"
+      data-text="button test1"
+      data-width="100%"
+      data-height="64px"
     ></div>
+
+    <!-- 2. white 150px 40px button -->
+    <div
+      class="button-box"
+      data-theme="white"
+      data-text="button test2"
+      data-width="150px"
+      data-height="40px"
+    ></div>
+
     <script type="module" src="../../components/button.js"></script>
     <script type="module" src="../../components/header-mobile.js"></script>
   </body>
