@@ -279,11 +279,13 @@ button-white img {
   font-size: 14px;
   font-weight: 500;
   margin-bottom: -12px;
+  line-height: 25px;
 }
 
 .card-category {
   font-size: 14px;
   color: var(--color-grey-70);
+  line-height: 25px;
 }
 
 .card-price {
