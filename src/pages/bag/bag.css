@@ -13,10 +13,12 @@ body, h1, p{
 
 /* wrapper */
 .wrapper{
-    width: 360px;
+    max-width: 360px;
     background-color: #ffffff;
     padding:0 16px 0 16px ;
     box-sizing: border-box;
+
+    margin:0 auto;
 }
 /* header */
 .header_icons{
@@ -274,9 +276,7 @@ body, h1, p{
     line-height: 24.5px;
     margin-top: 12px;
 }
-.recommended_products_wrapper{
 
-}
 .recommended_products_img{
     width: 232px;
     height: 232px;
@@ -348,9 +348,11 @@ body, h1, p{
 
     color: var(--FFFFFF, #FFF);
     text-align: center;
-    font-family: "Noto Sans KR";
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
     line-height: 28px; /* 175% */
+
+    position: sticky;
+    bottom:0;
 }
