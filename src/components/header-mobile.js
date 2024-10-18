@@ -1,38 +1,6 @@
-class HeaderMobile extends HTMLElement {
-  constructor() {
-    super();
-    this.attachShadow({ mode: 'open' });
-    this.shadowRoot.innerHTML = `
-          <style>
-              .header {
-                  display: flex;
-                  justify-content: space-between;
-                  align-items: center;
-                  padding-left: 14px;
-                  padding-right: 24px;
-              }
-  
-              .header-controls {
-                  display: flex;
-                  gap: 4px;
-              }
-  
-              .header-controls img {
-                  padding: 6px;
-              }
-          </style>
-  
-          <header class="header">
-              <img src="./icons/logo.svg" alt="nike logo" />
-              <div class="header-controls">
-                  <img src="../../assets/icons/search.svg" alt="search" />
-                  <img src="../../assets/icons/user.svg" alt="user" />
-                  <img src="../../assets/icons/bag.svg" alt="bag" />
-                  <img src="../../assets/icons/menu.svg" alt="menu" />
-              </div>
-          </header>
-        `;
-  }
-}
+import { loadHTML } from '../utils/loadHTML';
 
-customElements.define('header-mobile', HeaderMobile);
+// html 컴포넌트 파일을 불러와 콜백함수를 실행
+loadHTML('/src/components/header-mobile.html', function (response) {
+  document.getElementById('header').innerHTML = response;
+});
