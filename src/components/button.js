@@ -27,5 +27,6 @@ loadHTML('/src/components/button.html', function (response) {
     $button.style.width = buttonBox.dataset.width;
     $button.style.height = buttonBox.dataset.height;
     $button.style.lineHeight = buttonBox.dataset.lineheight;
+    $button.style.fontWeight = buttonBox.dataset.fontweight;
   });
 });
