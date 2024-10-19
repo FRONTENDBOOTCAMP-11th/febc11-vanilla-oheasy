@@ -32,12 +32,12 @@ a {
   text-decoration: none;
 }
 
-::-webkit-scrollbar {
-  display: none;
-}
-
 .pointable {
   cursor: pointer;
+}
+
+.x-scroll::-webkit-scrollbar {
+  display: none;
 }
 
 /* Typography */
