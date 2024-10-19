@@ -182,6 +182,10 @@ a {
   margin-bottom: 32px;
 }
 
+.item-buttons .btn img {
+  margin-left: 4px;
+}
+
 .description {
   margin-top: 8px;
   line-height: 28px;
@@ -217,7 +221,15 @@ a {
 }
 
 .foldable .stars {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-right: 16px;
+}
+
+.foldable .stars img {
+  width: 13px;
+  margin-left: 5px;
 }
 
 .foldable h2 {
