@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="./details.css" />
   </head>
   <body>
-    <header-mobile></header-mobile>
+    <header id="header-box"></header>
     <div class="l_layout">
       <main>
         <section class="item">
@@ -70,14 +70,22 @@
             </div>
           </div>
           <div class="item-buttons">
-            <button-black>장바구니</button-black>
-            <!-- <button class="btn-black">장바구니</button> -->
-            <button-white
-              >위시리스트<img src="../../assets/icons/heart.svg" alt="heart"
-            /></button-white>
-            <!-- <button class="btn-white">
-              위시리스트<img src="../../assets/icons/heart.svg" alt="heart" />
-            </button> -->
+            <div
+              class="button-box"
+              data-theme="black"
+              data-width="100%"
+              data-height="64px"
+            >
+              장바구니
+            </div>
+            <div
+              class="button-box"
+              data-theme="white"
+              data-width="100%"
+              data-height="64px"
+            >
+              위시리스트 <img src="../../assets/icons/heart.svg" alt="heart" />
+            </div>
           </div>
         </section>
         <section class="description">
@@ -209,8 +217,7 @@
         <button class="btn-bag pointable">장바구니</button>
       </main>
     </div>
-    <script src="../../components/header-mobile.js"></script>
-    <script src="../../components//button-black.js"></script>
-    <script src="../../components//button-white.js"></script>
+    <script type="module" src="../../components/header-mobile.js"></script>
+    <script type="module" src="../../components/button.js"></script>
   </body>
 </html>
