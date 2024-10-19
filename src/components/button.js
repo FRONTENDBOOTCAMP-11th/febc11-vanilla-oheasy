@@ -11,6 +11,7 @@ loadHTML('/src/components/button.html', function (response) {
 
     /* button 스타일 수정 */
     $button.textContent = buttonBox.dataset.text;
+    // $button.fontWeight = buttonBox.dataset.fontweight;
 
     const buttonTheme = buttonBox.dataset.theme;
     // color theme
@@ -25,6 +26,6 @@ loadHTML('/src/components/button.html', function (response) {
     // size
     $button.style.width = buttonBox.dataset.width;
     $button.style.height = buttonBox.dataset.height;
-    $button.style.lineHeight = buttonBox.dataset.height;
+    $button.style.lineHeight = buttonBox.dataset.lineheight;
   });
 });

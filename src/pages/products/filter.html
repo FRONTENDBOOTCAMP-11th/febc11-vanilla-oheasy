@@ -8,106 +8,103 @@
   </head>
   <body>
     <!-- #2 filter page -->
-    <div class="wrapper">
-      <div class="filter-section">
-        <div class="filter-header">
-          <h1 class="filter-header-title">필터</h1>
-          <button><img src="../../assets/icons/xbtn-black.svg" /></button>
-        </div>
-
-        <form class="form" action="">
-          <fieldset>
-            <div class="form-group">
-              <label class="form-group-label">정렬 기준</label>
-              <div class="form-group-radio">
-                <label class="choice type_radio" for="recommended"
-                  ><input
-                    type="radio"
-                    name="standard"
-                    id="recommended"
-                  />추천순</label
-                >
-                <label class="choice type_radio" for="latest"
-                  ><input
-                    type="radio"
-                    name="standard"
-                    id="latest"
-                  />최신순</label
-                >
-                <label class="choice type_radio" for="higher"
-                  ><input type="radio" name="standard" id="higher" />높은
-                  가격순</label
-                >
-
-                <label class="choice type_radio" for="lower"
-                  ><input type="radio" name="standard" id="lower" />낮은
-                  가격순</label
-                >
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label class="form-group-label">성별</label>
-              <div class="form-group-checkbox">
-                <label class="choice type_checkbox" for="men"
-                  ><input type="checkbox" name="gender" id="men" />남성
-                </label>
-                <label class="choice type_checkbox" for="woman"
-                  ><input type="checkbox" name="gender" id="women" />여성</label
-                >
-                <label class="choice type_checkbox" for="unisex"
-                  ><input type="checkbox" name="gender" id="unisex" />
-                  유니섹스</label
-                >
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label class="form-group-label">가격대</label>
-              <div class="form-group-checkbox">
-                <label class="choice type_checkbox" for="first"
-                  ><input type="checkbox" name="price" id="first" />0 - 50,000
-                  원</label
-                >
-                <label class="choice type_checkbox" for="second"
-                  ><input type="checkbox" name="price" id="second" /> 50,000 -
-                  100,000 원</label
-                >
-                <label class="choice type_checkbox" for="third"
-                  ><input type="checkbox" name="price" id="third" />100,000 -
-                  150,000 원</label
-                >
-                <label class="choice type_checkbox" for="fourth"
-                  ><input type="checkbox" name="price" id="fourth" /> 150,000 -
-                  200,000 원</label
-                >
-                <label class="choice type_checkbox" for="fifth"
-                  ><input type="checkbox" name="price" id="fifth" />200,000 원
-                  +</label
-                >
-              </div>
-            </div>
-          </fieldset>
-        </form>
+    <div class="filter-section">
+      <div class="filter-header">
+        <h1 class="filter-header-title">필터</h1>
+        <button><img src="../../assets/icons/xbtn-black.svg" /></button>
       </div>
-      <div class="btn-section">
-        <div
-          class="button-box"
-          data-theme="white"
-          data-text="지우기"
-          data-width="152px"
-          data-height="46px"
-          style="font-weight: 400"
-        ></div>
-        <div
-          class="button-box"
-          data-theme="black"
-          data-text="적용"
-          data-width="152px"
-          data-height="46px"
-          style="font-weight: 400"
-        ></div>
-      </div>
+
+      <form class="form" action="">
+        <fieldset class="form-area--1">
+          <div class="form-group">
+            <label class="form-group-label">정렬 기준</label>
+            <div class="form-group-radio">
+              <label class="choice type_radio" for="recommended"
+                ><input
+                  type="radio"
+                  name="standard"
+                  id="recommended"
+                />추천순</label
+              >
+              <label class="choice type_radio" for="latest"
+                ><input type="radio" name="standard" id="latest" />최신순</label
+              >
+              <label class="choice type_radio" for="higher"
+                ><input type="radio" name="standard" id="higher" />높은
+                가격순</label
+              >
+
+              <label class="choice type_radio" for="lower"
+                ><input type="radio" name="standard" id="lower" />낮은
+                가격순</label
+              >
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-group-label">성별</label>
+            <div class="form-group-checkbox">
+              <label class="choice type_checkbox" for="men"
+                ><input type="checkbox" name="gender" id="men" />남성
+              </label>
+              <label class="choice type_checkbox" for="woman"
+                ><input type="checkbox" name="gender" id="women" />여성</label
+              >
+              <label class="choice type_checkbox" for="unisex"
+                ><input type="checkbox" name="gender" id="unisex" />
+                유니섹스</label
+              >
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-group-label">가격대</label>
+            <div class="form-group-checkbox">
+              <label class="choice type_checkbox" for="first"
+                ><input type="checkbox" name="price" id="first" />0 - 50,000
+                원</label
+              >
+              <label class="choice type_checkbox" for="second"
+                ><input type="checkbox" name="price" id="second" /> 50,000 -
+                100,000 원</label
+              >
+              <label class="choice type_checkbox" for="third"
+                ><input type="checkbox" name="price" id="third" />100,000 -
+                150,000 원</label
+              >
+              <label class="choice type_checkbox" for="fourth"
+                ><input type="checkbox" name="price" id="fourth" /> 150,000 -
+                200,000 원</label
+              >
+              <label class="choice type_checkbox" for="fifth"
+                ><input type="checkbox" name="price" id="fifth" />200,000 원
+                +</label
+              >
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-area--2">
+          <div class="btn-section">
+            <div
+              class="button-box"
+              data-theme="white"
+              data-text="지우기"
+              data-width="152px"
+              data-height="46px"
+              style="font-weight: 400"
+            ></div>
+            <div
+              class="button-box"
+              data-theme="black"
+              data-text="적용"
+              data-width="152px"
+              data-height="46px"
+              style="font-weight: 400"
+            ></div>
+          </div>
+        </fieldset>
+      </form>
     </div>
 
     <script type="module" src="../../components/button.js"></script>
