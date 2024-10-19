@@ -29,6 +29,11 @@ img {
   vertical-align: top;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 /* Form Elements */
 input {
   all: unset;
@@ -179,13 +184,14 @@ body {
 }
 
 /* Layouts */
-.l_flex_row {
+.categories {
   display: flex;
   flex-direction: row;
   overflow-x: scroll;
+  margin-left: 4px;
 }
 
-.l_flex_row::-webkit-scrollbar {
+.categories::-webkit-scrollbar {
   display: none;
 }
 
@@ -234,7 +240,7 @@ body {
   line-height: 52px;
 }
 
-.product-type {
+.category {
   white-space: nowrap;
   height: 50px;
   line-height: 50px;
