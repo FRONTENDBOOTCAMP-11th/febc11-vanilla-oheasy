@@ -22,6 +22,61 @@
             <img src="/src/assets/icons/menu.svg">
           </div>
         </div>
+        <div class="side-bar">
+
+          <div class="side-bar-header">
+            <div class="side-bar-header-img">
+              <img src="/src/assets/icons/xbtn.svg">
+            </div>
+            <div class="side-bar-header-btn">
+              <button class="btn-black">가입하기</button>
+              <button class="btn-white">로그인</button>
+            </div>
+          </div>
+          
+          <div class="side-bar-main">
+            <div class="side-bar-menu">
+              <div class="menu-items">
+                <h2>New & Featured</h2>
+                <img src="/src/assets/icons/vector-right.svg">
+              </div>
+              <div class="menu-items">
+                <h2>Men</h2>
+                <img src="/src/assets/icons/vector-right.svg">
+              </div>
+              <div class="menu-items">
+                <h2>Women</h2>
+                <img src="/src/assets/icons/vector-right.svg">
+              </div>
+              <div class="menu-items">
+                <h2>Kids</h2>
+                <img src="/src/assets/icons/vector-right.svg">
+              </div>
+              <div class="menu-items">
+                <h2>Sale</h2>
+                <img src="/src/assets/icons/vector-right.svg">
+              </div>
+            </div>
+            <div class="side-bar-info">
+              <div class="info-items">
+                <img src="/src/assets/icons/question.svg">
+                <h4>고객센터</h4>
+              </div>
+              <div class="info-items">
+                <img src="/src/assets/icons/bag.svg">
+                <h4>장바구니</h4>
+              </div>
+              <div class="info-items">
+                <img src="/src/assets/icons/order.svg">
+                <h4>주문</h4>
+              </div>
+              <div class="info-items">
+                <img src="/src/assets/icons/store.svg">
+                <h4>매장 찾기</h4>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div class="main">
           <section class="feature-1">
@@ -109,4 +164,16 @@
       </div>
     </div>
   </body>
+
+  <script>
+    /* 메뉴를 클릭했을 때 .side-bar에 active 클래스를 추가한다.*/
+    document.querySelector('.header-icons img:last-child').addEventListener('click', function() {
+      document.querySelector('.side-bar').classList.toggle('active');
+    });
+    /* 닫기를 클릭했을 때 .side-bar에 active 클래스를 제거한다.*/
+    document.querySelector('.side-bar-header-img img').addEventListener('click', function() {
+      document.querySelector('.side-bar').classList.remove('active');
+
+    });
+  </script>
 </html>
