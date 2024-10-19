@@ -1,7 +1,306 @@
+/* Reset */
+body,
+figure,
+p {
+  margin: unset;
+}
+
+ul {
+  margin: unset;
+  padding: unset;
+}
+
+h2,
+h3,
+h4 {
+  margin: unset;
+  font-size: unset;
+  font-weight: unset;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: top;
+}
+
+button {
+  all: unset;
+}
+
+a {
+  color: unset;
+  text-decoration: none;
+}
+
+.pointable {
+  cursor: pointer;
+}
+
+.x-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Typography */
 :root {
   font-family: 'Noto Sans KR', sans-serif;
+  color: var(--color-black);
+}
 
-  --color-black: #111;
+/* Variables */
+:root {
   --color-white: #fff;
-  --color-grey: #cacacb;
+  --color-black: #111;
+
+  --color-grey-30: #e5e5e5;
+  --color-grey-50: #cacacb;
+  --color-grey-50: #9e9ea0;
+  --color-grey-70: #707072;
+
+  --color-green: #007d48;
+
+  --white-space-m: 24px;
+}
+
+/* Layouts */
+.l_layout {
+  max-width: 360px;
+  margin: 0 auto;
+  padding: 0 var(--white-space-m) 0 var(--white-space-m);
+  box-sizing: border-box;
+}
+
+/* Components */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 14px;
+  padding-right: 24px;
+}
+
+.header-controls {
+  display: flex;
+  gap: 4px;
+}
+
+.header-controls img {
+  padding: 6px;
+}
+
+.item-info {
+  font-weight: 500;
+  margin-top: 80px;
+  margin-bottom: var(--white-space-m);
+}
+
+.item-info .name {
+  font-size: 20px;
+  height: 35px;
+  line-height: 35px;
+}
+
+.item-info .category {
+  font-size: 16px;
+  font-weight: 500;
+  height: 20px;
+  line-height: 20px;
+  margin-bottom: 12px;
+}
+
+.price {
+  display: flex;
+  gap: 8px;
+}
+
+.price .original {
+  color: var(--color-grey-50);
+  text-decoration: line-through;
+}
+
+.price .discount {
+  color: var(--color-green);
+}
+
+.item-cover {
+  margin: 0 calc(-1 * var(--white-space-m));
+  margin-bottom: 42px;
+}
+
+.item-cover-main {
+  display: flex;
+  overflow-x: scroll;
+  margin-bottom: 3px;
+  aspect-ratio: 36 / 45;
+}
+
+.item-cover-thumbnails {
+  display: flex;
+  gap: 10px;
+  overflow-x: scroll;
+}
+
+.size-title {
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 9px;
+}
+
+.size-title a {
+  color: var(--color-grey-70);
+}
+
+.size-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: 48px;
+  gap: 7px;
+  margin-bottom: 33px;
+}
+
+.size-grid span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--color-grey-30);
+  border-radius: 4px;
+}
+
+.size-grid span:not(.size-disabled) {
+  cursor: pointer;
+}
+
+.size-grid span.size-disabled {
+  background-color: var(--color-grey-30);
+  color: var(--color-grey-70);
+}
+
+.item-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.description {
+  margin-top: 8px;
+  line-height: 28px;
+  word-break: keep-all;
+}
+
+.description p {
+  margin-bottom: 28px;
+}
+
+.list {
+  padding-left: var(--white-space-m);
+  margin-bottom: 32px;
+}
+
+.list a {
+  border-bottom: 1px solid var(--color-black);
+}
+
+.description-more {
+  font-weight: 500;
+  border-bottom: 2px solid var(--color-black);
+}
+
+.foldable {
+  border-bottom: 1px solid var(--color-grey-30);
+}
+
+.foldable-title {
+  padding: 30px 0;
+  display: flex;
+  align-items: center;
+}
+
+.foldable .stars {
+  margin-right: 16px;
+}
+
+.foldable h2 {
+  font-size: 20px;
+  line-height: 35px;
+  font-weight: 500;
+  flex-grow: 1;
+  flex-basis: 0;
+}
+
+.foldable-contents h3 {
+  line-height: 28px;
+  margin-bottom: 12px;
+}
+
+.foldable-contents .list {
+  font-size: 12px;
+}
+
+.foldable-contents .list li + li {
+  margin-top: 1em;
+}
+
+.recommends {
+  margin-top: 38px;
+}
+
+.recommends h3 {
+  font-size: 24px;
+  line-height: 36px;
+  font-weight: 500;
+}
+
+.recommends-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.recommends-buttons img:first-child {
+  opacity: 0.3;
+}
+
+.recommends-items {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 50px;
+  overflow-x: scroll;
+}
+
+.recommends-items .card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 196px;
+  flex-shrink: 0;
+}
+
+.card-title {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: -12px;
+  line-height: 25px;
+}
+
+.card-category {
+  font-size: 14px;
+  color: var(--color-grey-70);
+  line-height: 25px;
+}
+
+.card-price {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.btn-bag {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  text-align: center;
+  height: 67px;
+  line-height: 67px;
+  font-weight: 500;
+  width: 100%;
 }
