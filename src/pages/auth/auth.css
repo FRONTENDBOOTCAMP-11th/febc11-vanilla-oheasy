@@ -53,6 +53,16 @@ button {
     margin-top: 20px;
 }
 
+a {
+    color: currentColor;
+    text-decoration-thickness: 1px;
+    padding-bottom: 2px;
+}
+
+/* 볼드 처리 된 a*/
+b a {
+   text-decoration-thickness: 1.5px;
+}
 
 /* input 공통*/
 input {
