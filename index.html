@@ -97,11 +97,11 @@
               </div>
               <div class="card">
                 <img class="card-img" src="src/assets/images/home_card-img-2.png">
-                <h3 class="card-description">d</h3>
+                <h3 class="card-description">신발</h3>
               </div>
               <div class="card">
                 <img class="card-img" src="src/assets/images/home_card-img-3.png">
-                <h3 class="card-description">d</h3>
+                <h3 class="card-description">악세사리 & 용품</h3>
               </div>
             </article>
 
@@ -166,14 +166,15 @@
   </body>
 
   <script>
+    let sideBar = document.querySelector('.side-bar');
+
     /* 메뉴를 클릭했을 때 .side-bar에 active 클래스를 추가한다.*/
     document.querySelector('.header-icons img:last-child').addEventListener('click', function() {
-      document.querySelector('.side-bar').classList.toggle('active');
+      sideBar.classList.toggle('active');
     });
     /* 닫기를 클릭했을 때 .side-bar에 active 클래스를 제거한다.*/
     document.querySelector('.side-bar-header-img img').addEventListener('click', function() {
-      document.querySelector('.side-bar').classList.remove('active');
-
+      sideBar.classList.remove('active');
     });
   </script>
 </html>

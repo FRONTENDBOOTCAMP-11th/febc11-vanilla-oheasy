@@ -18,6 +18,7 @@ h1, h2, h3, h4, span, p {
 img {
     vertical-align: top;
     max-width: 100%;
+    /* cursor: pointer; */
 }
 
 button {
@@ -70,31 +71,32 @@ button {
 }
 
 .side-bar {
+    /* 위치 선정 */
     position: absolute;
     top: 0;
     right: 0;
+
+    /* 크기 */
     width: 310px;
     height: 100%;
+
     box-shadow: inset 0 0 20px dodgerblue;
     background-color: white;
-    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
-
-    z-index: 1000; 
     padding: 18px 18px 0 42px;
     box-sizing: border-box;
-
+    
+    /* active가 되지 않았을 때는 보이지 않게 */
     opacity: 0; 
     visibility: hidden;
-
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
 }
 
+/* 사이드바가 열렸을 때 */
 .side-bar.active {
-    opacity: 1; /* 완전히 보임 */
+    opacity: 1;
     transition: opacity 0.5s ease-in-out; 
     visibility: visible; 
-    
 }  
-
 
 
 .side-bar-header {
