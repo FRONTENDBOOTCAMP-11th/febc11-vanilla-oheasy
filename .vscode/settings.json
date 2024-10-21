@@ -66,5 +66,6 @@
       "description": "설정파일 추가/수정"
     }
   ],
-  "gitmoji.onlyUseCustomEmoji": true
+  "gitmoji.onlyUseCustomEmoji": true,
+  "liveServer.settings.port": 5501
 }
