@@ -4,7 +4,7 @@ body {
     padding: unset;
 }
 
-h1, h2, h3, h4, span, p {
+h1, h2, h3, h4, span, p, ul {
     margin: unset;
     padding: unset;
     font-size: unset;
@@ -61,7 +61,7 @@ img {
     /* padding: 24px; */
 }
 
-/* .side-bar {
+.side-bar {
     position: absolute;
     top: 0;
     right: 0;
@@ -74,13 +74,13 @@ img {
     box-sizing: border-box; */
     
     /* active가 되지 않았을 때는 보이지 않게 */
-    /* opacity: 0; 
+    opacity: 0; 
     visibility: hidden;
     transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
-} */
+}
 
 /* 사이드바가 열렸을 때 */
-/* .side-bar.active {
+.side-bar.active {
     opacity: 1;
     transition: opacity 0.5s ease-in-out; 
     visibility: visible; 
@@ -88,7 +88,7 @@ img {
 
 .side-bar-header img {
     cursor: pointer;
-} */
+}
 
 /* Commons */
 

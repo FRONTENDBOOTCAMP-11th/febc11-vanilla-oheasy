@@ -130,57 +130,26 @@
               </div>
             </article>
           </section>
-        
-          <div class="footer">
-            <div class="service">
-              <div class="service-item">
-                <p>안내</p>
-                <img src="src/assets/icons/vector-down.svg">
-              </div>
-              <div class="service-item">
-                <p>고객센터</p>
-                <img src="src/assets/icons/vector-down.svg">
-              </div>
-              <div class="service-item">
-                <p>회사소개</p>
-                <img src="src/assets/icons/vector-down.svg">
-              </div>
-            </div>
-            <div class="terms">
-              <p>© 2024 Nike, Inc. All Rights Reserved</p>
-              <p>이용약관</p>
-              <p><b>개인정보처리방침</b></p>
-              <p>위치정보이용약관</p>
-              <p>영상정보처리기기 운영 방침</p>
-            </div>
-            <div class="info">
-              <p>(유)나이키코리아 대표 Kimberlee Lynn Chang
-                Mendes, 킴벌리 린 창 멘데스 | 서울 강남구 테헤란로
-                152 강남파이낸스센터 30층 | 통신판매업신고번호
-                2011-서울강남-03461 | 등록번호 220-88-09068</p>
-                <p><a href="#">사업자 정보 확인</a></p>
-                <p>고객센터 전화 문의 <a href="#">080-022-0182</a> FAX 02-6744-5880
-                | 이메일 <a href="#">service@nike.co.kr</a> |</p>
-                <p>호스팅서비스사업자 (유)나이키코리아</p>
-            </div>
-          </div>
         </div>
+        <div id="footer-wrapper"></div>
       </div>
     </div>
   </body>
   <script type="module" src="src/components/button.js"></script>
   <script type="module" src="src/components/header-mobile.js"></script>
+  <script type="module" src="src/components/footer-mobile.js"></script>
+  
   <script>
     let sideBar = document.querySelector('.side-bar');
 
     /* 메뉴를 클릭했을 때 .side-bar에 active 클래스를 추가한다.*/
-    // document.querySelector('.header-icons img:last-child').addEventListener('click', function() {
-    //   sideBar.classList.toggle('active');
-    // });
+    document.querySelector('.header-icons img:last-child').addEventListener('click', function() {
+      sideBar.classList.toggle('active');
+    });
 
     /* 닫기를 클릭했을 때 .side-bar에 active 클래스를 제거한다.*/
-    // document.querySelector('.side-bar-header-img img').addEventListener('click', function() {
-    //   sideBar.classList.remove('active');
-    // });
+    document.querySelector('.side-bar-header-img img').addEventListener('click', function() {
+      sideBar.classList.remove('active');
+    });
   </script>
 </html>
