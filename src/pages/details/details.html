@@ -3,18 +3,221 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body></body>
-</html>
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Item Detail</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./details.css" />
   </head>
   <body>
-    <h1>Details</h1>
+    <header id="header-box"></header>
+    <div class="l_layout">
+      <main>
+        <section class="item">
+          <div class="item-info">
+            <h2 class="name">테이텀 2 PF</h2>
+            <h3 class="category">농구화</h3>
+            <div class="price">
+              <span class="on-sale">149,000 원</span>
+              <span class="original">249,000 원</span>
+              <span class="discount">10% 할인</span>
+            </div>
+          </div>
+          <figure class="item-cover">
+            <div class="item-cover-main x-scroll">
+              <img
+                src="../../assets/images/details_shoes-1.png"
+                alt="shoes main"
+              />
+              <img
+                src="../../assets/images/details_shoes-2.png"
+                alt="shoes main"
+              />
+              <img
+                src="../../assets/images/details_shoes-3.png"
+                alt="shoes main"
+              />
+            </div>
+            <div class="item-cover-thumbnails x-scroll">
+              <img
+                src="../../assets/images/details_thumbnail-1.png"
+                alt="item cover thumbnail1"
+              />
+              <img
+                src="../../assets/images/details_thumbnail-2.png"
+                alt="item cover thumbnail1"
+              />
+              <img
+                src="../../assets/images/details_thumbnail-3.png"
+                alt="item cover thumbnail1"
+              />
+            </div>
+          </figure>
+          <div class="item-size">
+            <div class="size-title">
+              <span>사이즈 선택</span>
+              <a href="#">사이즈 가이드</a>
+            </div>
+            <div class="size-grid">
+              <span>250</span><span>255</span><span>260</span><span>265</span
+              ><span>270</span><span>275</span><span>280</span><span>285</span
+              ><span>290</span><span class="size-disabled">295</span
+              ><span>300</span><span class="size-disabled">305</span
+              ><span class="size-disabled">310</span>
+            </div>
+          </div>
+          <div class="item-buttons">
+            <div
+              class="button-box"
+              data-theme="black"
+              data-width="100%"
+              data-height="64px"
+            >
+              장바구니
+            </div>
+            <div
+              class="button-box"
+              data-theme="white"
+              data-width="100%"
+              data-height="64px"
+            >
+              위시리스트<img src="../../assets/icons/heart.svg" alt="heart" />
+            </div>
+          </div>
+        </section>
+        <section class="description">
+          <p>
+            경기 종료 휘슬이 울릴 때까지는 끝난 것이 아닙니다. 테이텀 2와 함께
+            여유로운 에너지로 경기를 즐겨보세요. 무거운 고무 소재의 사용을
+            제한하여 더욱 가벼운 착화감을 선사합니다. 전체적으로 적용된 나이키
+            에어 스트로벨 유닛은 빠르게 방향을 바꿀 수 있도록 도와주며, 견고한
+            프레임과 발에 밀착되는 지지력 있는 폼이 어우러져 고정력 좋은
+            착화감을 선사합니다.
+          </p>
+          <ul class="list">
+            <li>현재 컬러: 라이트 지트론/오로라 그린/ 아토믹 핑크/세일</li>
+            <li>스타일 번호: FJ6458-700</li>
+          </ul>
+          <a class="description-more" href="#">상품 상세 정보 보기</a>
+        </section>
+        <section class="ship foldable">
+          <div class="foldable-title">
+            <h2>무료 배송 및 반품</h2>
+            <img
+              src="../../assets/icons/vector-down.svg"
+              alt="down"
+              class="pointable"
+            />
+          </div>
+        </section>
+        <section class="reviews foldable">
+          <div class="foldable-title">
+            <h2>리뷰 (2)</h2>
+            <div class="stars">
+              <img src="../../assets/icons/star.svg" alt="star" />
+              <img src="../../assets/icons/star.svg" alt="star" />
+              <img src="../../assets/icons/star.svg" alt="star" />
+              <img src="../../assets/icons/star.svg" alt="star" />
+              <img src="../../assets/icons/star.svg" alt="star" />
+            </div>
+            <img
+              src="../../assets/icons/vector-down.svg"
+              class="pointable"
+              alt="down"
+            />
+          </div>
+        </section>
+        <section class="details foldable">
+          <div class="foldable-title">
+            <h2>추가 정보</h2>
+            <img
+              src="../../assets/icons/vector-up.svg"
+              alt="up"
+              class="pointable"
+            />
+          </div>
+          <div class="foldable-contents">
+            <h3>상품정보제공고시</h3>
+            <ul class="list">
+              <li>
+                제조연월: 수입제품으로 각 제품별 입고 시기에 따라 상이하여
+                정확한 제조연월 제공이 어렵습니다. 제조연월을 확인하시려면
+                고객센터에 문의하시기 바라며, 정확한 제조연월은 배송받으신
+                제품의 라벨을 참고하시기 바랍니다.
+              </li>
+              <li>
+                A/S 책임자와 전화번호: (유)나이키코리아 온라인 스토어 고객센터 /
+                080-022-0182
+              </li>
+              <li>
+                세탁방법 및 취급시 주의사항: 자세한 내용은
+                <a href="#">'자세히 보기'</a>를 클릭하여 확인 부탁드립니다.
+              </li>
+
+              <li>
+                미성년자 권리 보호 안내: 자세한 내용은
+                <a href="#">'자세히 보기'</a> 를 클릭하여 확인 부탁드립니다.
+              </li>
+              <li>
+                품질보증기준: 품질보증기간-섬유 및 일반 소재(구입 후 6개월),
+                가죽소재(구입 후 1년). 유통 중 손상되었거나 품질에 이상이 있는
+                제품에 한하여 소비자 피해 보상 규정에 의거 보상하여 드립니다.
+                단, 제품에 부착되어 있는 사용방법 및 취급 시 주의사항에 따라
+                제품을 관리해 주시고, 소비자 부주의로 인한 품질 이상 및 변형에
+                대해서는 책임을 지지 않습니다.
+              </li>
+              <li>
+                제조자/수입품의 경우 수입자를 함께 표기: Nike. Inc /
+                (유)나이키코리아
+              </li>
+            </ul>
+          </div>
+        </section>
+        <section class="recommends">
+          <h3>추천제품</h3>
+          <div class="recommends-buttons">
+            <img
+              style="opacity: 0.3"
+              src="../../assets/icons/left.svg"
+              alt="left"
+              class="pointable"
+            />
+            <img
+              src="../../assets/icons/right.svg"
+              alt="right"
+              class="pointable"
+            />
+          </div>
+          <div class="recommends-items x-scroll">
+            <div class="card">
+              <img
+                src="../../assets/images/details_shoes-4.png"
+                alt="shoes"
+                class="card-cover"
+              />
+              <h4 class="card-title">나이키 줌 보메로 5</h4>
+              <span class="card-category">남성 신발</span>
+              <span class="card-price">189,000 원</span>
+            </div>
+            <div class="card">
+              <img
+                src="../../assets/images/details_cap-1.png"
+                alt="shoes"
+                class="card-cover"
+              />
+              <h4 class="card-title">나이키 클럽</h4>
+              <span class="card-category">언스트럭처 데님 캡</span>
+              <span class="card-price">39,000 원</span>
+            </div>
+          </div>
+        </section>
+        <button class="btn-bag pointable">장바구니</button>
+      </main>
+    </div>
+    <script type="module" src="../../components/header-mobile.js"></script>
+    <script type="module" src="../../components/button.js"></script>
   </body>
 </html>
