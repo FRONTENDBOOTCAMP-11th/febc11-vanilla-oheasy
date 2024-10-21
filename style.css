@@ -11,9 +11,9 @@ h1, h2, h3, h4, span, p {
     font-weight: unset;
 }
 
-/* ::-webkit-scrollbar {
+::-webkit-scrollbar {
     display: none;
-} */
+}
 
 img {
     vertical-align: top;
@@ -38,28 +38,21 @@ img {
 .wrapper {
     margin: 0 auto;
     max-width: 360px;
-    box-shadow: inset 0 0 20px paleturquoise;
     position: relative;
 }
 
 .container {
     margin: 12px 24px 48px;
-    box-shadow: inset 0 0 20px pink;
 }
 
 .header {
-    box-shadow: inset 0 0 20px gold;
     display: flex;
     justify-content: space-between;
     vertical-align: center;
 }
 
-.main {
-    box-shadow: inset 0 0 20px darkgray;
-}
 
 .footer {
-    /* box-shadow: inset 0 0 20px skyblue; */
     margin: 48px 0;
     display: flex;
     flex-direction: column;
@@ -76,7 +69,6 @@ img {
     width: 310px;
     height: 100%;
 
-    box-shadow: inset 0 0 20px dodgerblue;
     background-color: white;
     padding: 18px 18px 0 42px;
     box-sizing: border-box;
@@ -93,11 +85,6 @@ img {
     transition: opacity 0.5s ease-in-out; 
     visibility: visible; 
 }  
-
-
-.side-bar-header {
-    box-shadow: inset 0 0 20px gold;
-}
 
 .side-bar-header img {
     cursor: pointer;
@@ -138,12 +125,11 @@ p {
 /* Design */
 /* header */
 .header-icons {
-    box-shadow: inset 0 0 20px dodgerblue;
     display: flex;
     align-items: center;
 }
 
-.header-icons img {
+.header-box {
     cursor: pointer;
 }
 
@@ -161,7 +147,6 @@ p {
 
 /* side-bar-main */
 .side-bar-main {
-    box-shadow: inset 0 0 20px pink;
     margin: 43px 0 50px;
 }
 
@@ -187,7 +172,6 @@ p {
 /* feature-1 */
 .feature-1 {
     margin: 24px 0 92px;
-    box-shadow: inset 0 0 20px green;
     /* display: flex;
     flex-direction: column;
     gap: 24px; */
@@ -216,7 +200,6 @@ p {
 
 /* feature-2 */
 .feature-2 {
-    box-shadow: inset 0 0 20px orange;
     /* display: flex;
     flex-direction: column;
     gap: 24px; */
@@ -242,7 +225,8 @@ p {
     display: flex;
     flex-direction: column;
     gap: 24px;
-    /* margin-bottom: 90px; */
+    margin-bottom: 24px;
+    margin-top: 90px;
 }
 
 .contents-img {
@@ -260,7 +244,6 @@ p {
 }
 
 .service-item {
-    /* box-shadow: inset 0 0 20px red; */
     border-top: 1px solid var(--color-gray-30);
     display: flex;
     justify-content: space-between;
@@ -282,7 +265,6 @@ p {
 }
 
 .terms {
-    box-shadow: inset 0 0 20px pink;
     display: flex;
     flex-direction: column;
     gap: 10.25px;
