@@ -9,14 +9,22 @@
     margin: 0 auto;
   }
 
+  .header .logo {
+    cursor: pointer;
+  }
+
   .header-controls {
     display: flex;
     gap: 4px;
   }
+
+  .header-controls img {
+    cursor: pointer;
+  }
 </style>
 
 <header class="header">
-  <img src="/src/assets/icons/logo.svg" alt="nike logo" />
+  <img class="logo" src="/src/assets/icons/logo.svg" alt="nike logo" />
   <div class="header-controls">
     <img src="/src/assets/icons/search.svg" alt="search" />
     <img src="/src/assets/icons/user.svg" alt="user" />
