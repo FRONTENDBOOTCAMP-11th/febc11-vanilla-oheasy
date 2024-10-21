@@ -285,6 +285,7 @@ input[type='checkbox'] {
 }
 
 .product-card__messaging {
+  font-weight: 500;
   color: var(--color-red);
 }
 
@@ -298,6 +299,7 @@ input[type='checkbox'] {
 
 .product-card__titles .subtitle {
   color: var(--color-grey-70);
+  font-weight: 400;
 }
 
 .product-card__count-wrapper .count-item {
@@ -308,6 +310,7 @@ input[type='checkbox'] {
 
 .product-card__price-wrapper .price {
   font-size: 1.6rem;
+  font-weight: 500;
 }
 
 .footer {
