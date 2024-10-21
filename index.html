@@ -14,6 +14,16 @@
     <div class="wrapper">
       <div class="container">
         <div id="header-box"></div>
+        <!-- 기존 header 코드 -->
+        <!-- <div class="header">
+          <img src="/src/assets/icons/logo.svg">
+          <div class="header-icons">
+            <img src="/src/assets/icons/search.svg">
+            <img src="/src/assets/icons/user.svg">
+            <img src="/src/assets/icons/bag-36.svg">
+            <img src="/src/assets/icons/menu.svg">
+          </div>
+        </div> -->
         <div class="side-bar">
           <div class="side-bar-header">
             <div class="side-bar-header-img">
@@ -160,5 +170,17 @@
   </body>
   <script type="module" src="src/components/button.js"></script>
   <script type="module" src="src/components/header-mobile.js"></script>
-  <script src="main.js"></script>
+  <script>
+    let sideBar = document.querySelector('.side-bar');
+
+    /* 메뉴를 클릭했을 때 .side-bar에 active 클래스를 추가한다.*/
+    // document.querySelector('.header-icons img:last-child').addEventListener('click', function() {
+    //   sideBar.classList.toggle('active');
+    // });
+
+    /* 닫기를 클릭했을 때 .side-bar에 active 클래스를 제거한다.*/
+    // document.querySelector('.side-bar-header-img img').addEventListener('click', function() {
+    //   sideBar.classList.remove('active');
+    // });
+  </script>
 </html>
