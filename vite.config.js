@@ -6,10 +6,13 @@ export default defineConfig({
     rollupOptions: {
       input: {
         index: resolve(__dirname, 'index.html'), // 메인 홈
-        signIn: resolve(__dirname, 'src/pages/auth/signIn.html'), // 로그인
+        signIn_main: resolve(__dirname, 'src/pages/auth/signIn_main.html'), // 로그인
+        signIn_pwd: resolve(__dirname, 'src/pages/auth/signIn_pwd.html'), // 로그인
+        signUp_main: resolve(__dirname, 'src/pages/auth/signUp_main.html'), // 회원가입
+        signUp_terms: resolve(__dirname, 'src/pages/auth/signUp_terms.html'), // 회원가입
         bag: resolve(__dirname, 'src/pages/bag/bag.html'), // 장바구니
-        products: resolve(__dirname, 'src/pages/auth/products.html'), // 상품 리스트
-        details: resolve(__dirname, 'src/pages/board/details.html'), // 상품 디테일
+        products: resolve(__dirname, 'src/pages/products/products.html'), // 상품 리스트
+        details: resolve(__dirname, 'src/pages/details/details.html'), // 상품 디테일
         // 필요한 다른 HTML 파일을 여기에 추가
       },
     },
