@@ -4,10 +4,206 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="style.css" />
-    <script src="main.js"></script>
+    <link rel="stylesheet" href="bag.css" />
+    <script src="bag.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet"/>
   </head>
   <body>
-    <h1>bag</h1>
+    <div class="wrapper">
+      <section class="header">
+        <div class="header_icons">
+          <div>
+            <a href=""><img src="/src/assets/icons/logo.svg" alt=""></a> <!-- 홈으로 가는 링크 달기-->
+          </div>
+          <div>
+            <a href=""><img class="icons" src="/src/assets/icons/user.svg"></a> <!--로그인화면으로 가는 링크 달기-->
+            <a href="/src/pages/bag/bag.html"><img class="icons" src="/src/assets/icons/bag-36.svg"></a>
+            <img class="icons" src="/src/assets/icons/menu.svg"> <!--메뉴 사이드바가 열리는 버튼임-->
+          </div>
+        </div>
+      </section>
+      <section class="main">
+        <div class="search_bar">
+          <img class="icons" src="/src/assets/icons/search.svg">
+          <input type="text" class="invisible_input" placeholder="검색"> <!--상품 검색이 가능하게 만들기-->
+        </div>
+        <div class="title_section">
+          <h1 class="title_text">장바구니</h1>
+          <p>1 개의 제품 | 189,000 원</p> <!--상품이 장바구니에 담겨 있다면 담겨있는 상품의 총 개수와 상품 가격의 총 합을 출력하게 만들기-->
+        </div>
+        <div class="product_section"> 
+          <div class="product_item_section"> <!-- 아마 이 부분은 js코드로 옮겨서 다시 작업 할듯?-->
+            <div>
+              <a href=""><img src="/src/assets/img/bag_shoes-1.png"></a> <!-- 이미지 클릭시 해당 제품의 상세페이지로 이동-->
+            </div>
+            <div class="product_text_section">
+              <div class="black_text">
+                <p id="product_price"> 189,000 원</p> 
+                <p id="product_name"> 나이키 줌 보메로 5</p>
+              </div>  
+              <div class="gray_text">
+              <p>남성 신발</p>
+                <div class="size_count_text">
+                  <div class="size_text">
+                    <p>사이즈</p>
+                    <p>275</p>
+                  </div>
+                  <div class="count_text">
+                    <p>수량</p>
+                    <div class="count_number">
+                      <img src="/src/assets/icons/minus.svg"> <!--숫자 감소-->
+                      <p>1</p>  <!-- 물건 갯수 변수-->
+                      <img src="/src/assets/icons/plus.svg"> <!--숫자 증가-->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="product_icon_section">
+            <img src="/src/assets/icons/heart.svg" alt=""> <!-- 찜하기 ==> 위시리스트 추가? -->
+            <img class="move_icon" src="/src/assets/icons/trash.svg" alt=""> <!-- 장바구니에서 제거 -->
+          </div>
+          <div class="product_delivery_section">
+            <p class="product_delivery_text_title">무료 배송</p>
+            <p class="product_delivery_text">도착 예정일: 7월 26일 (토)배송 지역: 04628</p>
+          </div>
+        </div>
+      </section>
+      <section class="main_bottom">
+        <div class="oder_list_section">
+          <h1 class="oder_list_title_text">주문 내역</h1>
+          <div class="oder_list_text">
+            <div class="oder_list_text_icon">
+              <p>상품 금액</p>
+              <img class="question_icon" src="/src/assets/icons/question.svg" alt=""> <!-- 클릭시 추가 설명띄우기-->
+            </div>
+            <p>189,000 원</p> <!-- 총합 = 갯수 변수 * 상품가격 -->
+          </div>
+          <div class="oder_list_text">
+            <p class="oder_list_delivery_text_price">배송비</p>
+            <p>무료</p>
+          </div>
+          <div class="oder_list_text">
+            <p>총 결제 금액</p>
+            <p class="important_text">189,000 원</p> <!-- 총합 = 갯수 변수 * 상품가격 -->
+          </div>
+        </div>
+        <div class="wish_list_section">
+          <h1>위시리스트</h1>
+            <div class="wish_item_section">
+              <div>
+                <img src="/src/assets/img/bag_shoes-1.png">
+              </div>
+              <div class="wish_text_section">
+                <div class="wish_black_text">
+                  <p> 189,000 원</p>
+                  <p> 나이키 줌<br> 보메로 5</p>
+                </div>  
+                <div class="gray_text">
+                <p>남성 신발</p>
+                  <div class="size_count_text">
+                    <div class="wish_size_text">
+                      <p>사이즈</p>
+                      <p>275</p>
+                    </div>
+                  </div>
+                    <p class="add_bag">장바구니에 추가</p> <!-- 장바구니 추가 -->
+                </div>
+              </div>
+            </div>
+            <div class="wish_item_section">
+              <div>
+                <img src="/src/assets/img/bag_shoes-1.png">
+              </div>
+              <div class="wish_text_section">
+                <div class="wish_black_text">
+                  <p> 189,000 원</p>
+                  <p> 나이키 줌<br> 보메로 5</p>
+                </div>  
+                <div class="gray_text">
+                <p>남성 신발</p>
+                  <div class="size_count_text">
+                    <div class="wish_size_text">
+                      <p>사이즈</p>
+                      <p>275</p>
+                    </div>
+                  </div>
+                    <p class="add_bag">장바구니에 추가</p>
+                </div>
+              </div>
+            </div>
+          <a href="" class="wish_list_show_all">위시리스트 상품 모두 보기</a> <!-- 위시리스트로 이동  -->
+        </div>
+        
+        <div class="recommended_products_section">
+          <h1>추천 제품</h1>
+          <div class="left_right">
+            <img src="/src/assets/icons/left-blur.svg" alt=""> <!-- 콘텐츠 왼쪽 이동 -->
+            <img src="/src/assets/icons/right.svg" alt=""> <!-- 콘텐츠 오른쪽 이동 -->
+          </div>
+          <div class="recommended_products_imgs"> <!-- 이것도 js에서? -->
+            <a href="" class="recommended_products_wrapper">  <!-- 해당 제품 상세로 이동 -->
+              <img class="recommended_products_img" src="/src/assets/img/bag_socks-1.png" alt="">
+              <h1 class="recommended_products_name">나이키 에브리데이 플러스</h1>
+              <p class="recommended_products_info">쿠션 크루 삭스 (2켤레)</p>
+              <p class="recommended_products_price">29,000 원</p>
+            </a>
+            <a href="" class="recommended_products_wrapper">  <!-- 해당 제품 상세로 이동 -->
+              <img class="recommended_products_img" src="/src/assets/img/bag_shoes-3.png" alt="">
+              <h1 class="recommended_products_name">나이키 플렉스 러너 3</h1>
+              <p class="recommended_products_info">베이비 신발</p>
+              <p class="recommended_products_price">44,100 원</p>
+              <s class="cancel_text">49,000 원</s>
+            </a>
+            <a href="" class="recommended_products_wrapper">  <!-- 해당 제품 상세로 이동 -->
+              <img class="recommended_products_img" src="/src/assets/img/bag_pants-1.png" alt="">
+              <h1 class="recommended_products_name">나이키 SB 커니</h1>
+              <p class="recommended_products_info">남성 카고 스케이트보딩 팬츠</p>
+              <p class="recommended_products_price">129,000 원</p>
+            </a>
+          </div>
+        </div>
+      </section>
+      <section class="footer">
+        <div class="open_text_wrapper">
+          <div class="open_text">
+            <h3>안내</h3>
+            <img src="/src/assets/icons/vector-down.svg" alt=""> <!-- 클릭시 화살표가 위로 향하게 움직이며 변하고, 안내 정보를 아래에 띄우기 -->
+          </div>
+          <div class="open_text">
+            <h3>고객센터</h3>
+            <img src="/src/assets/icons/vector-down.svg" alt=""> <!-- 클릭시 화살표가 위로 향하게 움직이며 변하고, 고객센터 정보를 아래에 띄우기 -->
+          </div>
+          <div class="open_text">
+            <h3>회사소개</h3>
+            <img src="/src/assets/icons/vector-down.svg" alt=""> <!-- 클릭시 화살표가 위로 향하게 움직이며 변하고, 회사소개 정보를 아래에 띄우기 -->
+          </div>
+        </div>
+        <div class="footer_link_wrapper">
+          <a class="footer_link" href="">© 2024 Nike, Inc. All Rights Reserved</a>
+          <a class="footer_link" href="">이용약관</a>
+          <a class="footer_link important_text" href="">개인정보처리방침</a>
+          <a class="footer_link" href="">위치정보이용약관</a>
+          <a class="footer_link" href="">영상정보처리기기 운영 방침</a>
+        </div>
+        <div class="margin"></div>
+        <div>
+          <p class="footer_info_text">
+            (유)나이키코리아 대표 Kimberlee Lynn Chang
+            Mendes, 킴벌리 린 창 멘데스 | 서울 강남구 테헤란로
+            152 강남파이낸스센터 30층 | 통신판매업신고번호
+            2011-서울강남-03461 | 등록번호 220-88-09068
+          </p>
+          <a class="footer_info_text_link" href="">사업자 정보 확인</a> <!-- 사업자 정보 확인 페이지로 이동 -->
+          <p class="footer_info_text">고객센터 전화 문의 <a class="footer_info_text_link" href="">080-022-0182</a> FAX 02-6744-</p> <!-- 클릭시 전화 다이얼로 넘어가고 080-022-0182 입력 -->
+          <p class="footer_info_text">5880 | 이메일 <a class="footer_info_text_link" href="">service@nike.co.kr</a></p> <!-- 클릭시 메일 보내기로 넘어가고 받는사람에 service@nike.co.kr 입력 -->
+          <p class="footer_info_text">호스팅서비스사업자 (유)나이키코리아</p>
+        </div>
+      </section>
+    </div>
+    <button class="oder_button">주문하기</button> <!-- 주문하기 아마 js에서 alert로 "주문완료 되었습니다."" 정도 띄울듯 -->
   </body>
 </html>
