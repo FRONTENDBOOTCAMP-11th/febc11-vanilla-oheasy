@@ -22,15 +22,6 @@ button {
     all: unset;
 }
 
-input {
-    all: unset;
-}
-
-input[type='checkbox'] {
-    pointer-events: none;
-    position: absolute;
-}
-
 /* CSS variables */
 :root {
     /* colors */
@@ -115,34 +106,25 @@ input:focus {
 /* checkbox-container */
 .checkbox-container {
     display: flex;
-    align-items: flex-start;
     margin-top: 20px;
 }
 
 .check {
-    display: inline-flex;
-    gap: 10px;
-    cursor: pointer;
+    display: none;
 }
 
-.check::before {
-    content: " ";
-    width: 20px;
-    height: 20px;
-    border: 2px solid #000;
-    border-radius: 4px;
-    background-repeat: no-repeat;
-    background-position: center 20px;
-    transition: all 0.4s;
+.check-label {
+    display: inline-block;
+    width: 21px;
+    height: 21px;
+    padding-left: 10px;
+    background: url(../../assets/images/auth_checkbox_blank.svg) no-repeat;
 }
 
-/* input[type='checkbox'] {
-    width: auto;
-    height: auto;
-    margin: 3px 10px 0 0 ;
-    accent-color: var(--color-black);
-    vertical-align: top;
-} */
+.check:checked + .check-label {
+    background: url(../../assets/icons/checkbox.svg) no-repeat;
+}
+
 
 
 .description {
