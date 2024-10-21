@@ -52,15 +52,6 @@ img {
     vertical-align: center;
 }
 
-
-.footer {
-    margin: 48px 0;
-    display: flex;
-    flex-direction: column;
-    gap: 64px;
-    /* padding: 24px; */
-}
-
 .side-bar {
     position: absolute;
     top: 0;
@@ -71,10 +62,10 @@ img {
 
     background-color: white;
     padding: 18px 18px 0 42px;
-    box-sizing: border-box; */
+    box-sizing: border-box; 
     
     /* active가 되지 않았을 때는 보이지 않게 */
-    opacity: 0; 
+    opacity: 0;
     visibility: hidden;
     transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
 }
@@ -178,9 +169,7 @@ a {
 /* feature-1 */
 .feature-1 {
     margin: 24px 0 92px;
-    /* display: flex;
-    flex-direction: column;
-    gap: 24px; */
+
 }
 
 .feature-1 img{
@@ -188,7 +177,6 @@ a {
     width: 312px;
     height: 426px;
     object-fit: cover;
-    /* margin-bottom: 24px; */
 }
 
 .feature-1-description {
@@ -205,12 +193,6 @@ a {
 }
 
 /* feature-2 */
-.feature-2 {
-    /* display: flex;
-    flex-direction: column;
-    gap: 24px; */
-}
-
 /* feature-2-item-1 */
 .feature-2-item-1 {
     margin: 24px 0 129px;
@@ -258,42 +240,4 @@ a {
     margin: 24px 0 90px;
 }
 
-.service-item {
-    border-top: 1px solid var(--color-gray-30);
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 0;
-    /* align-items: center; */
-}
-
-.service-item p {
-    font-weight: 500;
-}
-
-.service-item:nth-child(3) {
-    border-bottom: 1px solid var(--color-gray-30);
-
-}
-
-.service-item img {
-    cursor: pointer;
-}
-
-.terms {
-    display: flex;
-    flex-direction: column;
-    gap: 10.25px;
-}
-
-.terms p {
-    font-weight: 500;
-    color: var(--color-gray-70);
-}
-
-.info {
-    border-top: 1px solid var(--color-gray-30);
-    margin-bottom: 48px;
-    color: var(--color-gray-70);
-    padding-top: 24px;
-}
 
