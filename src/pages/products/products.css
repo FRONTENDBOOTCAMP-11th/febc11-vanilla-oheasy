@@ -92,7 +92,7 @@ input[type='checkbox'] {
 .filter-header-title {
   font-size: 1.6rem;
   padding-top: 16px;
-  /* margin-top의 경우, 플렉스박스로 같이 묶인 이미지에도 같이 적용됨. */
+  /* margin-top(16px)의 경우, 플렉스박스로 같이 묶인 이미지에도 같이 적용됨. */
   /* translateY(16px)의 경우, padding과 마찬가지로 동일하게 적용됨. */
 }
 
@@ -205,21 +205,8 @@ input[type='checkbox'] {
   background-color: var(--color-white);
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-right: 24px;
-}
-
-.nike-logo {
-  margin-left: 14px;
-}
-
-.header-icons {
-  display: flex;
-  column-gap: 10px;
-  align-items: center;
+#header-box {
+  min-height: 60px;
 }
 
 .main {
