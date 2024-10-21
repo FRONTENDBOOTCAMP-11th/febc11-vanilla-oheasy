@@ -221,6 +221,10 @@ a {
     gap: 12px;
 }
 
+.feature-2-item-1::-webkit-scrollbar {
+    display: none;
+}
+
 .card-img {
     aspect-ratio: 300/375;
     max-width: 300px;
