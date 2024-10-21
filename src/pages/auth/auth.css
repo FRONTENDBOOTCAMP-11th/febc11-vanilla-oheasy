@@ -65,7 +65,7 @@ b a {
 }
 
 /* input 공통*/
-input {
+input:not([type="checkbox"]) {
     width: 100%;
     height: 56px;
     padding: 16px 12px;
@@ -106,17 +106,25 @@ input:focus {
 /* checkbox-container */
 .checkbox-container {
     display: flex;
-    align-items: flex-start;
     margin-top: 20px;
 }
 
-input[type='checkbox'] {
-    width: auto;
-    height: auto;
-    margin: 3px 10px 0 0 ;
-    accent-color: var(--color-black);
-    vertical-align: top;
+.check {
+    display: none;
 }
+
+.check-label {
+    display: inline-block;
+    width: 21px;
+    height: 21px;
+    padding-left: 10px;
+    background: url(../../assets/images/auth_checkbox_blank.svg) no-repeat;
+}
+
+.check:checked + .check-label {
+    background: url(../../assets/icons/checkbox.svg) no-repeat;
+}
+
 
 
 .description {
@@ -127,20 +135,9 @@ input[type='checkbox'] {
 }
 
 /* buttons */
-.proceed, .previous {
-    border-radius: 999px;
-    padding: 12px 30px;
-    box-sizing: border-box;
-    text-align: center;
-}
-
-.previous {
-    border: 1px solid var(--color-black);
-}
-
-.proceed {
-    background: var(--color-black);
-    color: var(--color-white);
+.signIn.pwd .button-box[data-theme='white'] {
+    border-radius: 30px;
+    border: 1px solid black;
 }
 
 /* Design */
@@ -156,7 +153,6 @@ input[type='checkbox'] {
 .signIn.main .description {
     margin-bottom: 40px;
 }
-
 
 /* signIn_pwd.html */
 .received_email {
@@ -212,6 +208,10 @@ input[type='checkbox'] {
     line-height: 150%;
 }
 
+.signUp-main .checkbox-container {
+    margin-bottom: 48px;
+}
+
 /* calendar icon custom */
 input[type="date"] {
     position: relative;
@@ -257,18 +257,6 @@ input[data-placeholder]::before {
     color: var(--color-input);
 } 
 
-.signUp .proceed, .signUp .previous{
-    width: 100%;
-}
-
-.signUp.main .proceed {
-    margin-top: 48px;
-}
-
-.signUp .previous {
-    margin-top: 12px;
-}
-
 /* signUp_term */
 .signUp.term {
     margin-top: 26px;
@@ -285,4 +273,10 @@ input[data-placeholder]::before {
 .signUp.term .checkbox-container:nth-of-type(1) {
     border-bottom: 1px solid #ccc;
     padding-bottom: 24px;
+}
+
+.terms-btn-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
