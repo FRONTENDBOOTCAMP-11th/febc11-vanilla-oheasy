@@ -3,10 +3,494 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Products</title>
     <link rel="stylesheet" href="products.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
+
   <body>
-    <h1>TITLE</h1>
+    <div class="wrapper">
+      <!-- 🧩 filter.html 삽입 (최초 로드 시에는 안 보이도록 클래스 hidden 처리)-->
+      <div class="filter-section hidden">
+        <div class="filter-header">
+          <h1 class="filter-header-title">필터</h1>
+          <button
+            onclick="document.querySelector('.products-section').classList.remove('hidden'); document.querySelector('.filter-section').classList.add('hidden');"
+          >
+            <img src="../../assets/icons/xbtn-black.svg" />
+          </button>
+        </div>
+
+        <form class="form" action="">
+          <fieldset class="form-area--1">
+            <div class="form-group">
+              <label class="form-group-label">정렬 기준</label>
+              <div class="form-group-radio">
+                <label class="choice type_radio" for="recommended"
+                  ><input
+                    type="radio"
+                    name="standard"
+                    id="recommended"
+                  />추천순</label
+                >
+                <label class="choice type_radio" for="latest"
+                  ><input
+                    type="radio"
+                    name="standard"
+                    id="latest"
+                  />최신순</label
+                >
+                <label class="choice type_radio" for="higher"
+                  ><input type="radio" name="standard" id="higher" />높은
+                  가격순</label
+                >
+
+                <label class="choice type_radio" for="lower"
+                  ><input type="radio" name="standard" id="lower" />낮은
+                  가격순</label
+                >
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-group-label">성별</label>
+              <div class="form-group-checkbox">
+                <label class="choice type_checkbox" for="men"
+                  ><input type="checkbox" name="gender" id="men" />남성
+                </label>
+                <label class="choice type_checkbox" for="women"
+                  ><input type="checkbox" name="gender" id="women" />여성</label
+                >
+                <label class="choice type_checkbox" for="unisex"
+                  ><input type="checkbox" name="gender" id="unisex" />
+                  유니섹스</label
+                >
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-group-label">가격대</label>
+              <div class="form-group-checkbox">
+                <label class="choice type_checkbox" for="first"
+                  ><input type="checkbox" name="price" id="first" />0 - 50,000
+                  원</label
+                >
+                <label class="choice type_checkbox" for="second"
+                  ><input type="checkbox" name="price" id="second" /> 50,000 -
+                  100,000 원</label
+                >
+                <label class="choice type_checkbox" for="third"
+                  ><input type="checkbox" name="price" id="third" />100,000 -
+                  150,000 원</label
+                >
+                <label class="choice type_checkbox" for="fourth"
+                  ><input type="checkbox" name="price" id="fourth" /> 150,000 -
+                  200,000 원</label
+                >
+                <label class="choice type_checkbox" for="fifth"
+                  ><input type="checkbox" name="price" id="fifth" />200,000 원
+                  +</label
+                >
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-area--2">
+            <div class="btn-section">
+              <div
+                class="button-box"
+                data-theme="white"
+                data-width="152px"
+                data-height="46px"
+                data-fontweight="400"
+              >
+                지우기
+              </div>
+              <div
+                class="button-box"
+                data-theme="black"
+                data-width="152px"
+                data-height="46px"
+                data-fontweight="400"
+              >
+                적용
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+
+      <!-- 🧩 여기서부터 products-list 부분의 마크업 -->
+      <!-- 공용 컴포넌트 사용 (mobile-header)-->
+      <div class="products-section">
+        <header id="header-box"></header>
+
+        <main class="main">
+          <div class="wall-header">
+            <h1 class="wall-header__title">신제품</h1>
+          </div>
+
+          <ul class="categories">
+            <li class="category"><a href="#" data-id="1">신발</a></li>
+            <li class="category"><a href="#" data-id="2">탑 & 티셔츠</a></li>
+            <li class="category"><a href="#" data-id="3">후디 & 크루</a></li>
+            <li class="category">
+              <a href="#" data-id="4">재킷 & 베스트</a>
+            </li>
+            <li class="category">
+              <a href="#" data-id="5">팬츠 & 타이츠</a>
+            </li>
+            <li class="category"><a href="#" data-id="6">쇼츠</a></li>
+            <li class="category"><a href="#" data-id="7">스포츠 브라</a></li>
+            <li class="category"><a href="#" data-id="8">트랙수트</a></li>
+            <li class="category">
+              <a href="#" data-id="9">점프수트 & 롬퍼스</a>
+            </li>
+            <li class="category">
+              <a href="#" data-id="10">스커트 & 드레스</a>
+            </li>
+            <li class="category"><a href="#" data-id="11">양말</a></li>
+            <li class="category"><a href="#" data-id="12">용품</a></li>
+          </ul>
+
+          <div class="results-toolbar">
+            <p class="results">741개의 결과</p>
+            <button
+              onclick="document.querySelector('.products-section').classList.add('hidden'); document.querySelector('.filter-section').classList.remove('hidden');"
+              class="btn--filters"
+            >
+              <span>필터</span>
+              <img src="../../assets/icons/filter.svg" />
+            </button>
+          </div>
+
+          <!-- grid -->
+          <div class="product-container">
+            <ul class="l_grid">
+              <!-- flexbox -->
+              <li class="product">
+                <div class="product-cover">
+                  <img src="../../assets/images/products_shoes-1.png" />
+                </div>
+
+                <!-- flex-item & flexbox -->
+                <div class="product-card">
+                  <div class="product-msg-info">
+                    <p class="product-card__messaging">신제품</p>
+                    <div class="product-card__titles">
+                      <p class="title">테이텀 2PF</p>
+                      <p class="subtitle">농구화</p>
+                    </div>
+                  </div>
+
+                  <div class="product-card__count-wrapper">
+                    <p class="count-item">1개 색상</p>
+                  </div>
+
+                  <div class="product-card__price-wrapper">
+                    <p class="price">149,000 원</p>
+                  </div>
+                </div>
+              </li>
+
+              <li class="product">
+                <div class="product-cover">
+                  <img src="../../assets/images/products_shoes-2.png" />
+                </div>
+
+                <!-- flex-item & flexbox -->
+                <div class="product-card">
+                  <div class="product-msg-info">
+                    <p class="product-card__messaging">신제품</p>
+                    <div class="product-card__titles">
+                      <p class="title">나이키 줌 보메로 5</p>
+                      <p class="subtitle">여성 신발</p>
+                    </div>
+                  </div>
+
+                  <div class="product-card__count-wrapper">
+                    <p class="count-item">1개 색상</p>
+                  </div>
+
+                  <div class="product-card__price-wrapper">
+                    <p class="price">209,000 원</p>
+                  </div>
+                </div>
+              </li>
+
+              <li class="product">
+                <div class="product-cover">
+                  <img src="../../assets/images/products_shoes-3.png" />
+                </div>
+
+                <!-- flex-item & flexbox -->
+                <div class="product-card">
+                  <div class="product-msg-info">
+                    <p class="product-card__messaging">신제품</p>
+                    <div class="product-card__titles">
+                      <p class="title">나이키 줌 보메로 5</p>
+                      <p class="subtitle">여성 신발</p>
+                    </div>
+                  </div>
+
+                  <div class="product-card__count-wrapper">
+                    <p class="count-item">1개 색상</p>
+                  </div>
+
+                  <div class="product-card__price-wrapper">
+                    <p class="price">209,000 원</p>
+                  </div>
+                </div>
+              </li>
+
+              <li class="product">
+                <div class="product-cover">
+                  <img src="../../assets/images/products_shoes-4.png" />
+                </div>
+
+                <!-- flex-item & flexbox -->
+                <div class="product-card">
+                  <div class="product-msg-info">
+                    <p class="product-card__messaging">신제품</p>
+                    <div class="product-card__titles">
+                      <p class="title">나이키 에어맥스 SC 트렌드</p>
+                      <p class="subtitle">여성 신발</p>
+                    </div>
+                  </div>
+
+                  <div class="product-card__count-wrapper">
+                    <p class="count-item">1개 색상</p>
+                  </div>
+
+                  <div class="product-card__price-wrapper">
+                    <p class="price">119,000 원</p>
+                  </div>
+                </div>
+              </li>
+
+              <li class="product">
+                <div class="product-cover">
+                  <img src="../../assets/images/products_shoes-5.png" />
+                </div>
+
+                <!-- flex-item & flexbox -->
+                <div class="product-card">
+                  <div class="product-msg-info">
+                    <p class="product-card__messaging">신제품</p>
+                    <div class="product-card__titles">
+                      <p class="title">나이키 스우시 1</p>
+                      <p class="subtitle">베이비 신발</p>
+                    </div>
+                  </div>
+
+                  <div class="product-card__count-wrapper">
+                    <p class="count-item">1개 색상</p>
+                  </div>
+
+                  <div class="product-card__price-wrapper">
+                    <p class="price">69,000 원</p>
+                  </div>
+                </div>
+              </li>
+
+              <li class="product">
+                <div class="product-cover">
+                  <img src="../../assets/images/products_shoes-6.png" />
+                </div>
+
+                <!-- flex-item & flexbox -->
+                <div class="product-card">
+                  <div class="product-msg-info">
+                    <p class="product-card__messaging">신제품</p>
+                    <div class="product-card__titles">
+                      <p class="title">나이키 머큐리얼 베이퍼 16 프로</p>
+                      <p class="subtitle">TF 로우 탑 축구화</p>
+                    </div>
+                  </div>
+
+                  <div class="product-card__count-wrapper">
+                    <p class="count-item">1개 색상</p>
+                  </div>
+
+                  <div class="product-card__price-wrapper">
+                    <p class="price">149,000 원</p>
+                  </div>
+                </div>
+              </li>
+
+              <li class="product">
+                <div class="product-cover">
+                  <img src="../../assets/images/products_shoes-7.png" />
+                </div>
+
+                <!-- flex-item & flexbox -->
+                <div class="product-card">
+                  <div class="product-msg-info">
+                    <p class="product-card__messaging">신제품</p>
+                    <div class="product-card__titles">
+                      <p class="title">나이키 티엠포 레전드 10 프로</p>
+                      <p class="subtitle">인조 잔디 로우 탑 축구화</p>
+                    </div>
+                  </div>
+
+                  <div class="product-card__count-wrapper">
+                    <p class="count-item">1개 색상</p>
+                  </div>
+
+                  <div class="product-card__price-wrapper">
+                    <p class="price">159,000 원</p>
+                  </div>
+                </div>
+              </li>
+
+              <li class="product">
+                <div class="product-cover">
+                  <img src="../../assets/images/products_shoes-8.png" />
+                </div>
+
+                <!-- flex-item & flexbox -->
+                <div class="product-card">
+                  <div class="product-msg-info">
+                    <p class="product-card__messaging">신제품</p>
+                    <div class="product-card__titles">
+                      <p class="title">나이키 팬텀 GX 2 프로</p>
+                      <p class="subtitle">TF 로우탑 축구화</p>
+                    </div>
+                  </div>
+
+                  <div class="product-card__count-wrapper">
+                    <p class="count-item">1개 색상</p>
+                  </div>
+
+                  <div class="product-card__price-wrapper">
+                    <p class="price">159,000 원</p>
+                  </div>
+                </div>
+              </li>
+
+              <li class="product">
+                <div class="product-image-wrapper">
+                  <img src="../../assets/images/products_cap.png" />
+                </div>
+
+                <!-- flex-item & flexbox -->
+                <div class="product-card">
+                  <div class="product-msg-info">
+                    <p class="product-card__messaging">신제품</p>
+                    <div class="product-card__titles">
+                      <p class="title">나이키 클럽</p>
+                      <p class="subtitle">언스트럭처 데님 캡</p>
+                    </div>
+                  </div>
+
+                  <div class="product-card__count-wrapper">
+                    <p class="count-item">1개 색상</p>
+                  </div>
+
+                  <div class="product-card__price-wrapper">
+                    <p class="price">39,000 원</p>
+                  </div>
+                </div>
+              </li>
+
+              <li class="product">
+                <div class="product-cover">
+                  <img src="../../assets/images/products_hat.png" />
+                </div>
+
+                <!-- flex-item & flexbox -->
+                <div class="product-card">
+                  <div class="product-msg-info">
+                    <p class="product-card__messaging">신제품</p>
+                    <div class="product-card__titles">
+                      <p class="title">나이키 에이펙스</p>
+                      <p class="subtitle">데님 버킷 햇</p>
+                    </div>
+                  </div>
+
+                  <div class="product-card__count-wrapper">
+                    <p class="count-item">1개 색상</p>
+                  </div>
+
+                  <div class="product-card__price-wrapper">
+                    <p class="price">45,000 원</p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </main>
+
+        <div class="footer-wrapper">
+          <div class="footer">
+            <ul class="mobile-footer-menu">
+              <li class="footer-menu-column active">
+                <div class="footer-menu-header">안내</div>
+                <!-- <ul class="footer-menu-contents">
+                  <li>멤버가입</li>
+                  <li>매장찾기</li>
+                  <li>나이키 저널</li>
+                </ul> -->
+              </li>
+
+              <li class="footer-menu-column">
+                <div class="footer-menu-header">고객센터</div>
+                <!-- <ul class="footer-menu-contents">
+                  <li>주문배송조회</li>
+                  <li>반품 정책</li>
+                  <li>결제 방법</li>
+                  <li>공지사항</li>
+                  <li>문의하기</li>
+                </ul> -->
+              </li>
+
+              <li class="footer-menu-column">
+                <div class="footer-menu-header">회사소개</div>
+                <!-- <ul class="footer-menu-contents">
+                  <li>About Nike</li>
+                  <li>소식</li>
+                  <li>채용</li>
+                  <li>투자자</li>
+                  <li>지속가능성</li>
+                </ul> -->
+              </li>
+            </ul>
+
+            <ul class="mobile-footer-list">
+              <li>© 2024 Nike, Inc. All Rights Reserved</li>
+              <li>이용약관</li>
+              <li class="personal-info-policy">개인정보처리방침</li>
+              <li>위치정보이용약관</li>
+              <li>영상정보처리기기 운영 방침</li>
+            </ul>
+
+            <div class="korean-legal-footer-container">
+              <div class="korean-legal-footer-section">
+                <p>
+                  (유)나이키코리아 대표 Kimberlee Lynn Chang Mendes, 킴벌리 린
+                  창 멘데스 | 서울 강남구 테헤란로 152 강남파이낸스센터 30층 |
+                  통신판매업신고번호 2011-서울강남-03461 | 등록번호 220-88-09068
+                  <a class="business-info-check">사업자 정보 확인</a>
+                </p>
+                <p>
+                  고객센터 전화 문의
+                  <span class="cs-number">080-022-0182</span> FAX 02-6744-5880 |
+                  이메일 service@nike.co.kr | 호스팅서비스사업자
+                  (유)나이키코리아
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="../../components/button.js"></script>
+    <script type="module" src="../../components/header-mobile.js"></script>
   </body>
 </html>
