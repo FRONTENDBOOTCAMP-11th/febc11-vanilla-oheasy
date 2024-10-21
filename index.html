@@ -13,6 +13,8 @@
   <body>
     <div class="wrapper">
       <div class="container">
+        <div id="header-box"></div>
+        <!-- 기존 header 코드
         <div class="header">
           <img src="/src/assets/icons/logo.svg">
           <div class="header-icons">
@@ -21,16 +23,16 @@
             <img src="/src/assets/icons/bag-36.svg">
             <img src="/src/assets/icons/menu.svg">
           </div>
-        </div>
+        </div> -->
         <div class="side-bar">
-
           <div class="side-bar-header">
             <div class="side-bar-header-img">
               <img src="/src/assets/icons/xbtn.svg">
             </div>
             <div class="side-bar-header-btn">
-              <button class="btn-black">가입하기</button>
-              <button class="btn-white">로그인</button>
+              <div class="button-box" data-theme="black" data-width="91px" data-height="40px">가입하기</div>
+              <div class="button-box" data-theme="white" data-width="77px" data-height="40px">로그인</div>
+
             </div>
           </div>
           
@@ -85,7 +87,7 @@
               <h1>아무나 오를 수 <br> 없는 승자의 자리.</h1>
               <h4>전부를 내건 이들만이 차지하는 것.</h4>
             </div>
-            <button class="btn-black">자세히 보기</button> 
+            <div class="button-box" data-theme="black" data-width="110px" data-height="40px">자세히보기</div>
           </section>
 
           <section class="feature-2">
@@ -112,7 +114,8 @@
                 <h1>나이키 잼</h1>
                 <h4>브레이킹을 위해 탄생한 <br> 나이키 잼 컬렉션을 만나 보세요.</h4>
               </div>
-              <button class="btn-black">구매하기</button>
+              <div class="button-box" data-theme="black" data-width="91px" data-height="40px">구매하기</div>
+
 
               <div class="contents">
                 <img class="contents-img" src="src/assets/images/home_feature-2-2.png">
@@ -122,7 +125,8 @@
                   조화를 이루는 나이키 X 자크뮈스 컬렉션은 <br>
                   스포츠웨어에 새로운 변화를 불러일으킵니다.</h4>
                 </div>
-                <button class="btn-black">컬렉션 구매하기</button>
+              <div class="button-box" data-theme="black" data-width="140px" data-height="40px">구매하기</div>
+                
               </div>
             </article>
           </section>
@@ -164,7 +168,8 @@
       </div>
     </div>
   </body>
-
+  <script type="module" src="src/components/button.js"></script>
+  <script type="module" src="src/components/header-mobile.js"></script>
   <script>
     let sideBar = document.querySelector('.side-bar');
 

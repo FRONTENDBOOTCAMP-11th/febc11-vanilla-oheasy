@@ -21,10 +21,6 @@ img {
     /* cursor: pointer; */
 }
 
-button {
-    all: unset;
-}
-
 /* CSS variables */
 :root {
     /* colors */
@@ -108,24 +104,6 @@ button {
 }
 
 /* Commons */
-.btn-black {
-    border-radius: 30px;
-    padding: 6px 16px;
-    /* box-sizing: border-box; */
-    text-align: center;
-    background-color: var(--color-black);
-    color: var(--color-white);
-}
-
-.btn-white {
-    border-radius: 999px;
-    border: 1px solid var(--CACACB, #CACACB);
-    padding: 6px 16px;
-    /* box-sizing: border-box; */
-    text-align: center;
-    background-color: var(--color-white);
-    color: var(--color-black);
-}
 
 h1 {
     font-size: 40px;
