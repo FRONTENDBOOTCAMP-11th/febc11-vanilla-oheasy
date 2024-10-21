@@ -61,28 +61,26 @@ img {
     /* padding: 24px; */
 }
 
-.side-bar {
-    /* 위치 선정 */
+/* .side-bar {
     position: absolute;
     top: 0;
     right: 0;
 
-    /* 크기 */
     width: 310px;
     height: 100%;
 
     background-color: white;
     padding: 18px 18px 0 42px;
-    box-sizing: border-box;
+    box-sizing: border-box; */
     
     /* active가 되지 않았을 때는 보이지 않게 */
-    opacity: 0; 
+    /* opacity: 0; 
     visibility: hidden;
     transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
-}
+} */
 
 /* 사이드바가 열렸을 때 */
-.side-bar.active {
+/* .side-bar.active {
     opacity: 1;
     transition: opacity 0.5s ease-in-out; 
     visibility: visible; 
@@ -90,7 +88,7 @@ img {
 
 .side-bar-header img {
     cursor: pointer;
-}
+} */
 
 /* Commons */
 
