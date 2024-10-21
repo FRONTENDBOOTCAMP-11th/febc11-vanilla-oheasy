@@ -70,21 +70,8 @@ a {
 }
 
 /* Components */
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-left: 14px;
-  padding-right: 24px;
-}
-
-.header-controls {
-  display: flex;
-  gap: 4px;
-}
-
-.header-controls img {
-  padding: 6px;
+#header-box {
+  min-height: 60px;
 }
 
 .item-info {
@@ -180,6 +167,10 @@ a {
   flex-direction: column;
   gap: 12px;
   margin-bottom: 32px;
+}
+
+.button-box {
+  min-height: 64px;
 }
 
 .item-buttons .btn img {
