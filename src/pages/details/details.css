@@ -1,3 +1,5 @@
+@import '../../../variable.css';
+
 /* Reset */
 body,
 figure,
@@ -48,16 +50,6 @@ a {
 
 /* Variables */
 :root {
-  --color-white: #fff;
-  --color-black: #111;
-
-  --color-grey-30: #e5e5e5;
-  --color-grey-50: #cacacb;
-  --color-grey-50: #9e9ea0;
-  --color-grey-70: #707072;
-
-  --color-green: #007d48;
-
   --white-space-m: 24px;
 }
 
@@ -110,7 +102,7 @@ body {
 }
 
 .price .original {
-  color: var(--color-grey-50);
+  color: var(--color-grey-70);
   text-decoration: line-through;
 }
 
@@ -144,7 +136,7 @@ body {
 }
 
 .size-title a {
-  color: var(--color-grey-70);
+  color: var(--color-grey-80);
 }
 
 .size-grid {
@@ -159,7 +151,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid var(--color-grey-30);
+  border: 1px solid var(--color-grey-40);
   border-radius: 4px;
 }
 
@@ -168,8 +160,8 @@ body {
 }
 
 .size-grid span.size-disabled {
-  background-color: var(--color-grey-30);
-  color: var(--color-grey-70);
+  background-color: var(--color-grey-40);
+  color: var(--color-grey-80);
 }
 
 .item-buttons {
@@ -212,7 +204,7 @@ body {
 }
 
 .foldable {
-  border-bottom: 1px solid var(--color-grey-30);
+  border-bottom: 1px solid var(--color-grey-40);
 }
 
 .foldable-title {
@@ -299,7 +291,7 @@ body {
 
 .card-category {
   font-size: 14px;
-  color: var(--color-grey-70);
+  color: var(--color-grey-80);
   line-height: 25px;
 }
 
@@ -309,6 +301,11 @@ body {
 }
 
 .btn-bag {
+  position: sticky;
+  bottom: 0;
+  min-width: 360px;
+  margin-left: -24px;
+
   background-color: var(--color-black);
   color: var(--color-white);
   text-align: center;
