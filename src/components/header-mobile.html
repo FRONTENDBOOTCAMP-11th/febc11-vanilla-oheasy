@@ -36,14 +36,14 @@
     opacity: 0;
     visibility: hidden;
     transition:
-      opacity 0.5s ease-in-out,
-      visibility 0.5s ease-in-out;
+      opacity 0.5s ease,
+      visibility 0.5s ease;
   }
 
   /* 사이드바가 열렸을 때 */
   .side-bar.active {
     opacity: 1;
-    transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease;
     visibility: visible;
   }
 
@@ -94,7 +94,13 @@
     <img src="/src/assets/icons/search.svg" alt="search" />
     <img src="/src/assets/icons/user.svg" alt="user" />
     <img src="/src/assets/icons/bag-36.svg" alt="bag" />
-    <img id="menuBtn" src="/src/assets/icons/menu.svg" alt="menu" />
+    <!-- 🌟  -->
+    <img
+      onclick="document.querySelector('.sidebar-main').classList.toggle('active')"
+      id="menuBtn"
+      src="/src/assets/icons/menu.svg"
+      alt="menu"
+    />
   </div>
 </header>
 
