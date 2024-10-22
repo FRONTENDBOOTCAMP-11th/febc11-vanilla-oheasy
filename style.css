@@ -50,10 +50,8 @@ body {
   padding: 12px 24px 0;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  vertical-align: center;
+.header-box {
+  min-height: 60px;
 }
 
 /* Commons */
