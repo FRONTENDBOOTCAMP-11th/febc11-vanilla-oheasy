@@ -274,6 +274,10 @@ input[type='checkbox'] {
   margin-bottom: 18px;
 }
 
+.products-section {
+  position: relative;
+}
+
 .product-cover {
   aspect-ratio: 1 / 1;
 }
