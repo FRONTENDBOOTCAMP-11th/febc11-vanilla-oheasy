@@ -81,6 +81,10 @@ input:focus {
   border: 1px solid var(--color-black);
 }
 
+/* header 로고 클릭 */
+.header img {
+  cursor: pointer;
+}
 /* input-container */
 .input-container {
   position: relative;
