@@ -44,8 +44,10 @@
                     <p>이 약관에 동의하지 않을 수 있지만, 그럴 경우 나이키 계정에 로그인할 수 없으며 새로운 계정을 생성할 수도 없습니다.</p>
                     
                     <div class="terms-btn-container">
-                        <div class="button-box" data-theme="black" data-width="100%" data-height="46px">계속</div>
-                        <div class="button-box" data-theme="white" data-width="100%" data-height="46px">취소</div>
+                        <div class="button-box" data-theme="black" data-width="100%" data-height="46px"
+                        onclick="location.href='signIn_pwd.html'">계속</div>
+                        <div class="button-box" data-theme="white" data-width="100%" data-height="46px"
+                        onclick="location.href='/index.html'">취소</div>
                     </div>
                 </form>
             </div>
@@ -54,4 +56,11 @@
 </body>
 <script type="module" src="../../components/button.js"></script>
 
+  <!-- 작동하지 않는 페이지: signIn_pwd, signUp_term 입니다.
+  signIn_pwd: "이전 (white)" -> signIn_main.html 으로 이동
+  signIn_pwd: "로그인 (black)" -> index.html 로 이동
+  signUp_term: "계속 (black)" -> signIn_pwd.html로 이동
+  signUp_term: "취소 (white)" -> index.html로 이동
+  -->
+  
 </html>
