@@ -29,7 +29,6 @@ img {
   /* cursor: pointer; */
 }
 
-
 /* Typography */
 :root {
   font-family: 'Noto Sans KR', sans-serif;
@@ -37,21 +36,21 @@ img {
 
 /* Layout */
 body {
-  background-color: var(--color-grey-20)
+  background-color: var(--color-grey-20);
 }
 .wrapper {
   margin: 0 auto;
   max-width: 360px;
   position: relative;
-  background-color: var(--color-white)
+  background-color: var(--color-white);
 }
 
 .container {
   padding: 12px 24px 0;
 }
 
-.header-box {
-  min-height: 60px;
+#header-box {
+  min-height: 62px;
 }
 
 /* Commons */
