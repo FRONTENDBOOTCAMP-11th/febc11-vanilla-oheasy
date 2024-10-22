@@ -1,3 +1,5 @@
+@import '../../../variable.css';
+
 /* Resets */
 body,
 p,
@@ -107,7 +109,7 @@ input[type='checkbox'] {
   width: 24px;
   height: 24px;
   box-sizing: border-box;
-  border: 1.5px solid var(--color-grey-70);
+  border: 1.5px solid var(--color-grey-80);
   border-radius: 50%;
   background-repeat: no-repeat;
   background-position: center 30px;
@@ -233,7 +235,7 @@ input[type='checkbox'] {
 
 .results {
   font-weight: 400;
-  color: var(--color-grey-70);
+  color: var(--color-grey-80);
 }
 
 .btn--filters {
@@ -291,13 +293,12 @@ input[type='checkbox'] {
 }
 
 .product-card__titles .subtitle {
-  color: var(--color-grey-70);
-  font-weight: 400;
+  color: var(--color-grey-80);
 }
 
 .product-card__count-wrapper .count-item {
   font-size: 1.4rem;
-  color: var(--color-grey-70);
+  color: var(--color-grey-80);
   margin-bottom: 12px;
 }
 
