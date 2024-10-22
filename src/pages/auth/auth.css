@@ -1,282 +1,289 @@
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
 
 /* css reset */
 body {
-    margin: unset;
-    padding: unset;
+  margin: unset;
+  padding: unset;
 }
 
-h1, p, span {
-    margin: unset;
-    padding: unset;
-    font-size: unset;
-    font-weight: unset;
+h1,
+p,
+span {
+  margin: unset;
+  padding: unset;
+  font-size: unset;
+  font-weight: unset;
 }
 
 img {
-    vertical-align: top;
-    max-width: 100%;
+  vertical-align: top;
+  max-width: 100%;
 }
 
 button {
-    all: unset;
+  all: unset;
 }
 
 /* CSS variables */
 :root {
-    /* colors */
-    --color-description: #757575;
-    --color-input: #707072;
-    --color-white: #FFFF;
-    --color-black: #111;
+  /* colors */
+  --color-description: #757575;
+  --color-input: #707072;
+  --color-white: #ffff;
+  --color-black: #111;
 }
 
 /* Typography */
 :root {
-    font-family: 'Pretendard';
+  font-family: 'Pretendard';
+}
+
+body {
+  background-color: #f5f5f5;
 }
 
 /* Layout */
 .wrapper {
-    max-width: 360px;
-    margin: 0 auto;
+  max-width: 360px;
+  margin: 0 auto;
+  background-color: var(--color-white);
+  min-height: 100vh;
 }
 
 .container {
-    margin: 20px 36px;
+  margin: 0 36px;
+  padding: 20px 0;
 }
 
 /* Commons */
 .title {
-    font-size: 28px;
-    font-weight: 400;
-    margin-top: 20px;
+  font-size: 28px;
+  font-weight: 400;
+  margin-top: 20px;
 }
 
 a {
-    color: currentColor;
-    text-decoration-thickness: 1px;
-    padding-bottom: 2px;
+  color: currentColor;
+  text-decoration-thickness: 1px;
+  padding-bottom: 2px;
 }
 
 /* 볼드 처리 된 a*/
 b a {
-   text-decoration-thickness: 1.5px;
+  text-decoration-thickness: 1.5px;
 }
 
 /* input 공통*/
-input:not([type="checkbox"]) {
-    width: 100%;
-    height: 56px;
-    padding: 16px 12px;
-    box-sizing: border-box;
-    border-radius: 8px;
-    border: 1px solid var(--color-input);
-    outline: none;
-    font-size: 16px;
+input:not([type='checkbox']) {
+  width: 100%;
+  height: 56px;
+  padding: 16px 12px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  border: 1px solid var(--color-input);
+  outline: none;
+  font-size: 16px;
 }
 
 input:focus {
-    border: 1px solid var(--color-black);
+  border: 1px solid var(--color-black);
 }
 
 /* input-container */
 .input-container {
-    position: relative;
+  position: relative;
 }
 
 .input-container span {
-    position: absolute;
-    top: 50%;
-    left: 12px;
-    transform: translateY(-50%);
-    color: var(--color-input);
-    transition: all 0.3s ease;
-    background-color: var(--color-white);
-    
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  color: var(--color-input);
+  transition: all 0.3s ease;
+  background-color: var(--color-white);
 }
 
 .input-container input:focus ~ span {
-    top: -10%;
-    left: 12px;
-    transform: translateY(0);
-    transition: all 0.3s ease;
+  top: -10%;
+  left: 12px;
+  transform: translateY(0);
+  transition: all 0.3s ease;
 }
 
 /* checkbox-container */
 .checkbox-container {
-    display: flex;
-    margin-top: 20px;
+  display: flex;
+  margin-top: 20px;
 }
 
 .check {
-    display: none;
+  display: none;
 }
 
 .check-label {
-    display: inline-block;
-    width: 21px;
-    height: 21px;
-    padding-left: 10px;
-    background: url(../../assets/images/auth_checkbox_blank.svg) no-repeat;
+  display: inline-block;
+  width: 21px;
+  height: 21px;
+  padding-left: 10px;
+  background: url(../../assets/images/auth_checkbox_blank.svg) no-repeat;
 }
 
 .check:checked + .check-label {
-    background: url(../../assets/icons/checkbox.svg) no-repeat;
+  background: url(../../assets/icons/checkbox.svg) no-repeat;
 }
 
-
-
 .description {
-    color: var(--color-description);
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 150%;
+  color: var(--color-description);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
 }
 
 /* buttons */
 .signIn.pwd .button-box[data-theme='white'] {
-    border-radius: 30px;
-    border: 1px solid black;
+  border-radius: 30px;
+  border: 1px solid black;
 }
 
 /* Design */
 /* signIn_main.html */
 .signIn.main {
-    margin-top: 26px;
+  margin-top: 26px;
 }
 
 .signIn.main .input-container {
-    margin-bottom: 46px;
+  margin-bottom: 46px;
 }
 
 .signIn.main .description {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 }
 
 /* signIn_pwd.html */
 .received_email {
-    margin: 10px 0 26px;
+  margin: 10px 0 26px;
 }
 
 .signIn.pwd input {
-    padding: 16px 40px 16px 12px;
+  padding: 16px 40px 16px 12px;
 }
 .signIn.pwd p {
-    margin: 20px 0 90px;
+  margin: 20px 0 90px;
 }
 
 .input-container.pwd img {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
 }
 
 .signIn-pwd-btn {
-    margin-top: 90px;
-    display: flex;
-    justify-content: space-between;
+  margin-top: 90px;
+  display: flex;
+  justify-content: space-between;
 }
 
 /* signUp_main */
 .flex-container {
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    margin: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 20px 0;
 }
 
 .flex-container .input-container {
-    flex: 1;
+  flex: 1;
 }
 
 .pwd-warning {
-    margin: 16px 8px 20px;
-    font-size: 12px;
-    font-weight: 400;
+  margin: 16px 8px 20px;
+  font-size: 12px;
+  font-weight: 400;
 }
 
 .pwd-warning div {
-    margin-top: 8px;
+  margin-top: 8px;
 }
 
 .pwd-warning span {
-    color: var(--color-description);
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 150%;
+  color: var(--color-description);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 150%;
 }
 
 .signUp-main .checkbox-container {
-    margin-bottom: 48px;
+  margin-bottom: 48px;
 }
 
 /* calendar icon custom */
-input[type="date"] {
-    position: relative;
-    background: url(../../assets/icons/calendar.svg) no-repeat right 15px center;
-    padding-left: 10px;
-    font-family: 'Pretendard';
+input[type='date'] {
+  position: relative;
+  background: url(../../assets/icons/calendar.svg) no-repeat right 15px center;
+  padding-left: 10px;
+  font-family: 'Pretendard';
 }
 
 /* 기존 placeholder 투명 처리*/
-input[type="date"]::-webkit-clear-button,
-input[type="date"]::-webkit-inner-spin-button {
-    display: none;
+input[type='date']::-webkit-clear-button,
+input[type='date']::-webkit-inner-spin-button {
+  display: none;
 }
 
 /* 기존 calendar icon 투명처리 & 크기 조절*/
-input[type="date"]::-webkit-calendar-picker-indicator {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background:transparent;
-    color: transparent;
-    cursor: pointer;
+input[type='date']::-webkit-calendar-picker-indicator {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  color: transparent;
+  cursor: pointer;
 }
 
 /* custom placeholder를 가상요소로 넣음*/
-input[type="date"]::before {
-    content: attr(data-placeholder);
-    width: 100%;
+input[type='date']::before {
+  content: attr(data-placeholder);
+  width: 100%;
 }
 
 /* 유효한 값이 입력된다면 가상요소를 사라지게 함*/
-input[type="date"]:valid::before {
-    display: none;
+input[type='date']:valid::before {
+  display: none;
 }
 
 input[data-placeholder]::before {
-    position: absolute;
-    top: 50%;
-    left: 4%;
-    transform: translateY(-50%); 
-    background: url(../../assets/icons/calendar.svg) no-repeat right 26px center #fff;
-    font-family: 'Pretendard';
-    color: var(--color-input);
-} 
+  position: absolute;
+  top: 50%;
+  left: 4%;
+  transform: translateY(-50%);
+  background: url(../../assets/icons/calendar.svg) no-repeat right 26px center
+    #fff;
+  font-family: 'Pretendard';
+  color: var(--color-input);
+}
 
 /* signUp_term */
 .signUp.term {
-    margin-top: 26px;
+  margin-top: 26px;
 }
 
 .signUp.term p:first-of-type ~ p {
-    margin: 24px 0 36px;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 150%;
-    color: var(--color-description);
+  margin: 24px 0 36px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 150%;
+  color: var(--color-description);
 }
 
 .signUp.term .checkbox-container:nth-of-type(1) {
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 24px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 24px;
 }
 
 .terms-btn-container {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }

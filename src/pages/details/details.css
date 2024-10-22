@@ -62,16 +62,26 @@ a {
 }
 
 /* Layouts */
+
+body {
+  background-color: #f5f5f5;
+}
 .l_layout {
   max-width: 360px;
   margin: 0 auto;
   padding: 0 var(--white-space-m) 0 var(--white-space-m);
   box-sizing: border-box;
+  position: relative;
+  background-color: var(--color-white);
 }
 
 /* Components */
 #header-box {
   min-height: 60px;
+}
+
+.header {
+  margin: 0 calc(-1 * var(--white-space-m));
 }
 
 .item-info {
