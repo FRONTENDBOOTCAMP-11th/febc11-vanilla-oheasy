@@ -1,3 +1,5 @@
+@import url(variable.css);
+
 /* css reset */
 body {
   margin: unset;
@@ -27,24 +29,14 @@ img {
   /* cursor: pointer; */
 }
 
-/* CSS variables */
-:root {
-  /* colors */
-  --color-gray-30: #e5e5e5;
-  --color-gray-70: #707072;
-  --color-white: #fff;
-  --color-black: #000;
-}
-
 /* Typography */
 :root {
   font-family: 'Noto Sans KR', sans-serif;
 }
 
 /* Layout */
-
 body {
-  background-color: #f5f5f5;
+  background-color: var(--color-grey-20);
 }
 .wrapper {
   margin: 0 auto;
@@ -57,10 +49,8 @@ body {
   padding: 12px 24px 0;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  vertical-align: center;
+#header-box {
+  min-height: 62px;
 }
 
 /* Commons */
