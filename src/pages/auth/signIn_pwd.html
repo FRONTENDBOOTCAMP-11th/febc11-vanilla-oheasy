@@ -21,31 +21,17 @@
                 <span>비밀번호</span>
               </div>
               <p class="description"><a href="#">비밀번호 찾기</a></p>
-              <div class="signIn-pwd-btn">
-                <div class="button-box" data-theme="white" data-width="90px" data-height="52px"
-                >이전</div>
-                <div class="button-box" data-theme="black" data-width="105px" data-height="52px"
-                >로그인</div>
-              </div>
             </form>
+            <div class="signIn-pwd-btn">
+              <div class="button-box" data-theme="white" data-width="90px" data-height="52px"
+              onclick="location.href='signIn_main.html'">이전</div>
+              <div class="button-box" data-theme="black" data-width="105px" data-height="52px"
+              onclick="location.href='/index.html'">로그인</div>
+            </div>
           </div>
         </div>
   </body>
   <script type="module" src="../../components/button.js"></script>
 
-  <script>
-    // let blackBtn = document.querySelector('.button-box[data-theme="black"]');
-
-    // blackBtn.addEventListener('click', function() {
-    //   location.href = '/index.html'
-    // })
-  
-  </script>
-  <!-- 작동하지 않는 페이지: signIn_pwd, signUp_term 입니다.
-  signIn_pwd: "이전 (white)" -> signIn_main.html 으로 이동
-  signIn_pwd: "로그인 (black)" -> index.html 로 이동
-  signUp_term: "계속 (black)" -> signIn_pwd.html로 이동
-  signUp_term: "취소 (white)" -> index.html로 이동
-  -->
 
   </html>
