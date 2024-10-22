@@ -89,11 +89,17 @@
 </style>
 
 <header class="header">
-  <img class="logo" src="/src/assets/icons/logo.svg" alt="nike logo" />
+  <a href="/index.html"
+    ><img class="logo" src="/src/assets/icons/logo.svg" alt="nike logo"
+  /></a>
   <div class="header-controls">
     <img src="/src/assets/icons/search.svg" alt="search" />
-    <img src="/src/assets/icons/user.svg" alt="user" />
-    <img src="/src/assets/icons/bag-36.svg" alt="bag" />
+    <a href="/src/pages/auth/signIn_main.html"
+      ><img src="/src/assets/icons/user.svg" alt="user"
+    /></a>
+    <a href="/src/pages/bag/bag.html"
+      ><img src="/src/assets/icons/bag-36.svg" alt="bag"
+    /></a>
     <!-- 🌟  -->
     <img
       onclick="document.querySelector('.sidebar-main').classList.toggle('active')"
@@ -110,57 +116,73 @@
       <img src="/src/assets/icons/xbtn.svg" />
     </div>
     <div class="side-bar-header-btn">
-      <div
-        class="button-box"
-        data-theme="black"
-        data-width="91px"
-        data-height="40px"
+      <a href="/src/pages/auth/signUp_main.html"
+        ><div
+          class="button-box"
+          data-theme="black"
+          data-width="91px"
+          data-height="40px"
+        >
+          가입하기
+        </div></a
       >
-        가입하기
-      </div>
-      <div
-        class="button-box"
-        data-theme="white"
-        data-width="77px"
-        data-height="40px"
-      >
-        로그인
-      </div>
+      <a href="/src/pages/auth/signIn_main.html">
+        <div
+          class="button-box"
+          data-theme="white"
+          data-width="77px"
+          data-height="40px"
+        >
+          로그인
+        </div>
+      </a>
     </div>
   </div>
 
   <div class="side-bar-main">
     <div class="side-bar-menu">
-      <div class="menu-items">
-        <h2>New & Featured</h2>
-        <img src="/src/assets/icons/vector-right.svg" />
-      </div>
-      <div class="menu-items">
-        <h2>Men</h2>
-        <img src="/src/assets/icons/vector-right.svg" />
-      </div>
-      <div class="menu-items">
-        <h2>Women</h2>
-        <img src="/src/assets/icons/vector-right.svg" />
-      </div>
-      <div class="menu-items">
-        <h2>Kids</h2>
-        <img src="/src/assets/icons/vector-right.svg" />
-      </div>
-      <div class="menu-items">
-        <h2>Sale</h2>
-        <img src="/src/assets/icons/vector-right.svg" />
-      </div>
+      <a href="/src/pages/products/products.html">
+        <div class="menu-items">
+          <h2>New & Featured</h2>
+          <img src="/src/assets/icons/vector-right.svg" />
+        </div>
+      </a>
+      <a href="/src/pages/products/products.html">
+        <div class="menu-items">
+          <h2>Men</h2>
+          <img src="/src/assets/icons/vector-right.svg" />
+        </div>
+      </a>
+      <a href="/src/pages/products/products.html">
+        <div class="menu-items">
+          <h2>Women</h2>
+          <img src="/src/assets/icons/vector-right.svg" />
+        </div>
+      </a>
+      <a href="/src/pages/products/products.html">
+        <div class="menu-items">
+          <h2>Kids</h2>
+          <img src="/src/assets/icons/vector-right.svg" />
+        </div>
+      </a>
+      <a href="/src/pages/products/products.html">
+        <div class="menu-items">
+          <h2>Sale</h2>
+          <img src="/src/assets/icons/vector-right.svg" />
+        </div>
+      </a>
     </div>
     <div class="side-bar-info">
       <div class="info-items">
         <img src="/src/assets/icons/question.svg" />
         <h4>고객센터</h4>
       </div>
-      <div class="info-items">
-        <img src="/src/assets/icons/bag.svg" />
-        <h4>장바구니</h4>
-      </div>
+      <a href="/src/pages/bag/bag.html">
+        <div class="info-items">
+          <img src="/src/assets/icons/bag.svg" />
+          <h4>장바구니</h4>
+        </div>
+      </a>
       <div class="info-items">
         <img src="/src/assets/icons/order.svg" />
         <h4>주문</h4>
