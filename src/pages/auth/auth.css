@@ -43,6 +43,10 @@ body {
 }
 
 .container {
+  height: 100vh;
+}
+
+.container {
   margin: 0 36px;
   padding: 20px 0;
 }
