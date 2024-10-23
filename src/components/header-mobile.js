@@ -6,17 +6,23 @@ loadHTML('/src/components/header-mobile.html', function (response) {
 
   let headerBox = document.getElementById('header-box');
   let sideBar = document.querySelector('.side-bar');
+  let overlay = document.querySelector('.overlay');
+  let body = document.body;
 
   headerBox.addEventListener('click', function (event) {
     if (event.target.id === 'menuBtn') {
       sideBar.classList.toggle('active');
+      overlay.classList.toggle('active');
+      body.classList.toggle('active');
     }
   });
 
   /* 닫기를 클릭했을 때 .side-bar에 active 클래스를 제거한다.*/
   document
-    .querySelector('.side-bar-header-img img')
+    .querySelector('.sidebar-xbtn')
     .addEventListener('click', function () {
       sideBar.classList.remove('active');
+      overlay.classList.toggle('active');
+      body.classList.toggle('active');
     });
 });
