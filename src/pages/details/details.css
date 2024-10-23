@@ -64,7 +64,7 @@ body {
   padding: 0 var(--white-space-m) 0 var(--white-space-m);
   box-sizing: border-box;
   position: relative;
-  height: 100vh;
+  /* height: 100vh; */
   background-color: var(--color-white);
 }
 

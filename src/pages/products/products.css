@@ -268,7 +268,7 @@ input[type='checkbox'] {
 /* Sidebar scroll */
 .products-section {
   position: relative;
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 .product-cover {

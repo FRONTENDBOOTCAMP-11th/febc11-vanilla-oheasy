@@ -44,7 +44,7 @@ body {
   max-width: 360px;
   position: relative;
   background-color: var(--color-white);
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 .container {
