@@ -32,6 +32,7 @@ img {
 /* Typography */
 :root {
   font-family: 'Noto Sans KR', sans-serif;
+  font-size: 62.5%;
 }
 
 /* Layout */
@@ -43,6 +44,7 @@ body {
   max-width: 360px;
   position: relative;
   background-color: var(--color-white);
+  height: 100vh;
 }
 
 .container {

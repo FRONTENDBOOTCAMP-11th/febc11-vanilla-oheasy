@@ -1,68 +1,82 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover, user-scalable=no">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover, user-scalable=no"
+    />
     <title>SignUp-main</title>
-    <link rel="stylesheet" href="auth.css">
+    <link rel="stylesheet" href="auth.css" />
   </head>
   <body>
     <div class="wrapper">
       <div class="container">
+        <div class="header">
+          <a href="/index.html">
+            <img src="../../assets/icons/logo.svg" />
+          </a>
+          <h1 class="title">이제 나이키 멤버가 되어 볼까요?</h1>
+        </div>
 
-          <div class="header">
-            <a href="/index.html">
-              <img src="../../assets/icons/logo.svg">
-            </a>
-            <h1 class="title">이제 나이키 멤버가 되어 볼까요?</h1>
-          </div>
-
-          <div class="main">
-            <form class="signUp-main">
-              <div class="flex-container">
-                <div class="input-container">
-                  <input type="text">
-                  <span>이름</span>
-                </div>
-                <div class="input-container">
-                  <input type="text">
-                  <span>성</span>
-                </div>
-              </div>  
-
+        <div class="main">
+          <form class="signUp-main">
+            <div class="flex-container">
               <div class="input-container">
-                <input type="password">
-                <span>비밀번호</span>
+                <input type="text" />
+                <span>이름</span>
               </div>
-            
-              <div class="pwd-warning">
-                <div>
-                  <img src="../../assets/icons/x.svg">
-                  <span>최소 8자</span> <br>
-                </div>
-                <div>
-                  <img src="../../assets/icons/x.svg">
-                  <span>알파벳 대문자 및 소문자 조합, 최소 1개 이상의 숫자</span>
-                </div>
+              <div class="input-container">
+                <input type="text" />
+                <span>성</span>
               </div>
-              
-              <input type="date" data-placeholder="생년월일" aria-required="true" required>
+            </div>
 
-              <div class="checkbox-container">
-                <input type="checkbox" id="chkbox1" class="check">
-                <label for="chkbox1" class="check-label"></label>
-                <p style="line-height: 150%;">나이키의 <b><a href="#">개인정보 처리방침</a></b> 및 <b><a href="#">이용약관</a></b> 에 동의합니다.</p>
+            <div class="input-container">
+              <input type="password" />
+              <span>비밀번호</span>
+            </div>
+
+            <div class="pwd-warning">
+              <div>
+                <img src="../../assets/icons/x.svg" />
+                <span>최소 8자</span> <br />
               </div>
+              <div>
+                <img src="../../assets/icons/x.svg" />
+                <span>알파벳 대문자 및 소문자 조합, 최소 1개 이상의 숫자</span>
+              </div>
+            </div>
 
-              <div class="button-box" data-theme="black" data-width="100%" data-height="46px"
-              onclick="location.href='signUp_terms.html'">계정 만들기</div>
+            <input
+              type="date"
+              data-placeholder="생년월일"
+              aria-required="true"
+              required
+            />
 
+            <div class="checkbox-container">
+              <input type="checkbox" id="chkbox1" class="check" />
+              <label for="chkbox1" class="check-label"></label>
+              <p style="line-height: 150%">
+                나이키의 <b><a href="#">개인정보 처리방침</a></b> 및
+                <b><a href="#">이용약관</a></b> 에 동의합니다.
+              </p>
+            </div>
+
+            <div
+              class="button-box"
+              data-theme="black"
+              data-width="100%"
+              data-height="46px"
+              onclick="location.href='signUp_terms.html'"
+            >
+              계정 만들기
+            </div>
           </form>
-          </div>
-          </div>
+        </div>
       </div>
+    </div>
   </body>
   <script type="module" src="../../components/button.js"></script>
-
 </html>
-    
