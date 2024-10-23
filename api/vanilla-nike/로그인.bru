@@ -1,0 +1,18 @@
+meta {
+  name: 로그인
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{url}}/users/login
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "email": "u1@market.com",
+    "password": "11111111"
+  }
+}
