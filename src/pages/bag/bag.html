@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="bag.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script type="module" src="bag.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -24,38 +25,7 @@
           <p>1 개의 제품 | 189,000 원</p> <!--상품이 장바구니에 담겨 있다면 담겨있는 상품의 총 개수와 상품 가격의 총 합을 출력하게 만들기-->
         </div>
         <div class="product_section"> 
-          <div class="product_item_section"> <!-- 아마 이 부분은 js코드로 옮겨서 다시 작업 할듯?-->
-            <div>
-             <img src="/src/assets/images/bag_shoes-1.png"> <!-- 이미지 클릭시 해당 제품의 상세페이지로 이동-->
-            </div>
-            <div class="product_text_section">
-              <div class="black_text">
-                <p id="product_price"> 189,000 원</p> 
-                <p id="product_name"> 나이키 줌 보메로 5</p>
-              </div>  
-              <div class="gray_text">
-              <p>남성 신발</p>
-                <div class="size_count_text">
-                  <div class="size_text">
-                    <p>사이즈</p>
-                    <p>275</p>
-                  </div>
-                  <div class="count_text">
-                    <p>수량</p>
-                    <div class="count_number">
-                      <img src="/src/assets/icons/minus.svg"> <!--숫자 감소-->
-                      <p>1</p>  <!-- 물건 갯수 변수-->
-                      <img src="/src/assets/icons/plus.svg"> <!--숫자 증가-->
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="product_icon_section">
-            <img src="/src/assets/icons/heart.svg" alt=""> <!-- 찜하기 ==> 위시리스트 추가? -->
-            <img class="move_icon" src="/src/assets/icons/trash.svg" alt=""> <!-- 장바구니에서 제거 -->
-          </div>
+          <ul id="cart-list"></ul>
           <div class="product_delivery_section">
             <p class="product_delivery_text_title">무료 배송</p>
             <p class="product_delivery_text">도착 예정일: 7월 26일 (토)배송 지역: 04628</p>
