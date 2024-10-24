@@ -130,11 +130,24 @@ body {
   overflow-x: scroll;
 }
 
+.item-cover-thumbnails img {
+  width: 125px;
+  height: 125px;
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.item-cover-thumbnails img.clicked {
+  border: 1px solid black;
+}
+
 .size-title {
   font-weight: 500;
   display: flex;
   justify-content: space-between;
   margin-bottom: 9px;
+  font-size: 1.6rem;
 }
 
 .size-title a {
