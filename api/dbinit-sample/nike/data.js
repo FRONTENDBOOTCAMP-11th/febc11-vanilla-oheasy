@@ -1,7 +1,10 @@
 import moment from 'moment';
 
 function getTime(day = 0, second = 0) {
-  return moment().add(day, 'days').add(second, 'seconds').format('YYYY.MM.DD HH:mm:ss');
+  return moment()
+    .add(day, 'days')
+    .add(second, 'seconds')
+    .format('YYYY.MM.DD HH:mm:ss');
 }
 
 export const initData = async (clientId, nextSeq) => {
@@ -11,7 +14,8 @@ export const initData = async (clientId, nextSeq) => {
       {
         _id: await nextSeq('user'),
         email: 'admin@market.com',
-        password: '$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2',
+        password:
+          '$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2',
         name: '무지',
         type: 'admin',
         loginType: 'email',
@@ -24,7 +28,8 @@ export const initData = async (clientId, nextSeq) => {
       {
         _id: await nextSeq('user'),
         email: 's1@gmail.com',
-        password: '$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2',
+        password:
+          '$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2',
         name: '나이키',
         type: 'seller',
         loginType: 'email',
@@ -34,7 +39,8 @@ export const initData = async (clientId, nextSeq) => {
       {
         _id: await nextSeq('user'),
         email: 'u2@gmail.com',
-        password: '$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2',
+        password:
+          '$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2',
         name: '어피치',
         type: 'user',
         loginType: 'email',
@@ -48,7 +54,8 @@ export const initData = async (clientId, nextSeq) => {
       {
         _id: await nextSeq('user'),
         email: 'u1@gmail.com',
-        password: '$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2',
+        password:
+          '$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2',
         name: '제이지',
         type: 'user',
         loginType: 'email',
@@ -77,7 +84,7 @@ export const initData = async (clientId, nextSeq) => {
             path: `/files/${clientId}/NIKE_JAM_01.jpg`,
             name: 'NIKE_JAM_01.jpg',
             originalname: 'NIKE_JAM_01.jpg',
-          }
+          },
         ],
         content: `나이키가 세계적인 무대에 오르는 브레이크 댄서를 위해 제작한 첫 신발인 잼과 함께 몸과 마음, 정신을 하나로 만들어 보세요. 신발의 모든 디테일을 꼼꼼히 제작했기 때문에 자신 있게 사이퍼에 도전할 수 있습니다. 유연하고 내구성이 뛰어난 갑피가 몸을 따라 움직이며, 중창의 텍스처 처리된 핸드 그립 덕분에 공중에서 신발을 쉽게 잡을 수 있습니다. 그리고 위아래가 뒤집힌 로고를 배치해 프리즈 동작을 할 때 로고가 똑바로 보이는 재미를 더했죠.`,
         createdAt: getTime(-41, -60 * 60 * 2),
@@ -157,7 +164,6 @@ export const initData = async (clientId, nextSeq) => {
             name: 'NIKE_JAM_11.png',
             originalname: 'NIKE_JAM_11.png',
           },
-
         ],
         content: `나이키 잼 갈색`,
         createdAt: getTime(-41, -60 * 60 * 2),
@@ -232,7 +238,6 @@ export const initData = async (clientId, nextSeq) => {
             name: 'NIKE_JAM_b_10.png',
             originalname: 'NIKE_JAM_b_10.png',
           },
-
         ],
         content: `나이키 잼 검은색`,
         createdAt: getTime(-41, -60 * 60 * 2),
@@ -290,7 +295,7 @@ export const initData = async (clientId, nextSeq) => {
             path: `/files/${clientId}/NIKE_TOUR_REPEL_07.png`,
             name: 'NIKE_TOUR_REPEL_07.png',
             originalname: 'NIKE_TOUR_REPEL_07.png',
-          }
+          },
         ],
         content: `약한 비가 내리는 날씨라고 골프를 포기하지는 마세요. 이 편안한 핏의 발수 베스트가 곁에 있을 거예요. 밑단에 조절 가능한 번지 코드가 있어 핏과 보호력을 조절할 수 있으며, 날씨 때문에 경기가 방해받지 않도록 도와줍니다.`,
         createdAt: getTime(-41, -60 * 60 * 2),
@@ -321,7 +326,7 @@ export const initData = async (clientId, nextSeq) => {
             path: `/files/${clientId}/NIKE_JAM_01.jpg`,
             name: 'NIKE_JAM_01.jpg',
             originalname: 'NIKE_JAM_01.jpg',
-          }
+          },
         ],
         content: `시그니처 윈드러너 재킷을 산뜻하게 재해석한 이 버전은 매끄럽고 약간의 신축성이 있는 우븐 소재로 제작되었습니다. 가슴과 팔, 몸체가 넉넉한 디자인으로 완성되어 편안하게 레이어링하고 움직일 수 있습니다. 후드와 밑단에 신축성 있는 조임 끈을 적용해 원하는 핏을 연출할 수 있습니다.`,
         createdAt: getTime(-41, -60 * 60 * 2),
@@ -406,7 +411,6 @@ export const initData = async (clientId, nextSeq) => {
             name: 'NIKE_TECH_WIND_12.png',
             originalname: 'NIKE_TECH_WIND_12.png',
           },
-
         ],
         content: `나이키 테크 윈드러너 블랙`,
         createdAt: getTime(-41, -60 * 60 * 2),
@@ -486,7 +490,6 @@ export const initData = async (clientId, nextSeq) => {
             name: 'NIKE_TECH_WIND_o_11.png',
             originalname: 'NIKE_TECH_WIND_o_11.png',
           },
-
         ],
         content: `나이키 테크 윈드러너 올리브`,
         createdAt: getTime(-41, -60 * 60 * 2),
@@ -500,7 +503,6 @@ export const initData = async (clientId, nextSeq) => {
           primeCost: 179000,
         },
       },
-
     ],
     // 주문
     order: [
@@ -580,7 +582,6 @@ export const initData = async (clientId, nextSeq) => {
         createdAt: getTime(-4, -60 * 60 * 22),
         updatedAt: getTime(-2, -60 * 60 * 12),
       },
-
     ],
     // 후기
     review: [
@@ -590,7 +591,7 @@ export const initData = async (clientId, nextSeq) => {
         user: {
           _id: 4,
           name: '제이지',
-          image: `/files/${clientId}/user-jayg.webp`
+          image: `/files/${clientId}/user-jayg.webp`,
         },
         order_id: 1,
         product_id: 2,
@@ -619,7 +620,7 @@ export const initData = async (clientId, nextSeq) => {
           image: {
             path: '/files/vanilla00/NIKE_JAM_01.jpg',
             name: 'NIKE_JAM_01.jpg',
-            originalname: 'NIKE_JAM_01.jpg'
+            originalname: 'NIKE_JAM_01.jpg',
           },
           extra: {
             depth: 2,
@@ -627,10 +628,9 @@ export const initData = async (clientId, nextSeq) => {
             size: [220, 225, 230, 235, 240, 245, 250, 255, 260],
             color: '다크 드리프트우드/헴프/세일/블랙',
             styleNo: 'FN0314-200',
-            primeCost: 139000
-          }
-        }
-
+            primeCost: 139000,
+          },
+        },
       },
 
       {
@@ -651,7 +651,7 @@ export const initData = async (clientId, nextSeq) => {
           image: {
             path: '/files/vanilla00/NIKE_TOUR_REPEL_01.png',
             name: 'NIKE_TOUR_REPEL_01.png',
-            originalname: 'NIKE_TOUR_REPEL_01.png'
+            originalname: 'NIKE_TOUR_REPEL_01.png',
           },
           extra: {
             isNew: true,
@@ -661,10 +661,10 @@ export const initData = async (clientId, nextSeq) => {
             color: '블랙/화이트',
             styleNo: 'DZ6021-010',
             primeCost: 109000,
-            gender: 'women'
-          }
-        }
-      }
+            gender: 'women',
+          },
+        },
+      },
     ],
     // 즐겨찾기/북마크
     bookmark: [
@@ -677,7 +677,7 @@ export const initData = async (clientId, nextSeq) => {
           _id: 4,
           name: '제이지',
           email: 'u1@gmail.com',
-          image: `/files/${clientId}/user-jayg.webp`
+          image: `/files/${clientId}/user-jayg.webp`,
         },
         memo: '첫째 크리스마스 선물.',
         createdAt: getTime(-3, -60 * 60 * 2),
@@ -691,7 +691,7 @@ export const initData = async (clientId, nextSeq) => {
           _id: 4,
           name: '제이지',
           email: 'u1@gmail.com',
-          image: `/files/${clientId}/user-jayg.webp`
+          image: `/files/${clientId}/user-jayg.webp`,
         },
         memo: '둘째 생일 선물',
         createdAt: getTime(-1, -60 * 60 * 12),
@@ -919,15 +919,12 @@ export const initData = async (clientId, nextSeq) => {
             depth: 3,
           },
 
-
-
           {
             sort: 2,
             code: 'PC02',
             value: 'Women',
             depth: 1,
           },
-
 
           {
             sort: 1,
@@ -1150,7 +1147,6 @@ export const initData = async (clientId, nextSeq) => {
             value: 'Kids',
             depth: 1,
           },
-
 
           {
             sort: 1,
@@ -1447,7 +1443,6 @@ export const initData = async (clientId, nextSeq) => {
           },
         ],
       },
-
     ],
     // 설정
     config: [
