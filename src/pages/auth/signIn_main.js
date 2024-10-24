@@ -47,7 +47,7 @@ $btn.addEventListener('click', async (event) => {
             if (response.data.ok === 1) {
                 sessionStorage.setItem('email', userEmail);
                 window.location.href = 'signUp_terms.html'; 
-            } else if (response.data.ok === 0){
+            } else {
                 //이메일 중복o 
                 sessionStorage.setItem('email', userEmail);
                 window.location.href = 'signIn_pwd.html'; // 로그인 페이지로 이동
@@ -70,6 +70,17 @@ $btn.addEventListener('click', async (event) => {
 
     getEmail($userEmail.value);
 
+});
+
+    //이메일 유효성 검증
+    const validateEmail = function (email) {
+        //email 조건
+        const emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+        //전달받은 email을 소문자로 변경하고 email 조건과 맞는지 확인
+        let result = String(email).toLowerCase().match(emailReg);
+        return(result);
+    } 
 
     // getUserEmail($userEmail.value);
 
@@ -87,19 +98,6 @@ $btn.addEventListener('click', async (event) => {
     //         }
     //     });
     // }
-});
-
-    //이메일 유효성 검증
-    const validateEmail = function (email) {
-        //email 조건
-        const emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    
-        //전달받은 email을 소문자로 변경하고 email 조건과 맞는지 확인
-        let result = String(email).toLowerCase().match(emailReg);
-        return(result);
-    } 
-
-
 
 // const $emailResult = document.querySelector('.emailResult');
 

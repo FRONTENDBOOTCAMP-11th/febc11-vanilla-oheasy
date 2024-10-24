@@ -7,6 +7,7 @@ const $result = document.querySelector('.result');
 //버튼
 const $previousBtn = document.querySelector('.button-box[data-theme="white"]');
 const $loginBtn = document.querySelector('.button-box[data-theme="black"]');
+const $btnBox = document.querySelector('.signIn-pwd-btn');
 
 const userEmail = sessionStorage.getItem('email');
 
@@ -39,7 +40,6 @@ $previousBtn.addEventListener('click', function () {
 //로그인 버튼을 눌렀을 때
 $loginBtn.addEventListener('click', async function(event) {
     event.preventDefault();
-
 
     const pwdInput = $userPwd.value;
 
@@ -81,11 +81,17 @@ $loginBtn.addEventListener('click', async function(event) {
             }
         }
 
+        //422 에러처리
         catch (error) {
-            console.log('서버에서 에러가 발생하였습니다.');
-            $result.textContent = '비밀번호가 일치하지 않습니다.';
-            $result.style.color = 'red';
-
+            if (error.response && error.response.status === 422) {
+                $result.textContent = '비밀번호가 일치하지 않습니다.';
+                $result.style.color = 'red';
+            } 
+            else {
+                console.log('서버에서 에러가 발생하였습니다.', error);
+                $result.textContent = '서버에서 오류가 발생했습니다.';
+                $result.style.color = 'red';
+            }
         }
     
     }
