@@ -323,9 +323,9 @@ export const initData = async (clientId, nextSeq) => {
         buyQuantity: 0,
         mainImages: [
           {
-            path: `/files/${clientId}/NIKE_JAM_01.jpg`,
-            name: 'NIKE_JAM_01.jpg',
-            originalname: 'NIKE_JAM_01.jpg',
+            path: `/files/${clientId}/NIKE_TECH_WIND_01`,
+            name: 'NIKE_TECH_WIND_01',
+            originalname: 'NIKE_TECH_WIND_01',
           },
         ],
         content: `시그니처 윈드러너 재킷을 산뜻하게 재해석한 이 버전은 매끄럽고 약간의 신축성이 있는 우븐 소재로 제작되었습니다. 가슴과 팔, 몸체가 넉넉한 디자인으로 완성되어 편안하게 레이어링하고 움직일 수 있습니다. 후드와 밑단에 신축성 있는 조임 끈을 적용해 원하는 핏을 연출할 수 있습니다.`,
