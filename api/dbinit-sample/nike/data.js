@@ -1288,6 +1288,7 @@ export const initData = async (clientId, nextSeq) => {
         },
       },
       {
+        //////////////////////////////// ✨SH
         // 상품 PC0301
         _id: await nextSeq('product'),
         seller_id: 2,
@@ -1465,7 +1466,6 @@ export const initData = async (clientId, nextSeq) => {
         ],
       },
       {
-        //////////////////////////////// ✨SH
         _id: await nextSeq('product'),
         seller_id: 2,
         price: 139000,
