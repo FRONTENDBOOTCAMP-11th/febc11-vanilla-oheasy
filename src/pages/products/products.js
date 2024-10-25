@@ -31,13 +31,13 @@ const getProduct = async function () {
 
     const data = res.data;
     const items = data.item; // array
-
+    console.log(items);
     const lists = items
       .map(
         item =>
           `<li class="product">
                   <div class="product-cover">
-                    <img src="../../../api/dbinit-sample/nike/uploadFiles/${item.mainImages[0].name}" />
+                    <img src="https://11.fesp.shop/files/vanilla05/${item.mainImages[0].name}" />
                   </div>
 
                   <div class="product-card">
@@ -67,3 +67,18 @@ const getProduct = async function () {
   }
 };
 getProduct();
+
+const getImage = async function (name) {
+  try {
+    const res = await axios.get(
+      `https://11.fesp.shop/products/files/vanilla05/${name}`,
+      {
+        headers: {
+          'client-id': 'vanilla05',
+        },
+      },
+    );
+  } catch (err) {
+    console.error(err);
+  }
+};
