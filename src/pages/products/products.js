@@ -15,9 +15,23 @@ const formatPrice = function (price) {
   return arr.join('') + '원';
 };
 
-// const formatOptions = function (item) {
-//   const colorNumber = item.extra.options;
-// };
+const getCategory = function (category) {
+  if (category === 'PC01') {
+    return '남성';
+  } else if (category === 'PC02') {
+    return '여성';
+  } else if (category === 'PC03') {
+    return '주니어';
+  }
+};
+
+const isItBest = function (answer) {
+  if (answer) {
+    return '베스트셀러';
+  } else {
+    return '';
+  }
+};
 
 const $gridContainer = document.querySelector('.l_grid');
 
@@ -42,10 +56,10 @@ const getProduct = async function () {
 
                   <div class="product-card">
                    <div class="product-msg-info">
-                    <p class="product-card__messaging">${item.extra.isNew ? '신제품' : '베스트셀러'}</p>
+                    <p class="product-card__messaging">${item.extra.isNew ? '신제품' : isItBest(item.extra.isBest)}</p>
                     <div class="product-card__titles">
                       <p class="title">${item.name}</p>
-                      <p class="subtitle">${item.extra.gender === 'men' ? '남성' : '여성'} 신발</p>
+                      <p class="subtitle">${getCategory(item.extra.category[0])} 신발</p>
                     </div>
                    </div>
 
@@ -78,6 +92,7 @@ const getImage = async function (name) {
         },
       },
     );
+    console.log(res, res.data);
   } catch (err) {
     console.error(err);
   }
