@@ -772,9 +772,9 @@ export const initData = async (clientId, nextSeq) => {
             originalname: 'NIKE_CORTEZ_d_07.png',
           },
           {
-            path: `/files/${clientId}/NIKE_CORTEZ_d_08.png`,
-            name: 'NIKE_CORTEZ_d_08.png',
-            originalname: 'NIKE_CORTEZ_d_08.png',
+            path: `/files/${clientId}/NIKE_CORTEZ_d_08.jpeg`,
+            name: 'NIKE_CORTEZ_d_08.jpeg',
+            originalname: 'NIKE_CORTEZ_d_08.jpeg',
           },
         ],
         content: `나이키 코르테즈 레더 하얀색`,
@@ -904,9 +904,9 @@ export const initData = async (clientId, nextSeq) => {
             originalname: 'NIKE_COAT_LEGACY_b_03.png',
           },
           {
-            path: `/files/${clientId}/NIKE_COAT_LEGACY_b_04.png`,
-            name: 'NIKE_COAT_LEGACY_b_04.png',
-            originalname: 'NIKE_COAT_LEGACY_b_04.png',
+            path: `/files/${clientId}/NIKE_COAT_LEGACY_b_04.jpeg`,
+            name: 'NIKE_COAT_LEGACY_b_04.jpeg',
+            originalname: 'NIKE_COAT_LEGACY_b_04.jpeg',
           },
           {
             path: `/files/${clientId}/NIKE_COAT_LEGACY_b_05.png`,
@@ -914,9 +914,9 @@ export const initData = async (clientId, nextSeq) => {
             originalname: 'NIKE_COAT_LEGACY_b_05.png',
           },
           {
-            path: `/files/${clientId}/NIKE_COAT_LEGACY_b_07.png`,
-            name: 'NIKE_COAT_LEGACY_b_07.png',
-            originalname: 'NIKE_COAT_LEGACY_b_07.png',
+            path: `/files/${clientId}/NIKE_COAT_LEGACY_b_07.jpeg`,
+            name: 'NIKE_COAT_LEGACY_b_07.jpeg',
+            originalname: 'NIKE_COAT_LEGACY_b_07.jpeg',
           },
           {
             path: `/files/${clientId}/NIKE_COAT_LEGACY_b_08.png`,
