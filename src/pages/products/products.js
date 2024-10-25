@@ -33,10 +33,25 @@ const isItBest = function (answer) {
   }
 };
 
+const renderSpinner = function (parentEl) {
+  const markup = `
+                <div class="spinner">
+                    <svg>
+                      <use href="src/pages/products/loader.svg#icon-loader"></use>
+                    </svg>
+                </div>`;
+  parentEl.innerHTML = '';
+  parentEl.insertAdjacentHTML('beforebegin', markup);
+};
+
 const $gridContainer = document.querySelector('.l_grid');
 
-const getProduct = async function () {
+const showProduct = async function () {
   try {
+    // 1) Rendering spinner (in case connection of the internet is too slow)
+    renderSpinner($gridContainer);
+
+    // 2) Loading the list of products
     const res = await axios.get('https://11.fesp.shop/products', {
       headers: {
         'client-id': 'vanilla05',
@@ -45,7 +60,8 @@ const getProduct = async function () {
 
     const data = res.data;
     const items = data.item; // array
-    console.log(items);
+    console.log(res, data, items);
+
     const lists = items
       .map(
         item =>
@@ -80,7 +96,7 @@ const getProduct = async function () {
     console.error(err);
   }
 };
-getProduct();
+showProduct();
 
 const getImage = async function (name) {
   try {
