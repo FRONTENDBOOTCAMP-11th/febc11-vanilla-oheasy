@@ -98,18 +98,60 @@ const showProduct = async function () {
 };
 showProduct();
 
-const getImage = async function (name) {
+// 메인 카테고리 클릭시 리스트 출력
+// 1) 헤더의 사이드바는 공통 컴포넌트화 되어 현재 document 상에 존재하지 않고, 헤더가 완전히 Dom에 삽입된 이후에야 js에서 접근 가능하기 떄문에, 비동기 요청을 통해 html을 동적으로 삽입하고, 해당 요소가 로드된 후 js코드에서 안전하게 접근해야 된다.
+const loadComponent = async function () {
   try {
-    const res = await axios.get(
-      `https://11.fesp.shop/products/files/vanilla05/${name}`,
-      {
-        headers: {
-          'client-id': 'vanilla05',
-        },
-      },
-    );
-    console.log(res, res.data);
-  } catch (err) {
-    console.error(err);
+    const res = await axios.get('../../components/header-mobile.html');
+    const html = await res.data;
+
+    const parentEl = document.querySelector('#header-box');
+    parentEl.innerHTML = html;
+
+    const linkNew = parentEl.querySelector('.link--new');
+    const linkMen = parentEl.querySelector('.link--men');
+    const linkWomen = parentEl.querySelector('.link--women');
+    const linkKids = parentEl.querySelector('.link--kids');
+    console.log(linkNew, linkMen, linkWomen, linkKids);
+
+    // heaer-mobile.js 코드 또한 추가해 메뉴버튼이 클릭될 수 있도록 활성화
+    let headerBox = document.getElementById('header-box');
+    let sideBar = document.querySelector('.side-bar');
+
+    headerBox.addEventListener('click', function (event) {
+      if (event.target.id === 'menuBtn') {
+        sideBar.classList.toggle('active');
+      }
+    });
+
+    document
+      .querySelector('.side-bar-header-img img')
+      .addEventListener('click', function () {
+        sideBar.classList.remove('active');
+      });
+
+    // New / Men / Women / Kids 카테고리에 따른 상품리스트 조회
+    linkNew.addEventListener('click', function (e) {
+      e.preventDefault();
+    });
+  } catch (error) {
+    console.error('Error loading component', error);
   }
 };
+loadComponent();
+
+// const getImage = async function (name) {
+//   try {
+//     const res = await axios.get(
+//       `https://11.fesp.shop/products/files/vanilla05/${name}`,
+//       {
+//         headers: {
+//           'client-id': 'vanilla05',
+//         },
+//       },
+//     );
+//     console.log(res, res.data);
+//   } catch (err) {
+//     console.error(err);
+//   }
+// };
