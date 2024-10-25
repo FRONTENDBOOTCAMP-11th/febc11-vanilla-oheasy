@@ -44,23 +44,26 @@ const renderSpinner = function (parentEl) {
   parentEl.insertAdjacentHTML('beforebegin', markup);
 };
 
+// 비동기적으로 해당 url에 맞는 상품 리스트 출력하는 함수 정의
 const $gridContainer = document.querySelector('.l_grid');
 
-const showProduct = async function () {
+const showProduct = async function (code) {
   try {
     // 1) Rendering spinner (in case connection of the internet is too slow)
     renderSpinner($gridContainer);
 
     // 2) Loading the list of products
-    const res = await axios.get('https://11.fesp.shop/products', {
-      headers: {
-        'client-id': 'vanilla05',
+    const res = await axios.get(
+      `https://11.fesp.shop/products?custom={"extra.category.0":"${code}"}`,
+      {
+        headers: {
+          'client-id': 'vanilla05',
+        },
       },
-    });
+    );
 
     const data = res.data;
-    const items = data.item; // array
-    console.log(res, data, items);
+    const items = data.item;
 
     const lists = items
       .map(
@@ -96,7 +99,6 @@ const showProduct = async function () {
     console.error(err);
   }
 };
-showProduct();
 
 // 메인 카테고리 클릭시 리스트 출력
 // 1) 헤더의 사이드바는 공통 컴포넌트화 되어 현재 document 상에 존재하지 않고, 헤더가 완전히 Dom에 삽입된 이후에야 js에서 접근 가능하기 떄문에, 비동기 요청을 통해 html을 동적으로 삽입하고, 해당 요소가 로드된 후 js코드에서 안전하게 접근해야 된다.
@@ -114,7 +116,7 @@ const loadComponent = async function () {
     const linkKids = parentEl.querySelector('.link--kids');
     console.log(linkNew, linkMen, linkWomen, linkKids);
 
-    // heaer-mobile.js 코드 또한 추가해 메뉴버튼이 클릭될 수 있도록 활성화
+    // 2) heaer-mobile.js 코드 또한 추가해 메뉴버튼이 클릭될 수 있도록 재활성화
     let headerBox = document.getElementById('header-box');
     let sideBar = document.querySelector('.side-bar');
 
@@ -130,9 +132,20 @@ const loadComponent = async function () {
         sideBar.classList.remove('active');
       });
 
-    // New / Men / Women / Kids 카테고리에 따른 상품리스트 조회
-    linkNew.addEventListener('click', function (e) {
+    // 3) showProduct()함수를 이용한 New / Men / Women / Kids 카테고리에 따른 상품리스트 조회
+    linkMen.addEventListener('click', function (e) {
       e.preventDefault();
+      showProduct('PC01');
+    });
+
+    linkWomen.addEventListener('click', function (e) {
+      e.preventDefault();
+      showProduct('PC02');
+    });
+
+    linkKids.addEventListener('click', function (e) {
+      e.preventDefault();
+      showProduct('PC03');
     });
   } catch (error) {
     console.error('Error loading component', error);
