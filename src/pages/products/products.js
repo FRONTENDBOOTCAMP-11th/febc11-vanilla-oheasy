@@ -117,20 +117,26 @@ const loadComponent = async function () {
     console.log(linkNew, linkMen, linkWomen, linkKids);
 
     // 2) heaer-mobile.js 코드 또한 추가해 메뉴버튼이 클릭될 수 있도록 재활성화
-    let headerBox = document.getElementById('header-box');
-    let sideBar = document.querySelector('.side-bar');
+    const $headerBox = document.getElementById('header-box');
+    const $sideBar = document.querySelector('.side-bar');
+    const $xbutton = document.querySelector('.sidebar-xbtn');
 
-    headerBox.addEventListener('click', function (event) {
+    $headerBox.addEventListener('click', function (event) {
       if (event.target.id === 'menuBtn') {
-        sideBar.classList.toggle('active');
+        $sideBar.classList.toggle('active');
       }
     });
 
-    document
-      .querySelector('.side-bar-header-img img')
-      .addEventListener('click', function () {
-        sideBar.classList.remove('active');
-      });
+    $xbutton.addEventListener('click', function () {
+      $sideBar.classList.remove('active');
+    });
+
+    // 사이드바 내부에 있는 메인 카테고리 선택 시, 사이드바를 자동으로 닫히도록
+    $sideBar.addEventListener('click', function (e) {
+      if (e.target.closest('.side-bar')) {
+        $sideBar.classList.remove('active');
+      }
+    });
 
     // 3) showProduct()함수를 이용한 New / Men / Women / Kids 카테고리에 따른 상품리스트 조회
     linkMen.addEventListener('click', function (e) {
