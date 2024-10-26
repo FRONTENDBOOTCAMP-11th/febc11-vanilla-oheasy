@@ -7,7 +7,7 @@ axios
   .get('https://11.fesp.shop/carts', {
     headers: {
       'client-id': 'vanilla05', // dev의 토큰 정보
-      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjQsInR5cGUiOiJ1c2VyIiwibmFtZSI6IuygnOydtOyngCIsImVtYWlsIjoidTFAZ21haWwuY29tIiwiaW1hZ2UiOiIvZmlsZXMvdmFuaWxsYTA1L3VzZXItamF5Zy53ZWJwIiwibG9naW5UeXBlIjoiZW1haWwiLCJpYXQiOjE3Mjk2NzI2NzgsImV4cCI6MTcyOTc1OTA3OCwiaXNzIjoiRkVTUCJ9.CtdO_EFvyKv3HCAdB5LZJoK0n5bOeOx7jEZl7KNURgQ'
+      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjQsInR5cGUiOiJ1c2VyIiwibmFtZSI6IuygnOydtOyngCIsImVtYWlsIjoidTFAZ21haWwuY29tIiwiaW1hZ2UiOiIvZmlsZXMvdmFuaWxsYTA1L3VzZXItamF5Zy53ZWJwIiwibG9naW5UeXBlIjoiZW1haWwiLCJpYXQiOjE3Mjk5MzMxMDEsImV4cCI6MTczMDAxOTUwMSwiaXNzIjoiRkVTUCJ9.Hw8RtQBEEEmmE0pI0h73BvoyEMS_g_j_OCqVOL5V5SM'
     },
   })
   .then(response => {
