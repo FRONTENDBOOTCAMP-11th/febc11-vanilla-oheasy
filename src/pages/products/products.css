@@ -318,13 +318,14 @@ input[type='checkbox'] {
 }
 
 .spinner {
-  margin: 5rem auto;
-  text-align: center;
+  height: 100px;
+  width: 100px;
+  margin: 4rem auto;
 }
 
-.spinner svg {
-  height: 6rem;
-  width: 6rem;
+.spinner img {
+  height: auto;
+  width: 100%;
   fill: var(--color-red);
   animation: rotate 2s infinite linear;
 }

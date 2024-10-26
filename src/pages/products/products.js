@@ -1,8 +1,10 @@
 'use strict';
-
 import axios from 'axios';
+import { doc } from 'prettier';
+// import icons from './loader.svg?url';
+// console.log(icons); // /src/pages/products/loader.svg
 
-// 동환님이 만들어 주신 함수 (가격에 , 표시)
+// FUNCTIONS
 const formatPrice = function (price) {
   const arr = String(price).split('');
   let count = 0;
@@ -33,24 +35,30 @@ const isItBest = function (answer) {
   }
 };
 
-const renderSpinner = function (parentEl) {
-  const markup = `
+const renderSpinner = async function (parentEl) {
+  // 이전의 스피너가 있다면 제거
+  const existingSpinner = document.querySelector('.spinner');
+  if (existingSpinner) existingSpinner.remove();
+
+  const spinnerHTML = `
                 <div class="spinner">
-                    <svg>
-                      <use href="src/pages/products/loader.svg#icon-loader"></use>
-                    </svg>
+                  <img src="./loader.svg" alt="spinner"/>
                 </div>`;
   parentEl.innerHTML = '';
-  parentEl.insertAdjacentHTML('beforebegin', markup);
+  parentEl.insertAdjacentHTML('beforebegin', spinnerHTML);
+};
+
+const hideSpinner = async function () {
+  document.querySelector('.spinner').style.display = 'none';
 };
 
 // 비동기적으로 해당 url에 맞는 상품 리스트 출력하는 함수 정의
-const $gridContainer = document.querySelector('.l_grid');
+const $productContainer = document.querySelector('.l_grid');
 
 const showProduct = async function (code) {
   try {
-    // 1) Rendering spinner (in case connection of the internet is too slow)
-    renderSpinner($gridContainer);
+    // 1) Rendering spinner (In case the internet connection is slow.)
+    renderSpinner($productContainer);
 
     // 2) Loading the list of products
     const res = await axios.get(
@@ -94,9 +102,11 @@ const showProduct = async function (code) {
       )
       .join('');
 
-    $gridContainer.insertAdjacentHTML('beforeend', lists);
+    $productContainer.insertAdjacentHTML('beforeend', lists);
   } catch (err) {
-    console.error(err);
+    alert(err);
+  } finally {
+    hideSpinner();
   }
 };
 
