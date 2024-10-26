@@ -1,8 +1,6 @@
 'use strict';
+
 import axios from 'axios';
-import { doc } from 'prettier';
-// import icons from './loader.svg?url';
-// console.log(icons); // /src/pages/products/loader.svg
 
 // FUNCTIONS
 const formatPrice = function (price) {
@@ -54,6 +52,7 @@ const hideSpinner = async function () {
 
 // 비동기적으로 해당 url에 맞는 상품 리스트 출력하는 함수 정의
 const $productContainer = document.querySelector('.l_grid');
+const $countSpace = document.querySelector('.results__count');
 
 const showProduct = async function (code) {
   try {
@@ -72,6 +71,10 @@ const showProduct = async function (code) {
 
     const data = res.data;
     const items = data.item;
+
+    // 메인 카테고리 클릭시, 그에 맞는 제품 결과 개수로 변경
+    const productCount = items.length;
+    $countSpace.textContent = productCount;
 
     const lists = items
       .map(
