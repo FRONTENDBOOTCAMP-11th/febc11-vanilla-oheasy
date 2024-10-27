@@ -31,16 +31,16 @@ window.addEventListener('load', async function () {
   // thumbnail이 클릭되었을 때 바뀌어야 하는 요소
   const $coverThumbnails = document.querySelector('.item-cover-thumbnails');
 
-  console.log(product.item.options);
   product.item.options.map(
     e =>
-      ($coverThumbnails.innerHTML += `<img class='thumbnail' src='/api/dbinit-sample/nike/uploadFiles/${e.mainImages[0].name}' />`),
+      ($coverThumbnails.innerHTML += `<img class='thumbnail' src='https://11.fesp.shop/files/vanilla05/${e.mainImages[0].name}' />`),
   );
 
-  let currentOption = 0;
-  let size = null;
+  const currentOption = { option: 0, size: null };
+  // let currentOption = 0;
+  // let size = null;
   renderImage(product, currentOption);
-  renderSize(product, currentOption, size);
+  renderSize(product, currentOption);
 
   const thumbnails = [...$coverThumbnails.querySelectorAll('.thumbnail')];
   thumbnails.forEach((e, i) => {
@@ -49,46 +49,54 @@ window.addEventListener('load', async function () {
         e.classList.remove('clicked');
       });
 
-      renderImage(product, i);
-      currentOption = i;
+      currentOption.option = i;
+      currentOption.size = null;
+      renderImage(product, currentOption);
       e.target.classList.add('clicked');
 
-      renderSize(product, i);
+      renderSize(product, currentOption);
     });
   });
 
-  // const $bagBtn = document.querySelector('.button-box:first-child');
-  // console.log($bagBtn);
-  // $bagBtn.addEventListener('click', function () {
-  //   console.log('li');
-  //   console.log('장바구니에 담은 상품: ' + product.item.name + size);
-  // });
+  const $bagBtn = document.querySelector(
+    '.item-buttons .button-box:first-child button',
+  );
+  $bagBtn.addEventListener('click', function () {
+    if (currentOption.size === null) {
+      window.alert('사이즈를 선택해 주세요.');
+    } else
+      console.log(
+        '장바구니에 담을 옵션: ' + currentOption.option,
+        currentOption.size,
+      );
+  });
 });
 
 const renderImage = function (product, currentOption) {
   const $coverMain = document.querySelector('.item-cover-main');
-
+  console.log(currentOption);
   $coverMain.innerHTML = '';
-  product.item.options[currentOption].mainImages.map(
+  product.item.options[currentOption.option].mainImages.map(
     e =>
-      ($coverMain.innerHTML += `<img src='/api/dbinit-sample/nike/uploadFiles/${e.name}' />`),
+      ($coverMain.innerHTML += `<img src='https://11.fesp.shop/files/vanilla05/${e.name}
+' />`),
   );
 };
 
 // 상품의 사이즈 목록을 렌더한 후
 // 사이즈 클릭 시 해당 값을 출력하게 하는 함수
-const renderSize = function (product, currentOption, size) {
+const renderSize = function (product, currentOption) {
   const $grid = document.querySelector('.size-grid');
   $grid.innerHTML = '';
 
-  product.item.options[currentOption].extra.size.map(e => {
+  product.item.options[currentOption.option].extra.size.map(e => {
     $grid.innerHTML += `<span>${e}</span>`;
   });
 
   const sizes = [...$grid.querySelectorAll('span')];
   sizes.forEach(e => {
     e.addEventListener('click', function (e) {
-      size = +e.target.textContent;
+      currentOption.size = +e.target.textContent;
     });
   });
 };
