@@ -2,6 +2,10 @@
 
 import axios from 'axios';
 
+// 📌 입력한 url에 맞는 상품 리스트를 비동기적으로 화면에 출력하는 함수 정의
+const $productContainer = document.querySelector('.l_grid');
+const $countSpace = document.querySelector('.results__count');
+
 // FUNCTIONS
 const formatPrice = function (price) {
   const arr = String(price).split('');
@@ -33,15 +37,49 @@ const isItBest = function (answer) {
   }
 };
 
+const displayProduct = function (items) {
+  const lists = items
+    .map(item => {
+      return `<li class="product">
+                <div class="product-cover">
+                  <img src="https://11.fesp.shop/files/vanilla05/${item.mainImages[0].name}" />
+                </div>
+
+                <div class="product-card">
+                 <div class="product-msg-info">
+                  <p class="product-card__messaging">${item.extra.isNew ? '신제품' : isItBest(item.extra.isBest)}</p>
+                  <div class="product-card__titles">
+                    <p class="title">${item.name}</p>
+                    <p class="subtitle">${getCategory(item.extra.category[0])} 신발</p>
+                  </div>
+                 </div>
+
+                 <div class="product-card__count-wrapper">
+                  <p class="count-item">${item.options === 0 ? 1 : item.options}개 색상</p>
+                 </div>
+
+                 <div class="product-card__price-wrapper">
+                  <p class="price">${formatPrice(item.price)}</p>
+                 </div>
+                </div>
+              </li>`;
+    })
+    .join('');
+
+  $productContainer.innerHTML = '';
+  $productContainer.insertAdjacentHTML('beforeend', lists);
+};
+
+// 📌 유저에게 요청한 작업이 진행중임을 알리는 spinner 로드/숨기는 함수 설정
 const renderSpinner = async function (parentEl) {
-  // 이전의 스피너가 있다면 제거
+  // 이전의 스피너가 있다면 제거 (스피너 겹침 방지)
   const existingSpinner = document.querySelector('.spinner');
   if (existingSpinner) existingSpinner.remove();
 
   const spinnerHTML = `
-                <div class="spinner">
-                  <img src="./loader.svg" alt="spinner"/>
-                </div>`;
+                  <div class="spinner">
+                    <img src="./loader.svg" alt="spinner"/>
+                  </div>`;
   parentEl.innerHTML = '';
   parentEl.insertAdjacentHTML('beforebegin', spinnerHTML);
 };
@@ -50,11 +88,37 @@ const hideSpinner = async function () {
   document.querySelector('.spinner').style.display = 'none';
 };
 
-// 비동기적으로 해당 url에 맞는 상품 리스트 출력하는 함수 정의
-const $productContainer = document.querySelector('.l_grid');
-const $countSpace = document.querySelector('.results__count');
+// 📌 필터링 없이, 전체 상품리스트 로드하는 함수
+const showProductAll = async function () {
+  try {
+    // 1) Rendering spinner (In case the internet connection is slow.)
+    renderSpinner($productContainer);
 
-const showProduct = async function (code) {
+    // 2) Loading the list of products
+    const res = await axios.get(`https://11.fesp.shop/products`, {
+      headers: {
+        'client-id': 'vanilla05',
+      },
+    });
+
+    const data = res.data;
+    const items = data.item;
+
+    // 메인 카테고리 클릭시, 그에 맞는 제품 결과 개수로 변경
+    const productCount = items.length;
+    $countSpace.textContent = productCount;
+
+    displayProduct(items);
+  } catch (err) {
+    alert(err);
+  } finally {
+    hideSpinner();
+  }
+};
+showProductAll();
+
+// 📌 메인 카테고리 기준으로 데이터를 분류하고, 비동기통신으로 가져온 데이터를 displayProduct()로 화면출력까지 담당하는 함수
+const sortProductsByMain = async function (code) {
   try {
     // 1) Rendering spinner (In case the internet connection is slow.)
     renderSpinner($productContainer);
@@ -76,36 +140,7 @@ const showProduct = async function (code) {
     const productCount = items.length;
     $countSpace.textContent = productCount;
 
-    const lists = items
-      .map(
-        item =>
-          `<li class="product">
-                  <div class="product-cover">
-                    <img src="https://11.fesp.shop/files/vanilla05/${item.mainImages[0].name}" />
-                  </div>
-
-                  <div class="product-card">
-                   <div class="product-msg-info">
-                    <p class="product-card__messaging">${item.extra.isNew ? '신제품' : isItBest(item.extra.isBest)}</p>
-                    <div class="product-card__titles">
-                      <p class="title">${item.name}</p>
-                      <p class="subtitle">${getCategory(item.extra.category[0])} 신발</p>
-                    </div>
-                   </div>
-
-                   <div class="product-card__count-wrapper">
-                    <p class="count-item">${item.options === 0 ? 1 : item.options}개 색상</p>
-                   </div>
-
-                   <div class="product-card__price-wrapper">
-                    <p class="price">${formatPrice(item.price)}</p>
-                   </div>
-                  </div>
-                </li>`,
-      )
-      .join('');
-
-    $productContainer.insertAdjacentHTML('beforeend', lists);
+    displayProduct(items);
   } catch (err) {
     alert(err);
   } finally {
@@ -113,9 +148,9 @@ const showProduct = async function (code) {
   }
 };
 
-// 메인 카테고리 클릭시 리스트 출력
+// 1️⃣ 메인 카테고리 클릭시 해당 리스트 출력
 // 1) 헤더의 사이드바는 공통 컴포넌트화 되어 현재 document 상에 존재하지 않고, 헤더가 완전히 Dom에 삽입된 이후에야 js에서 접근 가능하기 떄문에, 비동기 요청을 통해 html을 동적으로 삽입하고, 해당 요소가 로드된 후 js코드에서 안전하게 접근해야 된다.
-const loadComponent = async function () {
+const loadComponentMain = async function () {
   try {
     const res = await axios.get('../../components/header-mobile.html');
     const html = await res.data;
@@ -123,11 +158,10 @@ const loadComponent = async function () {
     const parentEl = document.querySelector('#header-box');
     parentEl.innerHTML = html;
 
-    const linkNew = parentEl.querySelector('.link--new');
+    // const linkNew = parentEl.querySelector('.link--new');
     const linkMen = parentEl.querySelector('.link--men');
     const linkWomen = parentEl.querySelector('.link--women');
     const linkKids = parentEl.querySelector('.link--kids');
-    console.log(linkNew, linkMen, linkWomen, linkKids);
 
     // 2) heaer-mobile.js 코드 또한 추가해 메뉴버튼이 클릭될 수 있도록 재활성화
     const $headerBox = document.getElementById('header-box');
@@ -151,26 +185,152 @@ const loadComponent = async function () {
       }
     });
 
-    // 3) showProduct()함수를 이용한 New / Men / Women / Kids 카테고리에 따른 상품리스트 조회
+    // 3) New / Men / Women / Kids 카테고리에 따른 상품리스트 조회
     linkMen.addEventListener('click', function (e) {
       e.preventDefault();
-      showProduct('PC01');
+      sortProductsByMain('PC01');
     });
 
     linkWomen.addEventListener('click', function (e) {
       e.preventDefault();
-      showProduct('PC02');
+      sortProductsByMain('PC02');
     });
 
     linkKids.addEventListener('click', function (e) {
       e.preventDefault();
-      showProduct('PC03');
+      sortProductsByMain('PC03');
     });
   } catch (error) {
     console.error('Error loading component', error);
   }
 };
-loadComponent();
+loadComponentMain();
+
+// 📌 성별을 기준으로 데이터를 필터링하여, 비동기통신으로 가져온 데이터를 displayProduct()로 화면출력까지 담당하는 함수
+const filterProductsByGender = async function (gender) {
+  try {
+    // 1) Rendering spinner (In case the internet connection is slow.)
+    renderSpinner($productContainer);
+
+    // 2) Loading the list of products
+    const res = await axios.get(
+      `https://11.fesp.shop/products?custom={"extra.gender":"${gender}"}`,
+      {
+        headers: {
+          'client-id': 'vanilla05',
+        },
+      },
+    );
+    const data = res.data;
+    const items = data.item;
+
+    displayProduct(items);
+  } catch (err) {
+    alert(err);
+  } finally {
+    hideSpinner();
+  }
+};
+
+// 2️⃣ 성별 체크박스 클릭시 해당 리스트 출력
+const loadComponentFilter = async function () {
+  try {
+    // loadHTML 함수를 이용해 비동기통신(=axios.get)으로 button.html의 내용을 response(=html)라는 매개변수로 저장하고, 이를 buttonBox의 innerHTML로 적용했듯이, 여기서도 똑같이 적용
+    const res = await axios.get('../../components/button.html');
+    const html = res.data;
+
+    const $filterArea = document.querySelector('.filter-section');
+    const $productsArea = document.querySelector('.products-section');
+
+    // filter-section의 X 버튼 눌렀을 때, hidden 클래스 조정
+    const $xbutton = document.querySelector('.btn--x');
+    $xbutton.addEventListener('click', function () {
+      $filterArea.classList.add('hidden');
+      $productsArea.classList.remove('hidden');
+    });
+
+    // products-section의 필터 버튼 눌렀을 때, hidden 클래스 조정
+    const $btnFilter = document.querySelector('.btn--filters');
+    $btnFilter.addEventListener('click', function () {
+      $filterArea.classList.toggle('hidden');
+      $productsArea.classList.toggle('hidden');
+    });
+
+    const $men = document.querySelector('#men');
+    const $women = document.querySelector('#women');
+    const $unisex = document.querySelector('#unisex');
+
+    // const $btnSection = document.querySelector('.btn-section');
+    const $applyFilter = document.querySelector('#apply-filter');
+    const $cancelFilter = document.querySelector('#cancel-filter');
+
+    const buttonBoxes = [...document.querySelectorAll('.button-box')];
+
+    buttonBoxes.forEach(buttonBox => {
+      const contents = buttonBox.innerHTML; // 가장 첫번째로 개인에 의해 작성된 Inner HTML을 저장 (="지우기", "적용")
+
+      buttonBox.innerHTML = html; // 일단 button-box안에 button.html 내용을 넣어 button box(일종의 버튼 컨테이너)안에 버튼 요소 추가
+      const $button = buttonBox.querySelector('.btn'); // button box 자식 중 button을 선택해 버튼 자체를 스타일링
+
+      $button.innerHTML = contents; // 지정해준 텍스트를 버튼 자체의 html에 집어넣어 적용되도록..
+
+      const buttonTheme = buttonBox.dataset.theme;
+
+      // color theme
+      if (buttonTheme === 'black') {
+        $button.style.color = '#fff';
+        $button.style.backgroundColor = '#111';
+      } else {
+        $button.style.color = '#111';
+        $button.style.backgroundColor = '#fff';
+        $button.style.border = '1px solid #cacacb';
+      }
+      // size
+      $button.style.width = buttonBox.dataset.width;
+      $button.style.height = buttonBox.dataset.height;
+
+      if (buttonBox.dataset.fontweight)
+        $button.style.fontWeight = +buttonBox.dataset.fontweight;
+    });
+
+    // men 인풋을 선택하고(checked 속성 추가) 난 뒤에, 적용버튼을 눌렀을 때 필터링 되도록.
+    $applyFilter.addEventListener('click', async function (e) {
+      e.preventDefault();
+
+      if ($men.checked) {
+        console.log('체크박스가 체크됐습니다');
+        await filterProductsByGender('men');
+        $filterArea.classList.add('hidden');
+        $productsArea.classList.remove('hidden');
+      }
+
+      if ($women.checked) {
+        console.log('체크박스가 체크됐습니다');
+        await filterProductsByGender('women');
+        $filterArea.classList.add('hidden');
+        $productsArea.classList.remove('hidden');
+      }
+
+      if ($unisex.checked) {
+        console.log('체크박스가 체크됐습니다');
+        await filterProductsByGender('unisex');
+        $filterArea.classList.add('hidden');
+        $productsArea.classList.remove('hidden');
+      }
+    });
+
+    // 만약, 취소버튼을 누르면 필터링 되지 않고 원래 그대로 상품리스트 유지.
+    $cancelFilter.addEventListener('click', function (e) {
+      e.preventDefault();
+      console.log('체크박스가 해제됐습니다.');
+      $filterArea.classList.add('hidden');
+      $productsArea.classList.remove('hidden');
+    });
+  } catch (err) {
+    alert(err);
+  }
+};
+loadComponentFilter();
 
 // const getImage = async function (name) {
 //   try {
