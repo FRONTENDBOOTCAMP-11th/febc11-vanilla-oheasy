@@ -11,8 +11,15 @@ window.addEventListener('load', async function () {
   const product = await getProduct();
   console.log(product);
 
+  const category1 = await getCategory(product, 1);
+  const category2 = await getCategory(
+    product,
+    2,
+    product.item.extra.category[0],
+  );
+
   $name.textContent = product.item.name;
-  $category.textContent = product.item.extra.category;
+  $category.textContent = `${category1} ${category2}`;
   $onSale.textContent = formatPrice(product.item.price);
   $original.textContent = formatPrice(product.item.extra.primeCost);
   $discount.textContent = getDiscountRate(
@@ -92,6 +99,46 @@ const getProduct = async function () {
       },
     });
     return response.data;
+  } catch (error) {
+    console.error('Error:', error);
+    return null;
+  }
+};
+
+// 카테고리 문자열을 리턴하는 함수
+// depth가 1인 경우 대분류를,
+// depth가 2이고 parent가 대분류 문자열인 경우 소분류를 리턴
+const getCategory = async function (product, depth, parent = null) {
+  try {
+    const response = await axios.get(
+      `https://11.fesp.shop//codes/productCategory?depth=${depth}${parent ? '&parent=' + parent : ''}`,
+      {
+        headers: {
+          'client-id': 'vanilla05',
+        },
+      },
+    );
+
+    let category = '';
+    const c = response.data.item.codes.filter(item => {
+      return item.code === product.item.extra.category[depth - 1];
+    });
+
+    // db에 desc가 지정되어있지 않기 때문에 직접 문자열 추가
+    switch (c[0].value) {
+      case 'Men':
+        category += '남성';
+        break;
+      case 'Women':
+        category += '여성';
+        break;
+      case 'Kid':
+        category += '주니어';
+        break;
+      default:
+        category += c[0].value;
+    }
+    return category;
   } catch (error) {
     console.error('Error:', error);
     return null;
