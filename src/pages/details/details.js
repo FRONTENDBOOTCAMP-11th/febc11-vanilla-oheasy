@@ -31,14 +31,16 @@ window.addEventListener('load', async function () {
   // thumbnail이 클릭되었을 때 바뀌어야 하는 요소
   const $coverThumbnails = document.querySelector('.item-cover-thumbnails');
 
+  console.log(product.item.options);
   product.item.options.map(
     e =>
       ($coverThumbnails.innerHTML += `<img class='thumbnail' src='/api/dbinit-sample/nike/uploadFiles/${e.mainImages[0].name}' />`),
   );
 
   let currentOption = 0;
+  let size = null;
   renderImage(product, currentOption);
-  renderSize(product, currentOption);
+  renderSize(product, currentOption, size);
 
   const thumbnails = [...$coverThumbnails.querySelectorAll('.thumbnail')];
   thumbnails.forEach((e, i) => {
@@ -54,6 +56,13 @@ window.addEventListener('load', async function () {
       renderSize(product, i);
     });
   });
+
+  // const $bagBtn = document.querySelector('.button-box:first-child');
+  // console.log($bagBtn);
+  // $bagBtn.addEventListener('click', function () {
+  //   console.log('li');
+  //   console.log('장바구니에 담은 상품: ' + product.item.name + size);
+  // });
 });
 
 const renderImage = function (product, currentOption) {
@@ -66,19 +75,30 @@ const renderImage = function (product, currentOption) {
   );
 };
 
-const renderSize = function (product, currentOption) {
-  const $size = document.querySelector('.size-grid');
-  $size.innerHTML = '';
+// 상품의 사이즈 목록을 렌더한 후
+// 사이즈 클릭 시 해당 값을 출력하게 하는 함수
+const renderSize = function (product, currentOption, size) {
+  const $grid = document.querySelector('.size-grid');
+  $grid.innerHTML = '';
 
   product.item.options[currentOption].extra.size.map(e => {
-    $size.innerHTML += `<span>${e}</span>`;
+    $grid.innerHTML += `<span>${e}</span>`;
+  });
+
+  const sizes = [...$grid.querySelectorAll('span')];
+  sizes.forEach(e => {
+    e.addEventListener('click', function (e) {
+      size = +e.target.textContent;
+    });
   });
 };
 
+// 할인률을 계산해 문자열을 리턴하는 함수
 const getDiscountRate = function (original, onSale) {
   return Math.trunc(((original - onSale) / original) * 100) + '% 할인';
 };
 
+// 가격에 콤마와 원을 붙인 문자열을 리턴하는 함수
 const formatPrice = function (price) {
   const arr = String(price).split('');
   let count = 0;
@@ -91,6 +111,7 @@ const formatPrice = function (price) {
   return arr.join('') + '원';
 };
 
+// 상품 객체를 리턴하는 함수
 const getProduct = async function () {
   try {
     const response = await axios.get('https://11.fesp.shop/products/1', {
