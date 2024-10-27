@@ -207,22 +207,36 @@ const loadComponentMain = async function () {
 loadComponentMain();
 
 // 📌 성별을 기준으로 데이터를 필터링하여, 비동기통신으로 가져온 데이터를 displayProduct()로 화면출력까지 담당하는 함수
-const filterProductsByGender = async function (gender) {
+const filterProductsByGender = async function (filters) {
   try {
     // 1) Rendering spinner (In case the internet connection is slow.)
     renderSpinner($productContainer);
 
     // 2) Loading the list of products
-    const res = await axios.get(
-      `https://11.fesp.shop/products?custom={"extra.gender":"${gender}"}`,
-      {
-        headers: {
-          'client-id': 'vanilla05',
-        },
+    const baseUrl = 'https://11.fesp.shop/products';
+    // const params = new URLSearchParams(); // custom query가 추가될 때마다 자동으로 & 추가하는 객체 이용
+
+    // JSON.stringify()로 JSON 객체를 문자열로 변환했기 때문에 URLSearchParams에 추가된 각 값은 문자열이 맞지만, params 자체는 여전히 URLSearchParams 객체 자체로, 이 객체 자체를 그대로 URL로 사용할 수 없기 때문에 여전히 쿼리 문자열 "전체"를 하나의 "문자열로 변환할 필요"가 있다..
+    // 따라서 각 문자열 값(✨객체 { "extra.gender": "men" }✨ => ✨문자열 {"extra.gender": "men"}✨ 로 변환)을 포함하는 쿼리 문자열 전체(=params)를 하나의 문자열로 변환하여 URL에 사용할 수 있도록 하기 위해 res 부분에 params상에 toString()을 호출했다.
+    let customParams = filters
+      .map(filter => `custom={"extra.gender": "${filter}"}`)
+      .join('&');
+
+    console.log(customParams); // custom={"extra.gender": "men"}
+    // custom={"extra.gender": "men"}&custom={"extra.gender": "women"}
+
+    const fullUrl = `${baseUrl}?${customParams}`;
+    const res = await axios.get(fullUrl, {
+      headers: {
+        'client-id': 'vanilla05',
       },
-    );
+    });
     const data = res.data;
     const items = data.item;
+
+    console.log(fullUrl, res);
+    // 💥 서버에서 두 개의 custom 쿼리 매개변수를 동시에 처리하도록 설계되어 있지 않을 수 있습니다. 이 경우, 하나의 필터만 요청할 때는 잘 작동하지만 여러 개의 필터를 요청하면 실패하는 것입니다.
+    // 💥 서버의 API 문서나 개발자와 논의하여, 여러 개의 custom 매개변수를 지원하는지 확인해보세요.
 
     displayProduct(items);
   } catch (err) {
@@ -297,26 +311,19 @@ const loadComponentFilter = async function () {
     $applyFilter.addEventListener('click', async function (e) {
       e.preventDefault();
 
-      if ($men.checked) {
-        console.log('체크박스가 체크됐습니다');
-        await filterProductsByGender('men');
-        $filterArea.classList.add('hidden');
-        $productsArea.classList.remove('hidden');
+      const selectedFilters = [];
+
+      if ($men.checked) selectedFilters.push('men');
+      if ($women.checked) selectedFilters.push('women');
+      if ($unisex.checked) selectedFilters.push('unisex');
+
+      if (selectedFilters.length > 0) {
+        console.log('필터가 체크됐습니다');
+        await filterProductsByGender(selectedFilters);
       }
 
-      if ($women.checked) {
-        console.log('체크박스가 체크됐습니다');
-        await filterProductsByGender('women');
-        $filterArea.classList.add('hidden');
-        $productsArea.classList.remove('hidden');
-      }
-
-      if ($unisex.checked) {
-        console.log('체크박스가 체크됐습니다');
-        await filterProductsByGender('unisex');
-        $filterArea.classList.add('hidden');
-        $productsArea.classList.remove('hidden');
-      }
+      $filterArea.classList.add('hidden');
+      $productsArea.classList.remove('hidden');
     });
 
     // 만약, 취소버튼을 누르면 필터링 되지 않고 원래 그대로 상품리스트 유지.
