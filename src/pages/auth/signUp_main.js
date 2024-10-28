@@ -28,6 +28,28 @@ window.addEventListener('load', function () {
   console.log(userEmail);
 });
 
+//input 요소들 focus, blur 처리
+$requiredInputs.forEach(input => {
+  const $span = input.nextElementSibling;
+
+  input.addEventListener('focus', function () {
+    $span.style.top = '-10%';
+    $span.style.left = '12px';
+    $span.style.transform = 'translateY(0)';
+    $span.style.transition = 'all 0.3s ease';
+  });
+
+  // input에서 focus 해제되었을 때
+  input.addEventListener('blur', function () {
+    if (input.value === '') {
+      // 값이 없으면 span을 원래 위치로
+      $span.style.top = '50%';
+      $span.style.left = '12px';
+      $span.style.transform = 'translateY(-50%)';
+    }
+  });
+});
+
 //pwd 조건 체크하기
 const pwdValid = function () {
   const pwd = $pwdInput.value;
@@ -59,7 +81,6 @@ const pwdValid = function () {
   return pwdValid;
 };
 
-
 $proceedBtn.addEventListener('click', function (event) {
   event.preventDefault();
 
@@ -84,7 +105,7 @@ const inputCheck = function () {
 
   const isValid = pwdValid();
 
-  if(!isValid) {
+  if (!isValid) {
     $pwdInput.style.border = '1px solid red';
   }
 

@@ -39,7 +39,7 @@ body {
   max-width: 360px;
   margin: 0 auto;
   background-color: var(--color-white);
-  /* min-height: 100vh; */
+  min-height: 100vh;
 }
 
 .container {
@@ -142,17 +142,40 @@ input:focus {
 }
 
 /* Design */
+.main.signIn {
+  position: relative;
+}
 /* signIn_main.html */
 .signIn.main {
   margin-top: 26px;
 }
 
 .signIn.main .input-container {
-  margin-bottom: 46px;
+  margin-bottom: 13px;
+}
+
+.email-result {
+  min-height: 19px;
+  margin-bottom: 14px;
 }
 
 .signIn.main .description {
   margin-bottom: 40px;
+}
+
+.hidden {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.pwd-section {
+  position: absolute;
+  top: -10px;
+  left: 0;
+  /* width: 100%; */
 }
 
 /* signIn_pwd.html */
@@ -163,8 +186,13 @@ input:focus {
 .signIn.pwd input {
   padding: 16px 40px 16px 12px;
 }
+
 .signIn.pwd p {
   margin: 20px 0 90px;
+}
+
+.pwd-result {
+  min-height: 20px;
 }
 
 .input-container.pwd img {
@@ -175,11 +203,14 @@ input:focus {
 }
 
 .signIn-pwd-btn {
-  margin-top: 90px;
   display: flex;
+  margin-top: 35px;
   justify-content: space-between;
 }
 
+.pwd-reult {
+  margin-top: 10px;
+}
 /* signUp_main */
 .flex-container {
   display: flex;
@@ -264,8 +295,12 @@ input[data-placeholder]::before {
   margin-top: 26px;
 }
 
+.terms-result {
+  min-height: 20px;
+  margin-bottom: 15px;
+}
 .signUp.term p:first-of-type ~ p {
-  margin: 24px 0 36px;
+  margin: 24px 0 15px;
   font-size: 14px;
   font-weight: 400;
   line-height: 150%;

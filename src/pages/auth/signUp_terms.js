@@ -20,7 +20,7 @@ const $cancelBtn = document.querySelector('.button-box[data-theme="white"]');
 const $proceedBtn = document.querySelector('.button-box[data-theme="black"]');
 
 //결과
-const $result = document.querySelector('.result');
+const $result = document.querySelector('.terms-result');
 
 //이메일 전달받기 확인
 window.addEventListener('load', function () {
@@ -83,7 +83,7 @@ const checkIndividualCheck = function () {
 
   //allChecked가 false인 경우
   if (!allChecked) {
-    $result.textContent = '오류: 계속하려면 모든 확인란을 선택해야 합니다.';
+    $result.textContent = '계속하려면 모든 확인란을 선택해야 합니다.';
     $result.style.color = 'red';
   } else {
     //allChecked가 true인 경우
