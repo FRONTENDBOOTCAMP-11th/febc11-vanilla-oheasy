@@ -104,17 +104,19 @@ const getPwd = async function (userEmail, userPwd) {
     //422 에러처리: 비밀번호가 유효하지 않을 때
     if (error.response && error.response.status === 422) {
       printResult('비밀번호가 일치하지 않습니다.');
+    } else if (error.response && error.response.status === 403) {
+      printResult('비밀번호가 일치하지 않습니다.');
     } else {
       //다른 error
       console.log('서버에서 에러가 발생하였습니다.', error);
-      printResult('서버에서 오류가 발생했습니다..');
+      printResult('서버에서 오류가 발생했습니다.');
 
-      // console.error('응답 데이터:', error.response.data);
-      // console.error('응답 상태 코드:', error.response.status);
-      // console.error('응답 헤더:', error.response.headers);
-      // console.error('요청 데이터:', error.request);
-      // console.error('오류 메시지:', error.message);
-      // console.error('전체 오류 객체:', error.toJSON());
+      console.error('응답 데이터:', error.response.data);
+      console.error('응답 상태 코드:', error.response.status);
+      console.error('응답 헤더:', error.response.headers);
+      console.error('요청 데이터:', error.request);
+      console.error('오류 메시지:', error.message);
+      console.error('전체 오류 객체:', error.toJSON());
     }
   }
 };
