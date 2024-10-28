@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+const productId = 4;
+
 window.addEventListener('load', async function () {
   // item-info
   const $name = document.querySelector('.item-info .name');
@@ -8,7 +10,7 @@ window.addEventListener('load', async function () {
   const $original = document.querySelector('.price .original');
   const $discount = document.querySelector('.price .discount');
 
-  const product = await getProduct();
+  const product = await getProduct(productId);
   console.log(product);
 
   const category1 = await getCategory(product, 1);
@@ -66,8 +68,7 @@ window.addEventListener('load', async function () {
       window.alert('사이즈를 선택해 주세요.');
     } else
       console.log(
-        '장바구니에 담을 옵션: ' + currentOption.option,
-        currentOption.size,
+        `productId: ${productId}, 옵션: ${currentOption.option}, 사이즈: ${currentOption.size}`,
       );
   });
 });
@@ -76,11 +77,19 @@ const renderImage = function (product, currentOption) {
   const $coverMain = document.querySelector('.item-cover-main');
   console.log(currentOption);
   $coverMain.innerHTML = '';
-  product.item.options[currentOption.option].mainImages.map(
-    e =>
-      ($coverMain.innerHTML += `<img src='https://11.fesp.shop/files/vanilla05/${e.name}
+  if (product.item.options.length === 0) {
+    product.item.mainImages.map(
+      e =>
+        ($coverMain.innerHTML += `<img src='https://11.fesp.shop/files/vanilla05/${e.name}
+      ' />`),
+    );
+  } else {
+    product.item.options[currentOption.option].mainImages.map(
+      e =>
+        ($coverMain.innerHTML += `<img src='https://11.fesp.shop/files/vanilla05/${e.name}
 ' />`),
-  );
+    );
+  }
 };
 
 // 상품의 사이즈 목록을 렌더한 후
@@ -89,14 +98,21 @@ const renderSize = function (product, currentOption) {
   const $grid = document.querySelector('.size-grid');
   $grid.innerHTML = '';
 
-  product.item.options[currentOption.option].extra.size.map(e => {
-    $grid.innerHTML += `<span>${e}</span>`;
-  });
+  // 옵션이 하나밖에 없을 때
+  if (product.item.options.length === 0) {
+    product.item.extra.size.map(e => {
+      $grid.innerHTML += `<span>${e}</span>`;
+    });
+  } else {
+    product.item.options[currentOption.option].extra.size.map(e => {
+      $grid.innerHTML += `<span>${e}</span>`;
+    });
+  }
 
   const sizes = [...$grid.querySelectorAll('span')];
   sizes.forEach(e => {
     e.addEventListener('click', function (e) {
-      currentOption.size = +e.target.textContent;
+      currentOption.size = e.target.textContent;
     });
   });
 };
@@ -120,13 +136,16 @@ const formatPrice = function (price) {
 };
 
 // 상품 객체를 리턴하는 함수
-const getProduct = async function () {
+const getProduct = async function (productId) {
   try {
-    const response = await axios.get('https://11.fesp.shop/products/1', {
-      headers: {
-        'client-id': 'vanilla05',
+    const response = await axios.get(
+      `https://11.fesp.shop/products/${productId}`,
+      {
+        headers: {
+          'client-id': 'vanilla05',
+        },
       },
-    });
+    );
     return response.data;
   } catch (error) {
     console.error('Error:', error);
@@ -138,6 +157,7 @@ const getProduct = async function () {
 // depth가 1인 경우 대분류를,
 // depth가 2이고 parent가 대분류 문자열인 경우 소분류를 리턴
 const getCategory = async function (product, depth, parent = null) {
+  console.log(depth, parent);
   try {
     const response = await axios.get(
       `https://11.fesp.shop//codes/productCategory?depth=${depth}${parent ? '&parent=' + parent : ''}`,
