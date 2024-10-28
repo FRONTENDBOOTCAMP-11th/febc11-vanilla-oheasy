@@ -213,6 +213,7 @@ h1 {
   border-top: 1px solid var(--color-grey-40);
 }
 .oder_list_title_text {
+  font-size: 24px;
   margin-bottom: 24px;
 }
 .oder_list_delivery_text_price {
