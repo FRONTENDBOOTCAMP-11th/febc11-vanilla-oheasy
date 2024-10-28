@@ -84,9 +84,12 @@ const pwdValid = function () {
 $proceedBtn.addEventListener('click', function (event) {
   event.preventDefault();
 
-  // signUp();
-  inputCheck();
-  chkboxCheck();
+  const isFilled = inputCheck();
+  const isChecked = chkboxCheck();
+
+  if (isFilled && isChecked) {
+    signUp();
+  }
 });
 
 //모든 input 태그들이 작성 되었는지 확인하는 함수
@@ -123,27 +126,6 @@ const chkboxCheck = function () {
   }
 };
 
-//결과 메세지 출력하는 함수
-const printResult = function (isFilled, isChecked, isValid) {
-  if (!isFilled && !isChecked) {
-    // $result.textContent =
-    //   '모든 입력 필드를 작성하고 약관에 동의해야 진행할 수 있습니다.';
-    // $result.style.color = 'red';
-  } else if (!isFilled && isChecked) {
-    // $result.textContent = '입력 필드를 확인해주세요.';
-    // $result.style.color = 'red';
-  } else if (isFilled && !isChecked) {
-    // $result.textContent = '약관에 동의해야 진행할 수 있습니다.';
-    // $result.style.color = 'red';
-  } else if (isFilled && isChecked && !isValid) {
-    // $result.textContent = '비밀번호를 확인해주세요.';
-    // $result.style.color = 'red';
-  } else if (isFilled && isChecked) {
-    // $result.textContent = '성공';
-    // $result.style.color = 'green';
-  }
-};
-
 const signUp = async function () {
   const pwd = $pwdInput.value;
   const firstName = $firstName.value;
@@ -169,9 +151,45 @@ const signUp = async function () {
         },
       },
     );
-    console.log('성공');
+
+    if (response.data) {
+      signIn(userEmail, pwd);
+    }
   } catch (error) {
-    console.log('실패', error.response?.data || error.message);
+    if (error.response && error.response.data) {
+      console.log('실패', error.response.data);
+    } else {
+      console.log('실패', error.message);
+    }
+  }
+};
+
+const signIn = async function (userEmail, pwd) {
+  try {
+    const response = await axios.post(
+      'https://11.fesp.shop/users/login',
+      {
+        email: userEmail,
+        password: pwd,
+      },
+      {
+        headers: {
+          'client-id': 'vanilla05',
+        },
+      },
+    );
+
+    const accessToken = response.data.item.token.accessToken;
+    const refreshToken = response.data.item.token.refreshToken;
+
+    sessionStorage.setItem('accessToken', accessToken);
+    sessionStorage.setItem('refreshToken', refreshToken);
+
+    // console.log(accessToken);
+    // console.log(refreshToken);
+  } catch (error) {
+    console.log('실패', error.response.data);
+    console.log('실패', error.message);
   }
 };
 
