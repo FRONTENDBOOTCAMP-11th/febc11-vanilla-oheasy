@@ -4,14 +4,16 @@ const cartList = document.getElementById('cart-list');
 const baginfo = document.getElementById('bag-info');
 const payment = document.getElementById('pay');
 axios
-  .get('https://11.fesp.shop/carts', { // 장바구니 정보 가져오기
+  .get('https://11.fesp.shop/carts', {
+    // 장바구니 정보 가져오기
     headers: {
       'client-id': 'vanilla05',
-      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjQsInR5cGUiOiJ1c2VyIiwibmFtZSI6IuygnOydtOyngCIsImVtYWlsIjoidTFAZ21haWwuY29tIiwiaW1hZ2UiOiIvZmlsZXMvdmFuaWxsYTA1L3VzZXItamF5Zy53ZWJwIiwibG9naW5UeXBlIjoiZW1haWwiLCJpYXQiOjE3MzAwNzQ0ODMsImV4cCI6MTczMDE2MDg4MywiaXNzIjoiRkVTUCJ9.-WFqisZ0vAbwaWyryapt5zAnME_EiznoF5-8lCSyeek'
+      Authorization:
+        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjQsInR5cGUiOiJ1c2VyIiwibmFtZSI6IuygnOydtOyngCIsImVtYWlsIjoidTFAZ21haWwuY29tIiwiaW1hZ2UiOiIvZmlsZXMvdmFuaWxsYTA1L3VzZXItamF5Zy53ZWJwIiwibG9naW5UeXBlIjoiZW1haWwiLCJpYXQiOjE3MzAwNzQ0ODMsImV4cCI6MTczMDE2MDg4MywiaXNzIjoiRkVTUCJ9.-WFqisZ0vAbwaWyryapt5zAnME_EiznoF5-8lCSyeek',
     },
   })
-
-  .then(response => { //HTML에 출력될 메시지
+  .then(response => {
+    //HTML에 출력될 메시지
     const items = response.data.item; // 장바구니 아이템 배열
 
     // 장바구니에 아이템이 없을 경우 메시지 표시
@@ -98,19 +100,20 @@ axios
           </div>
         </div>`;
   })
-  
-  
-  (error => { //오류 메시지
+  .catch(error => {
+    //오류 메시지
     console.error('Error:', error);
     cartList.innerHTML = '<p>장바구니를 불러오는 데 실패했습니다.</p>';
     baginfo.innerHTML = '';
-    payment.innerHTML = '<p>장바구니를 불러오는 데 실패했습니다.</p>'
+    payment.innerHTML = '<p>장바구니를 불러오는 데 실패했습니다.</p>';
   });
 
-const quantityPlus = function() { // 수량 증가 기능 구현
-  
-}
+const quantityPlus = function (element, cartId) {
+  const quantityElement = element.parentElement.querySelector('.quantity');
+  let quantity = parseInt(quantityElement.innerText);
+  quantity++;
+  quantityElement.innerText = quantity;
 
-const quantityMiuns = function() { // 수량 감소 기능 구현
-  
-}
+  // 서버에 수량 업데이트 요청을 추가할 수 있습니다.
+  // 예: axios.put(`/carts/${cartId}`, { quantity });
+};
