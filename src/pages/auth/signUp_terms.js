@@ -27,22 +27,24 @@ window.addEventListener('load', function () {
   console.log(userEmail);
 });
 
-//모두 동의 제어
+//모든 약관 동의를 클릭했을 때
 const checkAll = function () {
   //모두 동의가 체크 되었다면, 하단 3개 체크 박스도 체크 처리 됨
   //.checked는 true, false를 반환함
-  $chkbox.forEach(checkbox => {
+  $chkbox.forEach(function (checkbox) {
     //모두 동의 를 개별 체크에 넣음
     checkbox.checked = $checkAll.checked;
   });
 };
 
-//개별 체크 박스가 모두 체크 되었을 때, 모두 동의에 체크 / 하나라도 체크 해제되면 모두 동의에 체크x
+//개별 체크 박스가 모두 체크 되었을 때, 모든 약관 동의에 체크 / 하나라도 체크 해제되면 모든 약관 동의에 체크 풀림
 const handleAllCheck = function () {
   //모두 동의가 체크 되어있는지 확인한다. (true or false)
-  const allChecked = Array.from($chkbox).every(checkbox => checkbox.checked);
+  const allChecked = Array.from($chkbox).every(function (checkbox) {
+    return checkbox.checked;
+  });
 
-  // console.log(allChecked);
+  //결과가 true일때 모든 약관에 체크, false일 때는 해제
   $checkAll.checked = allChecked;
 };
 
@@ -53,6 +55,9 @@ const checkIndividualCheck = function () {
 
   //모든 체크 박스가 체크 되었는지 확인한다.
   //체크 되지 않았다면 style 변경, 체크 되었다면 그대로
+  //개별 체크박스 맨 위에서부터 2,3,4
+
+  //체크박스2
   if (!$chkbox2.checked) {
     $label2.style.color = 'red';
     allChecked = false;
@@ -60,7 +65,7 @@ const checkIndividualCheck = function () {
     $label2.style.color = '';
   }
 
-  // 체크박스 3
+  //체크박스 3
   if (!$chkbox3.checked) {
     $label3.style.color = 'red';
     allChecked = false;
@@ -68,7 +73,7 @@ const checkIndividualCheck = function () {
     $label3.style.color = '';
   }
 
-  // 체크박스 4
+  //체크박스 4
   if (!$chkbox4.checked) {
     $label4.style.color = 'red';
     allChecked = false;
