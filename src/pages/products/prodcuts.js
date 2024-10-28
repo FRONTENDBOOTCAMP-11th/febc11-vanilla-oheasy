@@ -13,7 +13,25 @@ const formatPrice = function (price) {
   return arr.join('') + '원';
 };
 
-const getCategory = async function (category) {
+// const getCategory = async function (category) {
+//   try {
+//     const res = await axios.get(`https://11.fesp.shop/codes/productCategory`, {
+//       headers: {
+//         'client-id': 'vanilla05',
+//       },
+//     });
+
+//     const [target] = res.data.item.productCategory.codes.filter(
+//       cat => cat.code === category,
+//     );
+
+//     return target.value;
+//   } catch (err) {
+//     alert(err);
+//   }
+// };
+
+const getCategory = async function () {
   try {
     const res = await axios.get(`https://11.fesp.shop/codes/productCategory`, {
       headers: {
@@ -21,14 +39,7 @@ const getCategory = async function (category) {
       },
     });
 
-    console.log(res.data.item);
-
-    const [target] = res.data.item.productCategory.codes.filter(
-      cat => cat.code === category,
-    );
-
-    console.log(target);
-    return target.desc;
+    return res.data.item.productCategory.codes;
   } catch (err) {
     alert(err);
   }
@@ -46,10 +57,24 @@ const $productContainer = document.querySelector('.l_grid');
 const $countSpace = document.querySelector('.results__count');
 
 // 📌 데이터를 배열 형태로 받아 위에 정의한 여러 함수를 이용해 데이터를 화면에 출력하는 함수
-const displayProduct = function (items) {
+const displayProduct = async function (items) {
+  const category = await getCategory();
+  console.log(category);
+
   const lists = items
-    .map(async item => {
-      const category = await getCategory(item.extra.category[0]);
+    .map(item => {
+      const c1 = category.filter(c => {
+        // console.log(c.code, item.extra.category[0]);
+        return c.code === item.extra.category[0];
+      });
+      // console.log(c1);
+
+      const c2 = c1[0].sub.filter(c => {
+        console.log(c.code, item.extra.category[1].slice(0, 6));
+        return c.code === item.extra.category[1].slice(0, 6);
+      });
+      // console.log(c2);
+      // if (c2[0]) console.log(c2[0].value);
       return `<li class="product">
                     <div class="product-cover">
                       <img src="https://11.fesp.shop/files/vanilla05/${
@@ -66,7 +91,7 @@ const displayProduct = function (items) {
                       }</p>
                       <div class="product-card__titles">
                         <p class="title">${item.name}</p>
-                        <p class="subtitle">${category} 신발</p>
+                        <p class="subtitle">${c1[0].value} ${c2[0] ? c2[0].value : ''}</p>
                       </div>
                      </div>
     
