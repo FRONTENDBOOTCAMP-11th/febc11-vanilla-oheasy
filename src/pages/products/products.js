@@ -118,7 +118,7 @@ const showProductAll = async function () {
 showProductAll();
 
 // 📌 메인 카테고리 기준으로 데이터를 분류하고, 비동기통신으로 가져온 데이터를 displayProduct()로 화면출력까지 담당하는 함수
-const sortProductsByMain = async function (code) {
+const showProductsByMain = async function (code) {
   try {
     // 1) Rendering spinner (In case the internet connection is slow.)
     renderSpinner($productContainer);
@@ -188,17 +188,17 @@ const loadComponentMain = async function () {
     // 3) New / Men / Women / Kids 카테고리에 따른 상품리스트 조회
     linkMen.addEventListener('click', function (e) {
       e.preventDefault();
-      sortProductsByMain('PC01');
+      showProductsByMain('PC01');
     });
 
     linkWomen.addEventListener('click', function (e) {
       e.preventDefault();
-      sortProductsByMain('PC02');
+      showProductsByMain('PC02');
     });
 
     linkKids.addEventListener('click', function (e) {
       e.preventDefault();
-      sortProductsByMain('PC03');
+      showProductsByMain('PC03');
     });
   } catch (error) {
     console.error('Error loading component', error);
@@ -222,7 +222,8 @@ const filterProductsByGender = async function (filters) {
       .map(filter => `custom={"extra.gender": "${filter}"}`)
       .join('&');
 
-    console.log(customParams); // custom={"extra.gender": "men"}
+    console.log(customParams);
+    // custom={"extra.gender": "men"}
     // custom={"extra.gender": "men"}&custom={"extra.gender": "women"}
 
     const fullUrl = `${baseUrl}?${customParams}`;
