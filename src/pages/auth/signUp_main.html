@@ -23,36 +23,39 @@
           <form class="signUp-main">
             <div class="flex-container">
               <div class="input-container">
-                <input type="text" />
+                <input type="text" class="required-input last-name" />
                 <span>이름</span>
               </div>
               <div class="input-container">
-                <input type="text" />
+                <input type="text" class="required-input first-name" />
                 <span>성</span>
               </div>
             </div>
 
             <div class="input-container">
-              <input type="password" />
+              <input type="password" class="required-input pwd-input" />
               <span>비밀번호</span>
             </div>
 
             <div class="pwd-warning">
               <div>
                 <img src="../../assets/icons/x.svg" />
-                <span>최소 8자</span> <br />
+                <span class="min-length">최소 8자</span> <br />
               </div>
               <div>
                 <img src="../../assets/icons/x.svg" />
-                <span>알파벳 대문자 및 소문자 조합, 최소 1개 이상의 숫자</span>
+                <span class="pwd-require"
+                  >알파벳 대문자 및 소문자 조합, 최소 1개 이상의 숫자</span
+                >
               </div>
             </div>
 
             <input
               type="date"
+              required
               data-placeholder="생년월일"
               aria-required="true"
-              required
+              class="required-input bday"
             />
 
             <div class="checkbox-container">
@@ -63,13 +66,13 @@
                 <b><a href="#">이용약관</a></b> 에 동의합니다.
               </p>
             </div>
+            <div class="result"></div>
 
             <div
               class="button-box"
               data-theme="black"
               data-width="100%"
               data-height="46px"
-              onclick="location.href='signUp_terms.html'"
             >
               계정 만들기
             </div>
@@ -79,4 +82,5 @@
     </div>
   </body>
   <script type="module" src="../../components/button.js"></script>
+  <script type="module" src="signUp_main.js"></script>
 </html>

@@ -1,0 +1,203 @@
+import axios from 'axios';
+
+//필수 입력 필드
+const $requiredInputs = document.querySelectorAll('.required-input');
+
+//사용자 정보
+const $firstName = document.querySelector('.first-name');
+const $lastName = document.querySelector('.last-name');
+const $bDay = document.querySelector('.bday');
+
+//비밀번호 관련 요소
+const $pwdWarning = document.querySelector('.pwd-warning');
+const $pwdInput = document.querySelector('.pwd-input');
+const $minLength = document.querySelector('.min-length');
+const $pwdRequire = document.querySelector('.pwd-require');
+const $pwdImg = document.querySelectorAll('img');
+
+//체크박스
+const $chkbox = document.querySelector('#chkbox1');
+const $label = document.querySelector('#chkbox1 ~ p');
+
+const $result = document.querySelector('.result');
+const $proceedBtn = document.querySelector('.button-box');
+
+//이메일 전달 받기
+const userEmail = sessionStorage.getItem('email');
+
+//이메일 전달받기
+window.addEventListener('load', function () {
+  console.log(userEmail);
+});
+
+//pwd 조건 체크하기
+const pwdValid = function () {
+  const pwd = $pwdInput.value;
+
+  //비밀번호 조건   1. 최소 8자     2. 알파벳 대문자 및 소문자 조합이고 최소 1개 이상의 숫자를 갖기
+
+  let minLengthValid = true;
+  let requirePwdValid = true;
+
+  //1. 최소 8자
+  if (pwd.length >= 8) {
+    $minLength.style.color = 'green';
+    $pwdImg[1].src = '../../assets/icons/check.svg';
+  } else {
+    $minLength.style.color = '';
+    $pwdImg[1].src = '../../assets/icons/x.svg';
+    minLengthValid = false;
+  }
+
+  //2. 알파벳 대문자 및 소문자 조합이고 최소 1개 이상의 숫자를 갖기
+  if (/[A-Z]/.test(pwd) && /[a-z]/.test(pwd) && /\d/.test(pwd)) {
+    $pwdRequire.style.color = 'green';
+    $pwdImg[2].src = '../../assets/icons/check.svg';
+  } else {
+    $pwdRequire.style.color = '';
+    $pwdImg[2].src = '../../assets/icons/x.svg';
+    requirePwdValid = false;
+  }
+
+  return { minLengthValid, requirePwdValid };
+};
+
+//input 값을 입력 받았는지 확인하기
+$proceedBtn.addEventListener('click', function (event) {
+  event.preventDefault();
+
+  // signUp();
+  const isFilled = inputCheck();
+  const isChecked = chkboxCheck();
+  const pwdChecked = pwdValid();
+
+  printResult(isFilled, isChecked, pwdChecked);
+});
+
+//모든 input 태그들이 작성 되었는지 확인하는 함수
+const inputCheck = function () {
+  //input이(체크박스 제외) 모두 입력 되었는지 확인하기 위한 변수
+  let isFilled = true;
+
+  $requiredInputs.forEach(input => {
+    if (!input.value) {
+      input.style.border = '1px solid red';
+      isFilled = false;
+
+      if (input == $pwdInput) {
+        console.log('비밀번호');
+        $minLength.style.color = 'red';
+        $pwdRequire.style.color = 'red';
+        $pwdImg[1].src = '../../assets/icons/x -red.svg';
+        $pwdImg[2].src = '../../assets/icons/x -red.svg';
+      }
+    } else {
+      input.style.border = '';
+    }
+  });
+
+  const { minLengthValid, requirePwdValid } = pwdValid();
+
+  if (!minLengthValid) {
+    $minLength.style.color = 'red';
+    $pwdImg[1].src = '../../assets/icons/x -red.svg';
+  }
+  if (!requirePwdValid) {
+    $pwdRequire.style.color = 'red';
+    $pwdImg[1].src = '../../assets/icons/x -red.svg';
+  }
+
+  return isFilled && minLengthValid && requirePwdValid;
+};
+
+//체크박스가 체크 되었는지 확인하는 함수
+const chkboxCheck = function () {
+  if (!$chkbox.checked) {
+    $label.style.color = 'red';
+    return false;
+  } else {
+    $label.style.color = '';
+    return true;
+  }
+};
+
+//결과 메세지 출력하는 함수
+const printResult = function (isFilled, isChecked, pwdValid) {
+  if (isFilled && !isChecked) {
+    $result.textContent = '약관에 동의해야 진행할 수 있습니다.';
+  } else if (!isFilled && !isChecked) {
+    $result.textContent =
+      '모든 입력 필드를 작성하고 약관에 동의해야 진행할 수 있습니다.';
+  } else if (!isFilled && isChecked) {
+    $result.textContent = '모든 입력 필드를 작성해주셔야 합니다.';
+  } else if (!pwdValid) {
+    $result.textContent = '비밀번호를 확인해주세요.';
+    $result.style.color = 'red';
+    $minLength.style.color = 'red';
+    $pwdRequire.style.color = 'red';
+  } else if (isFilled && isChecked && pwdValid) {
+    $result.textContent = '성공';
+    $result.style.color = 'green';
+    return;
+  }
+};
+
+const signUp = async function () {
+  const pwd = $pwdInput.value;
+  const firstName = $firstName.value;
+  const lastName = $lastName.value;
+  const name = `${firstName} ${lastName}`;
+  const birthday = $bDay.value;
+
+  try {
+    const response = await axios.post(
+      'https://11.fesp.shop/users',
+      {
+        email: userEmail,
+        password: pwd,
+        name: name,
+        type: 'user',
+        extra: {
+          birthday: birthday,
+        },
+      },
+      {
+        headers: {
+          'client-id': 'vanilla05',
+        },
+      },
+    );
+    console.log('성공');
+  } catch (error) {
+    console.log('실패', error.response?.data || error.message);
+  }
+};
+
+$pwdInput.addEventListener('input', pwdValid);
+// $proceedBtn.addEventListener('click', signUp);
+
+// 1. input o, chkbox o, pwd check 1o 2o -> 성공
+
+// 2. input o, chkbox o, pwd check 1o 2x
+// 3. input o, chkbox o, pwd check 1x 2o
+// 4. input o, chkbox o, pwd check 1x 2x
+
+// 5. input o, chkbox x, pwd check 1o 2o
+// 6. input o, chkbox x, pwd check 1x 2o
+// 7. input o, chkbox x, pwd check 1o 2x
+// 8. input o, chkbox x, pwd check 1x 2x
+
+// 9. input x, chkbox o, pwd check 1o 2o
+// 10. input x, chkbox o, pwd check 1x 2o
+// 10. input x, chkbox o, pwd check 1o 2x
+
+// 10. input x, chkbox x, pwd check 1o 2o
+// 10. input x, chkbox x, pwd check 1x 2o
+// 10. input x, chkbox x, pwd check 1o 2x
+
+//테스트 항목
+// 1. 입력 필드 모두 작성o, 체크박스o -> 페이지 이동
+// 2. 입력 필드 모두 작성o, 체크박스x -> '약관에 동의해야 진행할 수 있습니다.'
+// 3. 입력 필드 모두 작성x, 체크박스o -> '모든 입력 필드를 작성해야 합니다.'
+// 4. 입력 필드 모두 작성x, 체크박스x - > '모든 입력 필드를 작성하고 약관에 동의해야 진행할 수 있습니다.'
+// 5. 비밀번호 조건이 성립하지 않을 때 -> '비밀번호를 확인해주세요.'
