@@ -35,7 +35,7 @@ const togglePwd = function () {
 };
 
 //이전 버튼을 눌렀을 때 -> signIn_main (기존) or signUp_main (신규)
-const GoPreviousPage = function () {
+const goPreviousPage = function () {
   //.reffer: 이전 페이지 url을 갖고 옴
   const previousPage = document.referrer;
 
@@ -120,5 +120,5 @@ const getPwd = async function (userEmail, userPwd) {
 };
 
 $eyeIcon.addEventListener('click', togglePwd);
-$previousBtn.addEventListener('click', GoPreviousPage);
+$previousBtn.addEventListener('click', goPreviousPage);
 $loginBtn.addEventListener('click', clickLoginBtn);
