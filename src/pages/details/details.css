@@ -180,6 +180,10 @@ body {
   color: var(--color-grey-80);
 }
 
+.size-grid span.size-clicked {
+  border: 1px solid black;
+}
+
 .item-buttons {
   display: flex;
   flex-direction: column;

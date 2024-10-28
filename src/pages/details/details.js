@@ -23,11 +23,14 @@ window.addEventListener('load', async function () {
   $name.textContent = product.item.name;
   $category.textContent = `${category1} ${category2}`;
   $onSale.textContent = formatPrice(product.item.price);
-  $original.textContent = formatPrice(product.item.extra.primeCost);
-  $discount.textContent = getDiscountRate(
-    product.item.extra.primeCost,
-    product.item.price,
-  );
+
+  if (product.item.extra.primeCost !== product.item.price) {
+    $original.textContent = formatPrice(product.item.extra.primeCost);
+    $discount.textContent = getDiscountRate(
+      product.item.extra.primeCost,
+      product.item.price,
+    );
+  }
 
   // item-cover & item-size
   // thumbnail이 클릭되었을 때 바뀌어야 하는 요소
@@ -113,6 +116,11 @@ const renderSize = function (product, currentOption) {
   sizes.forEach(e => {
     e.addEventListener('click', function (e) {
       currentOption.size = e.target.textContent;
+
+      [...$grid.querySelectorAll('span')].map(e => {
+        e.classList.remove('size-clicked');
+      });
+      e.target.classList.add('size-clicked');
     });
   });
 };
