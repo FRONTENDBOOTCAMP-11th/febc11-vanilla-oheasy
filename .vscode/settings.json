@@ -1,5 +1,6 @@
 {
   "gitmoji.addCustomEmoji": [
+
     {
       "emoji": "✨",
       "code": ":feat:",
@@ -67,5 +68,7 @@
     }
   ],
   "gitmoji.onlyUseCustomEmoji": true,
-  "liveServer.settings.port": 5501
+  "liveServer.settings.port": 5501,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
