@@ -21,7 +21,7 @@ const getCategory = async function (category) {
       },
     });
 
-    console.log(res.data.item);
+    // console.log(res.data.item);
 
     const [target] = res.data.item.productCategory.codes.filter(
       cat => cat.code === category,
@@ -48,8 +48,8 @@ const $countSpace = document.querySelector('.results__count');
 // 📌 데이터를 배열 형태로 받아 위에 정의한 여러 함수를 이용해 데이터를 화면에 출력하는 함수
 const displayProduct = function (items) {
   const lists = items
-    .map(async item => {
-      const category = await getCategory(item.extra.category[0]);
+    .map(item => {
+      //   const category = await getCategory(item.extra.category[0]);
       return `<li class="product">
                     <div class="product-cover">
                       <img src="https://11.fesp.shop/files/vanilla05/${
@@ -66,7 +66,7 @@ const displayProduct = function (items) {
                       }</p>
                       <div class="product-card__titles">
                         <p class="title">${item.name}</p>
-                        <p class="subtitle">${category} 신발</p>
+                        <p class="subtitle">${getCategory(item.extra.category[0])} 신발</p>
                       </div>
                      </div>
     
