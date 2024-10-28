@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const productId = 4;
+const productId = 1;
 
 window.addEventListener('load', async function () {
   // item-info
@@ -46,6 +46,7 @@ window.addEventListener('load', async function () {
   // let size = null;
   renderImage(product, currentOption);
   renderSize(product, currentOption);
+  renderDesc(product, currentOption);
 
   const thumbnails = [...$coverThumbnails.querySelectorAll('.thumbnail')];
   thumbnails.forEach((e, i) => {
@@ -60,9 +61,11 @@ window.addEventListener('load', async function () {
       e.target.classList.add('clicked');
 
       renderSize(product, currentOption);
+      renderDesc(product, currentOption);
     });
   });
 
+  // item-btn
   const $bagBtn = document.querySelector(
     '.item-buttons .button-box:first-child button',
   );
@@ -74,6 +77,8 @@ window.addEventListener('load', async function () {
         `productId: ${productId}, 옵션: ${currentOption.option}, 사이즈: ${currentOption.size}`,
       );
   });
+
+  // description
 });
 
 const renderImage = function (product, currentOption) {
@@ -125,6 +130,15 @@ const renderSize = function (product, currentOption) {
   });
 };
 
+const renderDesc = function (product, currentOption) {
+  const $description = document.querySelector('.description');
+  $description.querySelector('p').textContent = product.item.content;
+  $description.querySelector('.list li:first-child').textContent =
+    product.item.options[currentOption.option].extra.color;
+  $description.querySelector('.list li:nth-child(2)').textContent =
+    `스타일 번호: 
+    ${product.item.options[currentOption.option].extra.styleNo}`;
+};
 // 할인률을 계산해 문자열을 리턴하는 함수
 const getDiscountRate = function (original, onSale) {
   return Math.trunc(((original - onSale) / original) * 100) + '% 할인';
