@@ -13,13 +13,20 @@ const formatPrice = function (price) {
   return arr.join('') + '원';
 };
 
-const getCategory = function (category) {
-  if (category === 'PC01') {
-    return '남성';
-  } else if (category === 'PC02') {
-    return '여성';
-  } else if (category === 'PC03') {
-    return '주니어';
+const getCategory = async function (category) {
+  try {
+    const res = await axios.get(`https://11.fesp.shop/codes/productCategory`, {
+      headers: {
+        'client-id': 'vanilla05',
+      },
+    });
+
+    console.log(res.data);
+    const mainCategories = res.data.item.codes.filter(item => {
+      return item.code === category;
+    });
+  } catch (err) {
+    alert(err);
   }
 };
 

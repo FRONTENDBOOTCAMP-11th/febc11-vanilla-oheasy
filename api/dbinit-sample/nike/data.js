@@ -4174,6 +4174,7 @@ export const initData = async (clientId, nextSeq) => {
             code: 'PC02',
             value: 'Women',
             depth: 1,
+            desc: '여성',
           },
 
           {
@@ -4392,10 +4393,11 @@ export const initData = async (clientId, nextSeq) => {
           },
 
           {
-            sort: 2,
+            sort: 3,
             code: 'PC03',
             value: 'Kids',
             depth: 1,
+            desc: '주니어',
           },
 
           {
