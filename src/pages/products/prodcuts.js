@@ -1,4 +1,3 @@
-import axios from 'axios';
 import formatPrice from '../../utils/formatPrice';
 import myAxios from '../../utils/myAxios';
 
@@ -101,7 +100,7 @@ const displayProduct = async function (items) {
                       }</p>
                       <div class="product-card__titles">
                         <p class="title">${item.name}</p>
-                        <p class="subtitle">${c1[0].value} ${c2[0] ? c2[0].value : ''}</p>
+                        <p class="subtitle">${c1[0].desc} ${c2[0] ? c2[0].value : ''}</p>
                       </div>
                      </div>
     
