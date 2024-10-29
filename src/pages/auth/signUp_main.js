@@ -137,6 +137,8 @@ const signUp = async function () {
     );
 
     if (response.data) {
+      const userName = response.data.item.name;
+      sessionStorage.setItem('name', userName);
       signIn(userEmail, pwd);
     }
   } catch (error) {
@@ -165,11 +167,9 @@ const signIn = async function (userEmail, pwd) {
 
     const accessToken = response.data.item.token.accessToken;
     const refreshToken = response.data.item.token.refreshToken;
-    const userName = response.data.item.name;
 
     sessionStorage.setItem('accessToken', accessToken);
     sessionStorage.setItem('refreshToken', refreshToken);
-    sessionStorage.setItem('name', userName);
 
     // console.log(accessToken);
     // console.log(refreshToken);
