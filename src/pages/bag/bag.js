@@ -9,7 +9,17 @@ window.quantityPlus = async (element, cartId) => {
 
   // 서버에 수량 업데이트 요청 (PATCH 방식)
   try {
-    await axios.patch(`https://11.fesp.shop/carts/${cartId}`, { quantity });
+    await axios.patch(
+      `https://11.fesp.shop/carts/${cartId}`,
+      { quantity },
+      {
+        headers: {
+          'client-id': 'vanilla05',
+          Authorization:
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjQsInR5cGUiOiJ1c2VyIiwibmFtZSI6IuygnOydtOyngCIsImVtYWlsIjoidTFAZ21haWwuY29tIiwiaW1hZ2UiOiIvZmlsZXMvdmFuaWxsYTA1L3VzZXItamF5Zy53ZWJwIiwibG9naW5UeXBlIjoiZW1haWwiLCJpYXQiOjE3MzAxMzI0NjQsImV4cCI6MTczMDIxODg2NCwiaXNzIjoiRkVTUCJ9.U6x7SfrmYptZ8S4Kc_FNLv1qclZRHna-Za9oNNgsyFQ', // 실제 토큰으로 바꿔야 합니다
+        },
+      },
+    );
   } catch (error) {
     console.error('수량 변경 실패:', error);
     alert('수량 변경에 실패했습니다.');
@@ -27,7 +37,17 @@ window.quantityMinus = async (element, cartId) => {
 
     // 서버에 수량 업데이트 요청 (PATCH 방식)
     try {
-      await axios.patch(`https://11.fesp.shop/carts/${cartId}`, { quantity });
+      await axios.patch(
+        `https://11.fesp.shop/carts/${cartId}`,
+        { quantity },
+        {
+          headers: {
+            'client-id': 'vanilla05',
+            Authorization:
+              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjQsInR5cGUiOiJ1c2VyIiwibmFtZSI6IuygnOydtOyngCIsImVtYWlsIjoidTFAZ21haWwuY29tIiwiaW1hZ2UiOiIvZmlsZXMvdmFuaWxsYTA1L3VzZXItamF5Zy53ZWJwIiwibG9naW5UeXBlIjoiZW1haWwiLCJpYXQiOjE3MzAxMzI0NjQsImV4cCI6MTczMDIxODg2NCwiaXNzIjoiRkVTUCJ9.U6x7SfrmYptZ8S4Kc_FNLv1qclZRHna-Za9oNNgsyFQ', // 실제 토큰으로 바꿔야 합니다
+          },
+        },
+      );
     } catch (error) {
       console.error('수량 변경 실패:', error);
       alert('수량 변경에 실패했습니다.');
