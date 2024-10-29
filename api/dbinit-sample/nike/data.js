@@ -590,7 +590,7 @@ export const initData = async (clientId, nextSeq) => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 9,
+          parent: 8,
           size: [220, 225, 230, 235, 240, 245, 250, 255, 260],
           color: '화이트/바시티 블루/바시티 레드',
           styleNo: 'DN1791-108',
@@ -654,7 +654,7 @@ export const initData = async (clientId, nextSeq) => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 9,
+          parent: 8,
           size: [220, 225, 230, 235, 240, 245, 250, 255, 260],
           color: '화이트/블랙',
           styleNo: 'DN1791-107',
@@ -718,7 +718,7 @@ export const initData = async (clientId, nextSeq) => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 9,
+          parent: 8,
           size: [220, 225, 230, 235, 240, 245, 250, 255, 260],
           color: '세일/카키/화이트/코카오 와우',
           styleNo: 'DN1791-104',
@@ -782,7 +782,7 @@ export const initData = async (clientId, nextSeq) => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 9,
+          parent: 8,
           size: [220, 225, 230, 235, 240, 245, 250, 255, 260],
           color: '블랙/화이트',
           styleNo: 'DN1791-001',
@@ -4835,6 +4835,7 @@ export const initData = async (clientId, nextSeq) => {
             sort: 2,
             code: 'PC02',
             value: 'Women',
+            desc: '남성',
             depth: 1,
           },
 
@@ -5057,6 +5058,7 @@ export const initData = async (clientId, nextSeq) => {
             sort: 2,
             code: 'PC03',
             value: 'Kids',
+            desc: '주니어',
             depth: 1,
           },
 
