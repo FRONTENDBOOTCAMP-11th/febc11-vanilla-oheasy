@@ -12,7 +12,6 @@ const formatPrice = function (price) {
   }
   return arr.join('') + '원';
 };
-a;
 
 const getCategory = async function () {
   try {
@@ -199,6 +198,15 @@ const getProductsByMain = async function (code) {
   }
 };
 
+const updateCategoryUrl = function (categoryId) {
+  const urlSearch = new URLSearchParams(location.search);
+  // urlSearch.set ... custom = {"extra.category.0": "PC01"}
+  urlSearch.set('custom', `{"extra.category.0": "${categoryId}"}`);
+
+  const newUrl = `${location.pathname}?${urlSearch.toString()}`;
+  history.pushState({}, '', newUrl);
+};
+
 const loadComponentMain = async function () {
   try {
     const parentEl = document.querySelector('#header-box');
@@ -215,40 +223,37 @@ const loadComponentMain = async function () {
         }
       });
 
-      const linkMen = document.querySelector('#header-box .link--men');
-      const linkWomen = document.querySelector('#header-box  .link--women');
-      const linkKids = document.querySelector('#header-box .link--kids');
-      console.log(linkMen, linkWomen, linkKids);
+      const sidebarMenu = document.querySelector('.side-bar-menu');
+      console.log(sidebarMenu);
 
-      // New / Men / Women / Kids 카테고리에 따른 상품리스트 조회
-      if (linkMen && linkWomen && linkKids) {
-        linkMen.addEventListener('click', function (e) {
-          e.preventDefault();
+      //  * 이벤트 위임: 자식 요소에서 발생한 이벤트는 버블링을 통해 부모 요소로 전파되기 때문에, 부모 요소에 이벤트 리스너를 붙이는 것이 가능.. 다양한 자식요소가 있고, 각각 다른 로직을 실행시켜야 할 때, closest() 메소드 사용
+      // 📌 이벤트 위임과 closest()을 이용한 New / Men / Women / Kids 카테고리에 따른 상품리스트 조회
+      sidebarMenu.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        if (e.target.closest('.link--men')) {
           getProductsByMain('PC01');
 
-          const categoryId = e.target.dataset.category; // PC01
-          console.log(categoryId);
+          const categoryId = e.target.closest('.item__men').dataset.category; // PC01
           updateCategoryUrl(categoryId);
-        });
+        }
 
-        linkWomen.addEventListener('click', function (e) {
-          e.preventDefault();
+        if (e.target.closest('.link--women')) {
           getProductsByMain('PC02');
 
-          const categoryId = e.target.dataset.category; // PC02
+          const categoryId = e.target.closest('.item__women').dataset.category; // PC02
           updateCategoryUrl(categoryId);
-        });
+        }
 
-        linkKids.addEventListener('click', function (e) {
-          e.preventDefault();
+        if (e.target.closest('.link--kids')) {
           getProductsByMain('PC03');
 
-          const categoryId = e.target.dataset.category; // PC03
+          const categoryId = e.target.closest('.item__kids').dataset.category; // PC03
           updateCategoryUrl(categoryId);
-        });
+        }
+      });
 
-        observer.disconnect();
-      }
+      observer.disconnect();
     });
     observer.observe(parentEl, { childList: true, subtree: true });
   } catch (err) {
@@ -256,14 +261,3 @@ const loadComponentMain = async function () {
   }
 };
 loadComponentMain();
-
-const updateCategoryUrl = function (categoryId) {
-  const urlSearch = new URLSearchParams(location.search);
-  // urlSearch.set ... custom = {"extra.category.0": "PC01"}
-  urlSearch.set('category', categoryId);
-  console.log(categoryId);
-  console.log(urlSearch);
-
-  const newUrl = `${location.pathname}?${urlSearch.toString()}`;
-  history.pushState({}, '', newUrl);
-};
