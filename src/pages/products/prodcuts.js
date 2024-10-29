@@ -12,24 +12,7 @@ const formatPrice = function (price) {
   }
   return arr.join('') + '원';
 };
-
-// const getCategory = async function (category) {
-//   try {
-//     const res = await axios.get(`https://11.fesp.shop/codes/productCategory`, {
-//       headers: {
-//         'client-id': 'vanilla05',
-//       },
-//     });
-
-//     const [target] = res.data.item.productCategory.codes.filter(
-//       cat => cat.code === category,
-//     );
-
-//     return target.value;
-//   } catch (err) {
-//     alert(err);
-//   }
-// };
+a;
 
 const getCategory = async function () {
   try {
@@ -50,6 +33,7 @@ const getCategory = async function () {
     // return target.value; // Men, Women, Kids
 
     // 2️⃣ 동환님 방법
+    console.log(res);
     return res.data.item.productCategory.codes;
   } catch (err) {
     alert(err);
@@ -73,10 +57,10 @@ const $countSpace = document.querySelector('.results__count');
 const displayProduct = async function (items) {
   //   2️⃣ 동환님 방법
   const category = await getCategory();
-  console.log(category);
+  console.log(category); // array
   try {
     const lists = items
-      .map(async item => {
+      .map(item => {
         //   1️⃣ Promise.all() 사용 방법
         // lists = await Promise.all() 아래의 코드를 감싼다. (마지막 두 코드 제외)
         // const categoryName = await getCategory(item.extra.category[0]);
@@ -88,7 +72,7 @@ const displayProduct = async function (items) {
         });
 
         const c2 = c1[0].sub.filter(c => {
-          console.log(c.code, item.extra.category[1].slice(0, 6));
+          //   console.log(c.code, item.extra.category[1].slice(0, 6));
           return c.code === item.extra.category[1].slice(0, 6);
         });
 
@@ -241,16 +225,26 @@ const loadComponentMain = async function () {
         linkMen.addEventListener('click', function (e) {
           e.preventDefault();
           getProductsByMain('PC01');
+
+          const categoryId = e.target.dataset.category; // PC01
+          console.log(categoryId);
+          updateCategoryUrl(categoryId);
         });
 
         linkWomen.addEventListener('click', function (e) {
           e.preventDefault();
           getProductsByMain('PC02');
+
+          const categoryId = e.target.dataset.category; // PC02
+          updateCategoryUrl(categoryId);
         });
 
         linkKids.addEventListener('click', function (e) {
           e.preventDefault();
           getProductsByMain('PC03');
+
+          const categoryId = e.target.dataset.category; // PC03
+          updateCategoryUrl(categoryId);
         });
 
         observer.disconnect();
@@ -262,3 +256,14 @@ const loadComponentMain = async function () {
   }
 };
 loadComponentMain();
+
+const updateCategoryUrl = function (categoryId) {
+  const urlSearch = new URLSearchParams(location.search);
+  // urlSearch.set ... custom = {"extra.category.0": "PC01"}
+  urlSearch.set('category', categoryId);
+  console.log(categoryId);
+  console.log(urlSearch);
+
+  const newUrl = `${location.pathname}?${urlSearch.toString()}`;
+  history.pushState({}, '', newUrl);
+};
