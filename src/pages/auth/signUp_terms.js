@@ -12,20 +12,12 @@ const $label2 = document.querySelector('#chkbox2 ~ p');
 const $label3 = document.querySelector('#chkbox3 ~ p');
 const $label4 = document.querySelector('#chkbox4 ~ p');
 
-//이메일
-const userEmail = sessionStorage.getItem('email');
-
 //버튼
 const $cancelBtn = document.querySelector('.button-box[data-theme="white"]');
 const $proceedBtn = document.querySelector('.button-box[data-theme="black"]');
 
 //결과
-const $result = document.querySelector('.result');
-
-//이메일 전달받기 확인
-window.addEventListener('load', function () {
-  console.log(userEmail);
-});
+const $result = document.querySelector('.terms-result');
 
 //모든 약관 동의를 클릭했을 때
 const checkAll = function () {
@@ -83,7 +75,7 @@ const checkIndividualCheck = function () {
 
   //allChecked가 false인 경우
   if (!allChecked) {
-    $result.textContent = '오류: 계속하려면 모든 확인란을 선택해야 합니다.';
+    $result.textContent = '계속하려면 모든 확인란을 선택해야 합니다.';
     $result.style.color = 'red';
   } else {
     //allChecked가 true인 경우
