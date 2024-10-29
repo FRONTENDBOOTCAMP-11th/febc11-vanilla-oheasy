@@ -1,58 +1,7 @@
 import axios from 'axios';
+
 let myToken =
-  'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjQsInR5cGUiOiJ1c2VyIiwibmFtZSI6IuygnOydtOyngCIsImVtYWlsIjoidTFAZ21haWwuY29tIiwiaW1hZ2UiOiIvZmlsZXMvdmFuaWxsYTA1L3VzZXItamF5Zy53ZWJwIiwibG9naW5UeXBlIjoiZW1haWwiLCJpYXQiOjE3MzAxMzI0NjQsImV4cCI6MTczMDIxODg2NCwiaXNzIjoiRkVTUCJ9.U6x7SfrmYptZ8S4Kc_FNLv1qclZRHna-Za9oNNgsyFQ';
-// 전역 객체에 함수 할당
-window.quantityPlus = async (element, cartId) => {
-  const quantityElement = element.parentElement.querySelector('p');
-  let quantity = parseInt(quantityElement.innerText);
-  quantity++;
-  quantityElement.innerText = quantity;
-
-  // 서버에 수량 업데이트 요청 (PATCH 방식)
-  try {
-    await axios.patch(
-      `https://11.fesp.shop/carts/${cartId}`,
-      { quantity },
-      {
-        headers: {
-          'client-id': 'vanilla05',
-          Authorization: myToken,
-        },
-      },
-    );
-  } catch (error) {
-    console.error('수량 변경 실패:', error);
-    alert('수량 변경에 실패했습니다.');
-  }
-};
-
-window.quantityMinus = async (element, cartId) => {
-  const quantityElement = element.parentElement.querySelector('p');
-  let quantity = parseInt(quantityElement.innerText);
-
-  // 수량이 1보다 클 때만 감소
-  if (quantity > 1) {
-    quantity--;
-    quantityElement.innerText = quantity;
-
-    // 서버에 수량 업데이트 요청 (PATCH 방식)
-    try {
-      await axios.patch(
-        `https://11.fesp.shop/carts/${cartId}`,
-        { quantity },
-        {
-          headers: {
-            'client-id': 'vanilla05',
-            Authorization: myToken,
-          },
-        },
-      );
-    } catch (error) {
-      console.error('수량 변경 실패:', error);
-      alert('수량 변경에 실패했습니다.');
-    }
-  }
-};
+  'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjQsInR5cGUiOiJ1c2VyIiwibmFtZSI6IuygnOydtOyngCIsImVtYWlsIjoidTFAZ21haWwuY29tIiwiaW1hZ2UiOiIvZmlsZXMvdmFuaWxsYTA1L3VzZXItamF5Zy53ZWJwIiwibG9naW5UeXBlIjoiZW1haWwiLCJpYXQiOjE3MzAxODAzMTIsImV4cCI6MTczMDI2NjcxMiwiaXNzIjoiRkVTUCJ9.3JdLOSR7LXT2iYu4b1AcmRC-u8IqYbEYj9lBL07WBP0'; // 생략된 토큰
 
 document.addEventListener('DOMContentLoaded', () => {
   const cartList = document.getElementById('cart-list');
@@ -68,32 +17,29 @@ document.addEventListener('DOMContentLoaded', () => {
         },
       });
 
-      const items = response.data.item; // 장바구니 아이템 배열
+      const items = response.data.item;
 
-      // 장바구니에 아이템이 없을 경우 메시지 표시
       if (items.length === 0) {
         cartList.innerHTML = '<p>장바구니에 상품이 없습니다.</p>';
         baginfo.innerHTML = '';
         pay.innerHTML = '';
-        return; // 함수 종료
+        return;
       }
 
-      // 각 아이템에 대한 HTML 생성
       let cartItemsHTML = '';
-      let totalQuantity = 0; // 총 제품 수
-      let totalPrice = 0; // 총 가격
+      let totalQuantity = 0;
+      let totalPrice = 0;
 
       items.forEach(cart => {
-        const quantity = cart.quantity; // 수량
-        const size = cart.size; //사이즈
-        const productName = cart.product.name; // 상품명
-        const productPrice = cart.product.price; // 가격
-        const productImage = cart.product.image.name; // 이미지 파일의 이름
+        const quantity = cart.quantity;
+        const size = cart.size;
+        const productName = cart.product.name;
+        const productPrice = cart.product.price;
+        const productImage = cart.product.image.name;
 
-        totalQuantity += quantity; // 총 수량 증가
-        totalPrice += productPrice * quantity; // 총 가격 증가
+        totalQuantity += quantity;
+        totalPrice += productPrice * quantity;
 
-        // HTML 구조 생성
         cartItemsHTML += `
         <div>
           <div class="product_item_section">
@@ -115,9 +61,9 @@ document.addEventListener('DOMContentLoaded', () => {
                   <div class="count_text">
                     <p>수량</p>
                     <div class="count_number">
-                      <img id="quantityBtn" class="button minus" src="/src/assets/icons/minus.svg" alt="Decrease">
+                      <img class="button minus" src="/src/assets/icons/minus.svg" alt="Decrease" data-cart-id="${cart._id}">
                       <p>${quantity}</p>
-                      <img id="quantityBtn" class="button plus" src="/src/assets/icons/plus.svg" alt="Increase">
+                      <img class="button plus" src="/src/assets/icons/plus.svg" alt="Increase" data-cart-id="${cart._id}">
                     </div>
                   </div>
                 </div>
@@ -132,8 +78,8 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
       });
 
-      cartList.innerHTML = cartItemsHTML; // cartItemsHTML을 cartList에 삽입
-      baginfo.innerHTML = `<p>${totalQuantity} 개의 제품 | ${totalPrice.toLocaleString()} 원</p>`; // 총 제품 수와 가격 표시
+      cartList.innerHTML = cartItemsHTML;
+      baginfo.innerHTML = `<p>${totalQuantity} 개의 제품 | ${totalPrice.toLocaleString()} 원</p>`;
       pay.innerHTML = `
           <div class="oder_list_section">
             <h1 class="oder_list_title_text">주문 내역</h1>
@@ -163,46 +109,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 함수 호출
   fetchCart();
-});
 
-const quantityElement = document.getElementById('quantityBtn');
-
-const quantityPlusMinus = function () {
-  const quantityElement = element.parentElement.querySelector('p');
-  let quantity = parseInt(quantityElement.innerText);
-
-  if (target.matches('.button.plus')) {
-    quantity++;
-    quantityElement.innerText = quantity;
-    patchQuantity();
-  } else if (target.matches('.button.minus')) {
-    if (quantity > 1) {
-      quantity--;
-      quantityElement.innerText = quantity;
-      patchQuantity();
-    } else {
-      alert('수량이 최소 1개는 있어야합니다.');
-    }
-  }
-};
-
-const patchQuantity = async function () {
-  // 서버에 수량 업데이트 요청 (PATCH 방식)
-  try {
-    await axios.patch(
-      `https://11.fesp.shop/carts/${cartId}`,
-      { quantity },
-      {
-        headers: {
-          'client-id': 'vanilla05',
-          Authorization: myToken,
+  const updateQuantity = async (cartId, quantity) => {
+    try {
+      await axios.patch(
+        `https://11.fesp.shop/carts/${cartId}`,
+        { quantity },
+        {
+          headers: {
+            'client-id': 'vanilla05',
+            Authorization: myToken,
+          },
         },
-      },
-    );
-  } catch (error) {
-    console.error('수량 변경 실패:', error);
-    alert('수량 변경에 실패했습니다.');
-  }
-};
+      );
+    } catch (error) {
+      console.error('수량 변경 실패:', error);
+      alert('수량 변경에 실패했습니다.');
+    }
+  };
 
-addEventListener('click', quantityPlusMinus);
+  cartList.addEventListener('click', async event => {
+    const target = event.target;
+
+    if (target.matches('.button.plus')) {
+      const quantityElement = target.parentElement.querySelector('p'); // 수량 요소 선택
+      const cartId = target.getAttribute('data-cart-id'); // data-cart-id 속성에서 cartId 가져오기
+      let quantity = parseInt(quantityElement.innerText);
+      quantity++;
+      quantityElement.innerText = quantity;
+
+      // 서버에 수량 업데이트 요청
+      await updateQuantity(cartId, quantity);
+    }
+
+    // 수량 감소 버튼 클릭
+    if (target.matches('.button.minus')) {
+      const quantityElement = target.parentElement.querySelector('p'); // 수량 요소 선택
+      const cartId = target.getAttribute('data-cart-id'); // data-cart-id 속성에서 cartId 가져오기
+      let quantity = parseInt(quantityElement.innerText);
+
+      if (quantity > 1) {
+        quantity--;
+        quantityElement.innerText = quantity;
+
+        // 서버에 수량 업데이트 요청
+        await updateQuantity(cartId, quantity);
+      }
+    }
+  });
+});
