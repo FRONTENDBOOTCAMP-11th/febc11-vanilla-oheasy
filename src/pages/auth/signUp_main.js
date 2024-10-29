@@ -1,4 +1,4 @@
-import axios from 'axios';
+import myAxios from '../../utils/myAxios';
 
 //필수 입력 필드
 const $requiredInputs = document.querySelectorAll('.required-input');
@@ -118,28 +118,20 @@ const signUp = async function () {
   const birthday = $bDay.value;
 
   try {
-    const response = await axios.post(
-      'https://11.fesp.shop/users',
-      {
-        email: userEmail,
-        password: pwd,
-        name: name,
-        type: 'user',
-        extra: {
-          birthday: birthday,
-        },
+    const response = await myAxios.post('/users', {
+      email: userEmail,
+      password: pwd,
+      name: name,
+      type: 'user',
+      extra: {
+        birthday: birthday,
       },
-      {
-        headers: {
-          'client-id': 'vanilla05',
-        },
-      },
-    );
+    });
 
     if (response.data) {
       const userName = response.data.item.name;
       sessionStorage.setItem('name', userName);
-      signIn(userEmail, pwd);
+      signIn(userEmail, pwd, userName);
     }
   } catch (error) {
     if (error.response && error.response.data) {
@@ -150,20 +142,12 @@ const signUp = async function () {
   }
 };
 
-const signIn = async function (userEmail, pwd) {
+const signIn = async function (userEmail, pwd, userName) {
   try {
-    const response = await axios.post(
-      'https://11.fesp.shop/users/login',
-      {
-        email: userEmail,
-        password: pwd,
-      },
-      {
-        headers: {
-          'client-id': 'vanilla05',
-        },
-      },
-    );
+    const response = await myAxios.post('/users/login', {
+      email: userEmail,
+      password: pwd,
+    });
 
     const accessToken = response.data.item.token.accessToken;
     const refreshToken = response.data.item.token.refreshToken;
@@ -174,7 +158,7 @@ const signIn = async function (userEmail, pwd) {
     // console.log(accessToken);
     // console.log(refreshToken);
     // console.log(userName);
-
+    alert(`${userName} 님 환영합니다`);
     window.location.href = '/index.html';
   } catch (error) {
     console.log('실패', error.response.data);

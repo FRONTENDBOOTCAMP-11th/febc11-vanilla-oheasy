@@ -1,4 +1,4 @@
-import axios from 'axios';
+import myAxios from '../../utils/myAxios';
 
 //email-section
 const $emailSection = document.querySelector('.email-section');
@@ -57,12 +57,9 @@ const validateEmail = function (email) {
 //(중복 검사 - 중복(기존): signIn_pwd.html, 중복x(신규): signUp_terms.html)
 const getEmail = async function (userEmail) {
   try {
-    const response = await axios.get('https://11.fesp.shop/users/email', {
+    const response = await myAxios.get('/users/email', {
       params: {
         email: userEmail,
-      },
-      headers: {
-        'client-id': 'vanilla05',
       },
     });
 
@@ -186,18 +183,10 @@ const clickLoginBtn = function (event) {
 const getPwd = async function (userEmail, userPwd) {
   //비밀번호를 입력 받았을 때 로그인 시도를 함
   try {
-    const response = await axios.post(
-      'https://11.fesp.shop/users/login',
-      {
-        email: userEmail,
-        password: userPwd,
-      },
-      {
-        headers: {
-          'client-id': 'vanilla05',
-        },
-      },
-    );
+    const response = await myAxios.post('/users/login', {
+      email: userEmail,
+      password: userPwd,
+    });
 
     //로그인에 성공
     if (response.data.ok === 1) {
@@ -211,6 +200,7 @@ const getPwd = async function (userEmail, userPwd) {
       sessionStorage.setItem('name', userName);
 
       //home으로 이동한다
+      alert(`${userName}님 환영합니다`);
       window.location.href = '/index.html';
     } else {
       //로그인 실패
