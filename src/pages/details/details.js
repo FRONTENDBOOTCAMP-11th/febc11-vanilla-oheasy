@@ -1,4 +1,3 @@
-import axios from 'axios';
 import formatPrice from '../../utils/formatPrice';
 import myAxios from '../../utils/myAxios';
 
@@ -126,6 +125,7 @@ const $original = document.querySelector('.price .original');
 const $discount = document.querySelector('.price .discount');
 
 const product = await getProduct(productId);
+console.log(product);
 
 const category1 = await getCategory(product, 1);
 const category2 = await getCategory(product, 2, product.item.extra.category[0]);
@@ -181,17 +181,20 @@ const $bagBtn = document.querySelector(
   '.item-buttons .button-box:first-child button',
 );
 $bagBtn.addEventListener('click', async function () {
+  console.log(productId, currentOption.size);
   if (currentOption.size === null) {
     window.alert('사이즈를 선택해 주세요.');
   } else {
     try {
       const response = await myAxios.post('/carts', {
-        product_id: +productId,
+        product_id:
+          product.item.options.length === 0
+            ? +productId
+            : +productId + currentOption.option + 1,
         quantity: 1,
-        option: currentOption.option,
         size: currentOption.size,
       });
-      // console.log(response);
+      console.log(response);
     } catch (error) {
       console.log(error);
     }
