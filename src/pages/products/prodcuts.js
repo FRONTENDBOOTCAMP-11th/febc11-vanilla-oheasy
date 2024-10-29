@@ -1,4 +1,6 @@
 import axios from 'axios';
+import formatPrice from '../../utils/formatPrice';
+import myAxios from '../../utils/myAxios';
 
 const updateCategoryUrl = function (categoryId) {
   const urlSearch = new URLSearchParams(location.search);
@@ -20,24 +22,11 @@ const loadProductsFromUrlParams = function () {
 
 window.addEventListener('load', loadProductsFromUrlParams);
 
-// 📌 Functions for data formatting
-const formatPrice = function (price) {
-  const arr = String(price).split('');
-  let count = 0;
-  for (let i = arr.length; i >= 0; i--) {
-    if (i !== 0 && count !== 0 && count % 3 === 0) {
-      arr[i] = ',' + arr[i];
-    }
-    count++;
-  }
-  return arr.join('') + '원';
-};
-
 const getCategory = async function () {
   try {
     renderSpinner($productContainer);
 
-    const res = await axios.get(`https://11.fesp.shop/codes/productCategory`, {
+    const res = await myAxios.get(`/codes/productCategory`, {
       headers: {
         'client-id': 'vanilla05',
       },
@@ -163,7 +152,7 @@ const showProductsAll = async function () {
     renderSpinner($productContainer);
 
     // 2) Loading the list of products
-    const res = await axios.get(`https://11.fesp.shop/products`, {
+    const res = await myAxios.get(`/products`, {
       headers: {
         'client-id': 'vanilla05',
       },
@@ -192,8 +181,8 @@ const getProductsByMain = async function (code) {
     renderSpinner($productContainer);
 
     // 2) Loading the list of products
-    const res = await axios.get(
-      `https://11.fesp.shop/products?custom={"extra.category.0":"${code}"}`,
+    const res = await myAxios.get(
+      `products?custom={"extra.category.0":"${code}"}`,
       {
         headers: {
           'client-id': 'vanilla05',
