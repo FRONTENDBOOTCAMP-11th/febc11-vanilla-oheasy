@@ -178,6 +178,11 @@ input:focus {
   width: 100%;
 }
 
+.button-box#proceed {
+  width: 90px;
+  height: 52px;
+}
+
 /* signIn_pwd.html */
 .received_email {
   margin: 10px 0 26px;
