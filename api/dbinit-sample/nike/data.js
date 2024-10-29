@@ -2376,7 +2376,7 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: false,
           isBest: true,
-          category: ['PC02', 'PC0201'], // Men > 신발
+          category: ['PC01', 'PC0101'], // Men > 신발
           size: [
             230, 235, 240, 245, 250, 255, 260, 265, 270, 275, 280, 285, 290,
             295, 300, 305, 310,
@@ -2444,7 +2444,7 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: false,
           isBest: true,
-          category: ['PC02', 'PC0201'], // Men > 용품
+          category: ['PC01', 'PC0101'], // Men > 용품
           size: [
             240, 245, 250, 255, 260, 265, 270, 275, 280, 285, 290, 295, 300,
             305, 310,
@@ -2953,7 +2953,7 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: false,
           isBest: true,
-          category: ['PC02', 'PC0201'], // Men > 용품
+          category: ['PC01', 'PC0101'], // Men > 용품
           size: [
             240, 245, 250, 255, 260, 265, 270, 275, 280, 285, 290, 295, 300,
             305, 310,
