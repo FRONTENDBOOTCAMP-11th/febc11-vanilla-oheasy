@@ -17,7 +17,6 @@ const getProduct = async function (productId) {
 // depth가 1인 경우 대분류를,
 // depth가 2이고 parent가 대분류 문자열인 경우 소분류를 리턴
 const getCategory = async function (product, depth, parent = null) {
-  console.log(depth, parent);
   try {
     const response = await myAxios.get(
       `/codes/productCategory?depth=${depth}${parent ? '&parent=' + parent : ''}`,
@@ -116,7 +115,6 @@ const getDiscountRate = function (original, onSale) {
   return Math.trunc(((original - onSale) / original) * 100) + '% 할인';
 };
 
-console.log(location.search);
 const urlSearch = new URLSearchParams(location.search);
 const productId = urlSearch.get('productId');
 
@@ -128,7 +126,6 @@ const $original = document.querySelector('.price .original');
 const $discount = document.querySelector('.price .discount');
 
 const product = await getProduct(productId);
-console.log(product);
 
 const category1 = await getCategory(product, 1);
 const category2 = await getCategory(product, 2, product.item.extra.category[0]);
@@ -187,27 +184,14 @@ $bagBtn.addEventListener('click', async function () {
   if (currentOption.size === null) {
     window.alert('사이즈를 선택해 주세요.');
   } else {
-    console.log(
-      `productId: ${productId}, 옵션: ${currentOption.option}, 사이즈: ${currentOption.size}`,
-    );
-
     try {
-      const response = await axios.post(
-        'https://11.fesp.shop/carts',
-        {
-          product_id: +productId,
-          quantity: 1,
-          size: currentOption.size,
-        },
-        {
-          headers: {
-            'client-id': 'vanilla05',
-            Authorization:
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjQsInR5cGUiOiJ1c2VyIiwibmFtZSI6IuygnOydtOyngCIsImVtYWlsIjoidTFAZ21haWwuY29tIiwiaW1hZ2UiOiIvZmlsZXMvdmFuaWxsYTA1L3VzZXItamF5Zy53ZWJwIiwibG9naW5UeXBlIjoiZW1haWwiLCJpYXQiOjE3MzAxNjExMzgsImV4cCI6MTczMDI0NzUzOCwiaXNzIjoiRkVTUCJ9.iO7wEvndSwcnF7-W5RlSOeQUeSqqD5i-Cx1iaLWpoTg',
-          },
-        },
-      );
-      console.log(response);
+      const response = await myAxios.post('/carts', {
+        product_id: +productId,
+        quantity: 1,
+        option: currentOption.option,
+        size: currentOption.size,
+      });
+      // console.log(response);
     } catch (error) {
       console.log(error);
     }
