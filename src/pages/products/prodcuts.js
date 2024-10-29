@@ -146,7 +146,7 @@ const renderSpinner = async function (parentEl) {
 
   const spinnerHTML = `
                     <div class="spinner">
-                      <img src="./loader.svg" alt="spinner"/>
+                      <img src="../../assets/images/loader.svg" alt="spinner"/>
                     </div>`;
   parentEl.innerHTML = '';
   parentEl.insertAdjacentHTML('beforebegin', spinnerHTML);
