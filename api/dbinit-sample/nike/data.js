@@ -4835,7 +4835,7 @@ export const initData = async (clientId, nextSeq) => {
             sort: 2,
             code: 'PC02',
             value: 'Women',
-            desc: '남성',
+            desc: '여성',
             depth: 1,
           },
 
