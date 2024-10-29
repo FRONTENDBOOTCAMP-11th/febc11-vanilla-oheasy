@@ -2,8 +2,6 @@ import axios from 'axios';
 
 const updateCategoryUrl = function (categoryId) {
   const urlSearch = new URLSearchParams(location.search);
-  // urlSearch.set ... custom = {"extra.category.0": "PC01"}
-  //   urlSearch.set('custom', `{"extra.category.0": "${categoryId}"}`);
   urlSearch.set('category', categoryId);
 
   const newUrl = `${location.pathname}?${urlSearch.toString()}`;
@@ -37,7 +35,6 @@ const formatPrice = function (price) {
 
 const getCategory = async function () {
   try {
-    // 1) Rendering spinner (In case the internet connection is slow.)
     renderSpinner($productContainer);
 
     const res = await axios.get(`https://11.fesp.shop/codes/productCategory`, {
@@ -144,7 +141,6 @@ const displayProduct = async function (items) {
 
 // 📌 유저에게 작업이 진행중임을 알리는 스피너 세팅 함수
 const renderSpinner = async function (parentEl) {
-  // 이전의 스피너가 있다면 제거
   const existingSpinner = document.querySelector('.spinner');
   if (existingSpinner) existingSpinner.remove();
 
@@ -161,7 +157,7 @@ const hideSpinner = async function () {
 };
 
 // 📌 필터링 없이, 전체 상품리스트 로드하는 함수
-const showProductAll = async function () {
+const showProductsAll = async function () {
   try {
     // 1) Rendering spinner (In case the internet connection is slow.)
     renderSpinner($productContainer);
@@ -187,7 +183,7 @@ const showProductAll = async function () {
     hideSpinner();
   }
 };
-showProductAll();
+showProductsAll();
 
 // 📌 메인 카테고리 기준으로 데이터를 분류하고, 비동기통신으로 가져온 데이터를 displayProduct()로 화면출력까지 담당하는 함수
 const getProductsByMain = async function (code) {
@@ -239,7 +235,6 @@ const loadComponentMain = async function () {
       const sidebarMenu = document.querySelector('.side-bar-menu');
       console.log(sidebarMenu);
 
-      //  * 이벤트 위임: 자식 요소에서 발생한 이벤트는 버블링을 통해 부모 요소로 전파되기 때문에, 부모 요소에 이벤트 리스너를 붙이는 것이 가능.. 다양한 자식요소가 있고, 각각 다른 로직을 실행시켜야 할 때, closest() 메소드 사용
       // 📌 이벤트 위임과 closest()을 이용한 New / Men / Women / Kids 카테고리에 따른 상품리스트 조회
       sidebarMenu.addEventListener('click', function (e) {
         e.preventDefault();
