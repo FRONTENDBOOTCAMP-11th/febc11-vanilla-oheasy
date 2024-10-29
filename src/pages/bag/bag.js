@@ -165,57 +165,44 @@ document.addEventListener('DOMContentLoaded', () => {
   fetchCart();
 });
 
+const quantityElement = document.getElementById('quantityBtn');
 
-
-
-const quantityElement = document.getElementById('quantityBtn')
-
-const quantityPlusMinus = function(){
+const quantityPlusMinus = function () {
   const quantityElement = element.parentElement.querySelector('p');
   let quantity = parseInt(quantityElement.innerText);
 
-  if(tayget.matches('.button.plus')){
+  if (target.matches('.button.plus')) {
     quantity++;
     quantityElement.innerText = quantity;
-    patchQuantity()
-  }else if(tayget.matches('.button.minus')){
-    if(quantity > 1){
+    patchQuantity();
+  } else if (target.matches('.button.minus')) {
+    if (quantity > 1) {
       quantity--;
       quantityElement.innerText = quantity;
-      patchQuantity()
-    }else{
-      alert('수량이 최소 1개는 있어야합니다.')
+      patchQuantity();
+    } else {
+      alert('수량이 최소 1개는 있어야합니다.');
     }
   }
-}
+};
 
-const patchQuantity = function(){
+const patchQuantity = async function () {
   // 서버에 수량 업데이트 요청 (PATCH 방식)
   try {
-   await axios.patch(
-     `https://11.fesp.shop/carts/${cartId}`,
-     { quantity },
-     {
-       headers: {
-         'client-id': 'vanilla05',
-         Authorization: myToken,
-       },
-     },
-   );
- } catch (error) {
-   console.error('수량 변경 실패:', error);
-   alert('수량 변경에 실패했습니다.');
- }
-}
+    await axios.patch(
+      `https://11.fesp.shop/carts/${cartId}`,
+      { quantity },
+      {
+        headers: {
+          'client-id': 'vanilla05',
+          Authorization: myToken,
+        },
+      },
+    );
+  } catch (error) {
+    console.error('수량 변경 실패:', error);
+    alert('수량 변경에 실패했습니다.');
+  }
+};
 
-addEventListener('click',(quantityPlusMinus) );
-
-
-
-
-
-
-
-
-
-
+addEventListener('click', quantityPlusMinus);
