@@ -46,7 +46,6 @@ const printEmailResult = function (msg) {
 
 //이메일 유효성 검증 함수 (올바른 형식으로 작성 되었는지 확인)
 const validateEmail = function (email) {
-  //email 조건
   const emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   //전달받은 email을 소문자로 변경하고 email 조건과 맞는지 확인
@@ -76,17 +75,11 @@ const getEmail = async function (userEmail) {
       window.location.href = 'signUp_terms.html';
     } else {
       //이메일 중복o -> signIn_pwd 로 이동
-      sessionStorage.setItem('email', userEmail);
-      // window.location.href = 'signIn_pwd.html';
-      // printPwdResult('');
       showPwdSection();
     }
   } catch (error) {
     //409 error 발생: 이메일이 중복 되었을 때 발생함 -> signIn_pwd로 이동한다.
     if (error.response && error.response.status === 409) {
-      sessionStorage.setItem('email', userEmail);
-      // window.location.href = 'signIn_pwd.html';
-      // printPwdResult('');
       showPwdSection();
     } else {
       //그외 error
@@ -140,7 +133,6 @@ const printEmail = function () {
 };
 
 const printPwdResult = function (msg) {
-  console.log('printPwdResult 호출됨:', msg);
   $pwdResult.textContent = msg;
   $pwdResult.style.color = 'red';
 };
@@ -178,7 +170,6 @@ const clickPreviousBtn = function () {
 const clickLoginBtn = function (event) {
   event.preventDefault();
 
-  console.log('clickLoginBtn called');
   const pwdInput = $userPwd.value;
 
   //비밀번호를 입력 받지 못했을 때
@@ -213,13 +204,14 @@ const getPwd = async function (userEmail, userPwd) {
       //토큰을 받아오고 저장한다
       const accessToken = response.data.item.token.accessToken;
       const refreshToken = response.data.item.token.refreshToken;
+      const userName = response.data.item.name;
 
       sessionStorage.setItem('accessToken', accessToken);
       sessionStorage.setItem('refreshToken', refreshToken);
+      sessionStorage.setItem('name', userName);
 
       //home으로 이동한다
       window.location.href = '/index.html';
-      // console.log(userEmail, userPwd);
     } else {
       //로그인 실패
       printPwdResult('비밀번호가 일치하지 않습니다.');
@@ -234,13 +226,6 @@ const getPwd = async function (userEmail, userPwd) {
       //다른 error
       console.log('서버에서 에러가 발생하였습니다.', error);
       printPwdResult('서버에서 오류가 발생했습니다.');
-
-      console.error('응답 데이터:', error.response.data);
-      console.error('응답 상태 코드:', error.response.status);
-      console.error('응답 헤더:', error.response.headers);
-      console.error('요청 데이터:', error.request);
-      console.error('오류 메시지:', error.message);
-      console.error('전체 오류 객체:', error.toJSON());
     }
   }
 };

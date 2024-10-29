@@ -175,7 +175,7 @@ input:focus {
   position: absolute;
   top: -10px;
   left: 0;
-  /* width: 100%; */
+  width: 100%;
 }
 
 /* signIn_pwd.html */

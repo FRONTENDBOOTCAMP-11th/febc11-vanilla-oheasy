@@ -20,13 +20,8 @@ const $label = document.querySelector('#chkbox1 ~ p');
 
 const $proceedBtn = document.querySelector('.button-box');
 
-//이메일 전달 받기
+//전달 받은 이메일
 const userEmail = sessionStorage.getItem('email');
-
-//이메일 전달받기
-window.addEventListener('load', function () {
-  console.log(userEmail);
-});
 
 //input 요소들 focus, blur 처리
 $requiredInputs.forEach(input => {
@@ -80,17 +75,6 @@ const pwdValid = function () {
 
   return pwdValid;
 };
-
-$proceedBtn.addEventListener('click', function (event) {
-  event.preventDefault();
-
-  const isFilled = inputCheck();
-  const isChecked = chkboxCheck();
-
-  if (isFilled && isChecked) {
-    signUp();
-  }
-});
 
 //모든 input 태그들이 작성 되었는지 확인하는 함수
 const inputCheck = function () {
@@ -181,12 +165,17 @@ const signIn = async function (userEmail, pwd) {
 
     const accessToken = response.data.item.token.accessToken;
     const refreshToken = response.data.item.token.refreshToken;
+    const userName = response.data.item.name;
 
     sessionStorage.setItem('accessToken', accessToken);
     sessionStorage.setItem('refreshToken', refreshToken);
+    sessionStorage.setItem('name', userName);
 
     // console.log(accessToken);
     // console.log(refreshToken);
+    // console.log(userName);
+
+    window.location.href = '/index.html';
   } catch (error) {
     console.log('실패', error.response.data);
     console.log('실패', error.message);
@@ -194,3 +183,13 @@ const signIn = async function (userEmail, pwd) {
 };
 
 $pwdInput.addEventListener('input', pwdValid);
+$proceedBtn.addEventListener('click', function (event) {
+  event.preventDefault();
+
+  const isFilled = inputCheck();
+  const isChecked = chkboxCheck();
+
+  if (isFilled && isChecked) {
+    signUp();
+  }
+});

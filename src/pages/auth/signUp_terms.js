@@ -12,20 +12,12 @@ const $label2 = document.querySelector('#chkbox2 ~ p');
 const $label3 = document.querySelector('#chkbox3 ~ p');
 const $label4 = document.querySelector('#chkbox4 ~ p');
 
-//이메일
-const userEmail = sessionStorage.getItem('email');
-
 //버튼
 const $cancelBtn = document.querySelector('.button-box[data-theme="white"]');
 const $proceedBtn = document.querySelector('.button-box[data-theme="black"]');
 
 //결과
 const $result = document.querySelector('.terms-result');
-
-//이메일 전달받기 확인
-window.addEventListener('load', function () {
-  console.log(userEmail);
-});
 
 //모든 약관 동의를 클릭했을 때
 const checkAll = function () {
