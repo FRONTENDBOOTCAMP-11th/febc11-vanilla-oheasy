@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   cartList.addEventListener('click', async event => {
     const target = event.target;
-
+    // 수량 증감 버튼 클릭
     if (target.matches('.button.plus')) {
       const quantityElement = target.parentElement.querySelector('p'); // 수량 요소 선택
       const cartId = target.getAttribute('data-cart-id'); // data-cart-id 속성에서 cartId 가져오기
