@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="product_item_section">
             <div>
               <a href="/src/pages/details/details.html">
-                <img class="img_size" src="/api/dbinit-sample/nike/uploadFiles/${productImage}" alt="${productName}">
+                <img class="img_size" src="https://11.fesp.shop/files/vanilla05/${productImage}" alt="${productName}">
               </a>
             </div>
             <div class="product_text_section">
