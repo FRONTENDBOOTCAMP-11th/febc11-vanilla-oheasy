@@ -1,5 +1,6 @@
 import axios from 'axios';
-
+let myToken =
+  'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjQsInR5cGUiOiJ1c2VyIiwibmFtZSI6IuygnOydtOyngCIsImVtYWlsIjoidTFAZ21haWwuY29tIiwiaW1hZ2UiOiIvZmlsZXMvdmFuaWxsYTA1L3VzZXItamF5Zy53ZWJwIiwibG9naW5UeXBlIjoiZW1haWwiLCJpYXQiOjE3MzAxMzI0NjQsImV4cCI6MTczMDIxODg2NCwiaXNzIjoiRkVTUCJ9.U6x7SfrmYptZ8S4Kc_FNLv1qclZRHna-Za9oNNgsyFQ';
 // 전역 객체에 함수 할당
 window.quantityPlus = async (element, cartId) => {
   const quantityElement = element.parentElement.querySelector('p');
@@ -15,8 +16,7 @@ window.quantityPlus = async (element, cartId) => {
       {
         headers: {
           'client-id': 'vanilla05',
-          Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjQsInR5cGUiOiJ1c2VyIiwibmFtZSI6IuygnOydtOyngCIsImVtYWlsIjoidTFAZ21haWwuY29tIiwiaW1hZ2UiOiIvZmlsZXMvdmFuaWxsYTA1L3VzZXItamF5Zy53ZWJwIiwibG9naW5UeXBlIjoiZW1haWwiLCJpYXQiOjE3MzAxMzI0NjQsImV4cCI6MTczMDIxODg2NCwiaXNzIjoiRkVTUCJ9.U6x7SfrmYptZ8S4Kc_FNLv1qclZRHna-Za9oNNgsyFQ', // 실제 토큰으로 바꿔야 합니다
+          Authorization: myToken,
         },
       },
     );
@@ -43,8 +43,7 @@ window.quantityMinus = async (element, cartId) => {
         {
           headers: {
             'client-id': 'vanilla05',
-            Authorization:
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjQsInR5cGUiOiJ1c2VyIiwibmFtZSI6IuygnOydtOyngCIsImVtYWlsIjoidTFAZ21haWwuY29tIiwiaW1hZ2UiOiIvZmlsZXMvdmFuaWxsYTA1L3VzZXItamF5Zy53ZWJwIiwibG9naW5UeXBlIjoiZW1haWwiLCJpYXQiOjE3MzAxMzI0NjQsImV4cCI6MTczMDIxODg2NCwiaXNzIjoiRkVTUCJ9.U6x7SfrmYptZ8S4Kc_FNLv1qclZRHna-Za9oNNgsyFQ', // 실제 토큰으로 바꿔야 합니다
+            Authorization: myToken,
           },
         },
       );
@@ -65,8 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const response = await axios.get('https://11.fesp.shop/carts', {
         headers: {
           'client-id': 'vanilla05',
-          Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjQsInR5cGUiOiJ1c2VyIiwibmFtZSI6IuygnOydtOyngCIsImVtYWlsIjoidTFAZ21haWwuY29tIiwiaW1hZ2UiOiIvZmlsZXMvdmFuaWxsYTA1L3VzZXItamF5Zy53ZWJwIiwibG9naW5UeXBlIjoiZW1haWwiLCJpYXQiOjE3MzAxMzI0NjQsImV4cCI6MTczMDIxODg2NCwiaXNzIjoiRkVTUCJ9.U6x7SfrmYptZ8S4Kc_FNLv1qclZRHna-Za9oNNgsyFQ ', // 여기에 실제 토큰을 입력하세요
+          Authorization: myToken,
         },
       });
 
