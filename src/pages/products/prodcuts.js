@@ -13,24 +13,48 @@ const formatPrice = function (price) {
   return arr.join('') + '원';
 };
 
-const getCategory = async function (category) {
+// const getCategory = async function (category) {
+//   try {
+//     const res = await axios.get(`https://11.fesp.shop/codes/productCategory`, {
+//       headers: {
+//         'client-id': 'vanilla05',
+//       },
+//     });
+
+//     const [target] = res.data.item.productCategory.codes.filter(
+//       cat => cat.code === category,
+//     );
+
+//     return target.value;
+//   } catch (err) {
+//     alert(err);
+//   }
+// };
+
+const getCategory = async function () {
   try {
+    // 1) Rendering spinner (In case the internet connection is slow.)
+    renderSpinner($productContainer);
+
     const res = await axios.get(`https://11.fesp.shop/codes/productCategory`, {
       headers: {
         'client-id': 'vanilla05',
       },
     });
 
-    // console.log(res.data.item);
+    // 1️⃣ Promise.all() 사용 방법
+    // const [target] = res.data.item.productCategory.codes.filter(
+    //   cat => cat.code === category,
+    // );
+    // console.log(target);
+    // return target.value; // Men, Women, Kids
 
-    const [target] = res.data.item.productCategory.codes.filter(
-      cat => cat.code === category,
-    );
-
-    console.log(target);
-    return target.desc;
+    // 2️⃣ 동환님 방법
+    return res.data.item.productCategory.codes;
   } catch (err) {
     alert(err);
+  } finally {
+    hideSpinner();
   }
 };
 
@@ -46,11 +70,31 @@ const $productContainer = document.querySelector('.l_grid');
 const $countSpace = document.querySelector('.results__count');
 
 // 📌 데이터를 배열 형태로 받아 위에 정의한 여러 함수를 이용해 데이터를 화면에 출력하는 함수
-const displayProduct = function (items) {
-  const lists = items
-    .map(item => {
-      //   const category = await getCategory(item.extra.category[0]);
-      return `<li class="product">
+const displayProduct = async function (items) {
+  //   2️⃣ 동환님 방법
+  const category = await getCategory();
+  console.log(category);
+  try {
+    const lists = items
+      .map(async item => {
+        //   1️⃣ Promise.all() 사용 방법
+        // lists = await Promise.all() 아래의 코드를 감싼다. (마지막 두 코드 제외)
+        // const categoryName = await getCategory(item.extra.category[0]);
+
+        //   2️⃣ 동환님 방법
+        const c1 = category.filter(c => {
+          // console.log(c.code, item.extra.category[0]);
+          return c.code === item.extra.category[0];
+        });
+
+        const c2 = c1[0].sub.filter(c => {
+          console.log(c.code, item.extra.category[1].slice(0, 6));
+          return c.code === item.extra.category[1].slice(0, 6);
+        });
+
+        // 👉 {categoryName} 대신에
+        //   ${c1[0].value} ${c2[0] ? c2[0].value : ''}
+        return `<li class="product">
                     <div class="product-cover">
                       <img src="https://11.fesp.shop/files/vanilla05/${
                         item.mainImages[0].name
@@ -66,7 +110,7 @@ const displayProduct = function (items) {
                       }</p>
                       <div class="product-card__titles">
                         <p class="title">${item.name}</p>
-                        <p class="subtitle">${getCategory(item.extra.category[0])} 신발</p>
+                        <p class="subtitle">${c1[0].value} ${c2[0] ? c2[0].value : ''}</p>
                       </div>
                      </div>
     
@@ -81,11 +125,16 @@ const displayProduct = function (items) {
                      </div>
                     </div>
                   </li>`;
-    })
-    .join('');
+      })
+      .join('');
 
-  $productContainer.innerHTML = '';
-  $productContainer.insertAdjacentHTML('beforeend', lists);
+    $productContainer.innerHTML = '';
+    $productContainer.insertAdjacentHTML('beforeend', lists);
+  } catch (err) {
+    alert(err);
+  } finally {
+    hideSpinner();
+  }
 };
 
 // 📌 유저에게 작업이 진행중임을 알리는 스피너 세팅 함수
