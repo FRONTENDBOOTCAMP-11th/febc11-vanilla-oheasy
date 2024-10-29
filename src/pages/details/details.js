@@ -1,16 +1,11 @@
 import axios from 'axios';
+import formatPrice from '../../utils/formatPrice';
+import myAxios from '../../utils/myAxios';
 
 // 상품 객체를 리턴하는 함수
 const getProduct = async function (productId) {
   try {
-    const response = await axios.get(
-      `https://11.fesp.shop/products/${productId}`,
-      {
-        headers: {
-          'client-id': 'vanilla05',
-        },
-      },
-    );
+    const response = await myAxios.get(`/products/${productId}`);
     return response.data;
   } catch (error) {
     console.error('Error:', error);
@@ -24,13 +19,8 @@ const getProduct = async function (productId) {
 const getCategory = async function (product, depth, parent = null) {
   console.log(depth, parent);
   try {
-    const response = await axios.get(
-      `https://11.fesp.shop/codes/productCategory?depth=${depth}${parent ? '&parent=' + parent : ''}`,
-      {
-        headers: {
-          'client-id': 'vanilla05',
-        },
-      },
+    const response = await myAxios.get(
+      `/codes/productCategory?depth=${depth}${parent ? '&parent=' + parent : ''}`,
     );
 
     let category = '';
@@ -126,19 +116,7 @@ const getDiscountRate = function (original, onSale) {
   return Math.trunc(((original - onSale) / original) * 100) + '% 할인';
 };
 
-// 가격에 콤마와 원을 붙인 문자열을 리턴하는 함수
-const formatPrice = function (price) {
-  const arr = String(price).split('');
-  let count = 0;
-  for (let i = arr.length; i >= 0; i--) {
-    if (i !== 0 && count !== 0 && count % 3 === 0) {
-      arr[i] = ',' + arr[i];
-    }
-    count++;
-  }
-  return arr.join('') + '원';
-};
-
+console.log(location.search);
 const urlSearch = new URLSearchParams(location.search);
 const productId = urlSearch.get('productId');
 
@@ -174,7 +152,7 @@ const $coverThumbnails = document.querySelector('.item-cover-thumbnails');
 
 product.item.options.map(
   e =>
-    ($coverThumbnails.innerHTML += `<img class='thumbnail' src='https://11.fesp.shop/files/vanilla05/${e.mainImages[0].name}' />`),
+    ($coverThumbnails.innerHTML += `<img class='thumbnail' src='${import.meta.env.VITE_BASE_URL}/files/${import.meta.env.VITE_CLIENT_ID}/${e.mainImages[0].name}' />`),
 );
 
 // 옵션 객체
@@ -217,16 +195,15 @@ $bagBtn.addEventListener('click', async function () {
       const response = await axios.post(
         'https://11.fesp.shop/carts',
         {
-          product_id: productId,
+          product_id: +productId,
           quantity: 1,
-          option: currentOption.option,
           size: currentOption.size,
         },
         {
           headers: {
             'client-id': 'vanilla05',
             Authorization:
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjQsInR5cGUiOiJ1c2VyIiwibmFtZSI6IuygnOydtOyngCIsImVtYWlsIjoidTFAZ21haWwuY29tIiwiaW1hZ2UiOiIvZmlsZXMvdmFuaWxsYTA1L3VzZXItamF5Zy53ZWJwIiwibG9naW5UeXBlIjoiZW1haWwiLCJpYXQiOjE3MzAwNzQ0ODMsImV4cCI6MTczMDE2MDg4MywiaXNzIjoiRkVTUCJ9.-WFqisZ0vAbwaWyryapt5zAnME_EiznoF5-8lCSyeek',
+              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjQsInR5cGUiOiJ1c2VyIiwibmFtZSI6IuygnOydtOyngCIsImVtYWlsIjoidTFAZ21haWwuY29tIiwiaW1hZ2UiOiIvZmlsZXMvdmFuaWxsYTA1L3VzZXItamF5Zy53ZWJwIiwibG9naW5UeXBlIjoiZW1haWwiLCJpYXQiOjE3MzAxNjExMzgsImV4cCI6MTczMDI0NzUzOCwiaXNzIjoiRkVTUCJ9.iO7wEvndSwcnF7-W5RlSOeQUeSqqD5i-Cx1iaLWpoTg',
           },
         },
       );
