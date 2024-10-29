@@ -1,4 +1,3 @@
-import { loadHTML } from '../utils/loadHTML.js';
 import axios from 'axios';
 
 // 📌 Functions for data formatting
@@ -126,8 +125,8 @@ const showProductAll = async function () {
 };
 showProductAll();
 
-// 📌 메인 카테고리 클릭시 해당 데이터만 뽑아와 displayProduct()로 출력하는 함수
-const getProductByMain = async function (code) {
+// 📌 메인 카테고리 기준으로 데이터를 분류하고, 비동기통신으로 가져온 데이터를 displayProduct()로 화면출력까지 담당하는 함수
+const getProductsByMain = async function (code) {
   try {
     // 1) Rendering spinner (In case the internet connection is slow.)
     renderSpinner($productContainer);
@@ -145,11 +144,10 @@ const getProductByMain = async function (code) {
     const data = res.data;
     const items = data.item;
 
-    // 3) 메인 카테고리 클릭시, 그에 맞는 제품 결과 개수로 변경
+    // 메인 카테고리 클릭시, 그에 맞는 제품 결과 개수로 변경
     const productCount = items.length;
     $countSpace.textContent = productCount;
 
-    // 4) 상품리스트를 화면에 출력
     displayProduct(items);
   } catch (err) {
     alert(err);
@@ -158,49 +156,50 @@ const getProductByMain = async function (code) {
   }
 };
 
-// html 컴포넌트 파일을 불러와 콜백함수를 실행
-loadHTML('/src/components/header-mobile.html', function (response) {
-  document.getElementById('header-box').innerHTML = response;
+const loadComponentMain = async function () {
+  try {
+    const parentEl = document.querySelector('#header-box');
 
-  const $headerBox = document.getElementById('header-box');
-  const $sideBar = document.querySelector('.side-bar');
-  const $xbutton = document.querySelector('.sidebar-xbtn');
+    const observer = new MutationObserver(() => {
+      // 사이드바 내부에 있는 메인 카테고리 선택 시, 사이드바를 자동으로 닫히도록
+      const $sideBar = document.querySelector('.side-bar');
+      const $overlay = document.querySelector('.overlay');
 
-  $headerBox.addEventListener('click', function (event) {
-    if (event.target.id === 'menuBtn') {
-      $sideBar.classList.toggle('active');
-    }
-  });
+      $sideBar.addEventListener('click', function (e) {
+        if (e.target.closest('.side-bar')) {
+          $sideBar.classList.remove('active');
+          $overlay.classList.remove('active');
+        }
+      });
 
-  /* 닫기를 클릭했을 때 .side-bar에 active 클래스를 제거한다.*/
-  $xbutton.addEventListener('click', function () {
-    $sideBar.classList.remove('active');
-  });
+      const linkMen = document.querySelector('#header-box .link--men');
+      const linkWomen = document.querySelector('#header-box  .link--women');
+      const linkKids = document.querySelector('#header-box .link--kids');
+      console.log(linkMen, linkWomen, linkKids);
 
-  // 📌 사이드바 내부에 있는 메인 카테고리 선택 시, 사이드바를 자동으로 닫히도록
-  $sideBar.addEventListener('click', function (e) {
-    if (e.target.closest('.side-bar')) {
-      $sideBar.classList.remove('active');
-    }
-  });
+      // New / Men / Women / Kids 카테고리에 따른 상품리스트 조회
+      if (linkMen && linkWomen && linkKids) {
+        linkMen.addEventListener('click', function (e) {
+          e.preventDefault();
+          getProductsByMain('PC01');
+        });
 
-  const linkMen = document.querySelector('.link--men');
-  const linkWomen = document.querySelector('.link--women');
-  const linkKids = document.querySelector('.link--kids');
+        linkWomen.addEventListener('click', function (e) {
+          e.preventDefault();
+          getProductsByMain('PC02');
+        });
 
-  // 📌 getProductByMain()함수를 이용한 New / Men / Women / Kids 카테고리에 따른 상품리스트 조회
-  linkMen.addEventListener('click', function (e) {
-    e.preventDefault();
-    getProductByMain('PC01');
-  });
+        linkKids.addEventListener('click', function (e) {
+          e.preventDefault();
+          getProductsByMain('PC03');
+        });
 
-  linkWomen.addEventListener('click', function (e) {
-    e.preventDefault();
-    getProductByMain('PC02');
-  });
-
-  linkKids.addEventListener('click', function (e) {
-    e.preventDefault();
-    getProductByMain('PC03');
-  });
-});
+        observer.disconnect();
+      }
+    });
+    observer.observe(parentEl, { childList: true, subtree: true });
+  } catch (err) {
+    alert(err);
+  }
+};
+loadComponentMain();
