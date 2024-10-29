@@ -303,7 +303,7 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: false,
           isBest: true,
-          category: ['PC02', 'PC0201'], // Women > 용품
+          category: ['PC02', 'PC0202'], // Women > 용품
           size: ['XS', 'S', 'M', 'L', 'XL'],
           color: '블랙/화이트',
           styleNo: 'DZ6021-010',
