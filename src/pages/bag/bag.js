@@ -156,5 +156,6 @@ document.addEventListener('DOMContentLoaded', () => {
         await updateQuantity(cartId, quantity);
       }
     }
+    fetchCart();
   });
 });
