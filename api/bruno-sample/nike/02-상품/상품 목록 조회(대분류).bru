@@ -5,13 +5,13 @@ meta {
 }
 
 get {
-  url: {{url}}/products?custom={"extra.category.0": "PC01"}
+  url: {{url}}/products
   body: none
   auth: none
 }
 
 params:query {
-  custom: {"extra.category.0": "PC01"}
+  ~custom: {"extra.category.0": "PC01"}
   ~custom: {"extra.category.0": "PC02"}
   ~custom: {"extra.category.0": "PC03"}
 }

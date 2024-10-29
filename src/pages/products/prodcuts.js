@@ -1,6 +1,7 @@
 import formatPrice from '../../utils/formatPrice';
 import myAxios from '../../utils/myAxios';
 
+// 📌 카테고리 변경 시, url도 함께 업데이트하는 함수 - URLSearchParams 객체의 set 함수 활용
 const updateCategoryUrl = function (categoryId) {
   const urlSearch = new URLSearchParams(location.search);
   urlSearch.set('category', categoryId);
@@ -9,17 +10,29 @@ const updateCategoryUrl = function (categoryId) {
   history.pushState({}, '', newUrl);
 };
 
+// 📌 url의 category 쿼리값에 맞는 상품리스트 출력하는 함수 - URLSearchParams 객체의 get 함수 활용
 const loadProductsFromUrlParams = function () {
   const urlParams = new URLSearchParams(location.search);
-  const categoryParam = urlParams.get('category');
+  // > 쿼리 파라미터로서 category가 존재하면 그에 대한 값을 채택하고, category 쿼리가 존재하지 않으면 디폴트로 ALL을 설정해 모든 상품리스트 보여주기
+  const categoryParam = urlParams.get('category') || 'ALL';
 
-  if (categoryParam);
-  {
+  if (categoryParam === 'NEW') {
+    getProductsNew();
+  } else if (categoryParam === 'ALL') {
+    showProductsAll();
+  } else {
     getProductsByMain(categoryParam);
   }
-};
 
+  // > 'category' 파라미터가 없는 경우, url 설정의 기본값으로 ALL 설정
+  if (!window.location.search.includes('category')) {
+    history.replaceState(null, '', '?category=ALL');
+  }
+};
 window.addEventListener('load', loadProductsFromUrlParams);
+
+// 📌 뒤로 가기/앞으로 가기 버튼 클릭 시 URL에 따라 화면 업데이트
+window.addEventListener('popstate', loadProductsFromUrlParams);
 
 const getCategory = async function () {
   try {
@@ -39,7 +52,6 @@ const getCategory = async function () {
     // return target.value; // Men, Women, Kids
 
     // 2️⃣ 동환님 방법
-    console.log(res);
     return res.data.item.productCategory.codes;
   } catch (err) {
     alert(err);
@@ -63,7 +75,6 @@ const $countSpace = document.querySelector('.results__count');
 const displayProduct = async function (items) {
   //   2️⃣ 동환님 방법
   const category = await getCategory();
-  console.log(category); // array
   try {
     const lists = items
       .map(item => {
@@ -144,6 +155,7 @@ const hideSpinner = async function () {
   document.querySelector('.spinner').style.display = 'none';
 };
 
+const $productsTitle = document.querySelector('.wall-header__title');
 // 📌 필터링 없이, 전체 상품리스트 로드하는 함수
 const showProductsAll = async function () {
   try {
@@ -165,13 +177,36 @@ const showProductsAll = async function () {
     $countSpace.textContent = productCount;
 
     displayProduct(items);
+    $productsTitle.textContent = '모든 제품';
   } catch (err) {
     alert(err);
   } finally {
     hideSpinner();
   }
 };
-showProductsAll();
+
+const getProductsNew = async function () {
+  try {
+    renderSpinner($productContainer);
+
+    const res = await myAxios.get(`products?custom={"extra.isNew": true}`, {
+      headers: {
+        'client-id': 'vanilla05',
+      },
+    });
+    const items = res.data.item;
+    console.log(items);
+
+    const productCount = items.length;
+    $countSpace.textContent = productCount;
+
+    displayProduct(items);
+  } catch (err) {
+    alert(err);
+  } finally {
+    hideSpinner();
+  }
+};
 
 // 📌 메인 카테고리 기준으로 데이터를 분류하고, 비동기통신으로 가져온 데이터를 displayProduct()로 화면출력까지 담당하는 함수
 const getProductsByMain = async function (code) {
@@ -220,18 +255,26 @@ const loadComponentMain = async function () {
         }
       });
 
-      const sidebarMenu = document.querySelector('.side-bar-menu');
-      console.log(sidebarMenu);
+      const $sidebarMenu = document.querySelector('.side-bar-menu');
 
       // 📌 이벤트 위임과 closest()을 이용한 New / Men / Women / Kids 카테고리에 따른 상품리스트 조회
-      sidebarMenu.addEventListener('click', function (e) {
+      $sidebarMenu.addEventListener('click', function (e) {
         e.preventDefault();
+
+        if (e.target.closest('.link--new')) {
+          getProductsNew();
+
+          const categoryId = e.target.closest('.item__new').dataset.category; // new
+          updateCategoryUrl(categoryId);
+          $productsTitle.textContent = '신제품';
+        }
 
         if (e.target.closest('.link--men')) {
           getProductsByMain('PC01');
 
           const categoryId = e.target.closest('.item__men').dataset.category; // PC01
           updateCategoryUrl(categoryId);
+          $productsTitle.textContent = '남성 신발';
         }
 
         if (e.target.closest('.link--women')) {
@@ -239,6 +282,7 @@ const loadComponentMain = async function () {
 
           const categoryId = e.target.closest('.item__women').dataset.category; // PC02
           updateCategoryUrl(categoryId);
+          $productsTitle.textContent = '여성 신발';
         }
 
         if (e.target.closest('.link--kids')) {
@@ -246,6 +290,7 @@ const loadComponentMain = async function () {
 
           const categoryId = e.target.closest('.item__kids').dataset.category; // PC03
           updateCategoryUrl(categoryId);
+          $productsTitle.textContent = '주니어 신발';
         }
       });
 
