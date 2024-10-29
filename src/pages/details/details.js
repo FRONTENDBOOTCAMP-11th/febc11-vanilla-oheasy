@@ -29,13 +29,13 @@ const getCategory = async function (product, depth, parent = null) {
     // db에 desc가 지정되어있지 않기 때문에 직접 문자열 추가
     switch (c[0].value) {
       case 'Men':
-        category += '남성';
+        category += c[0].desc;
         break;
       case 'Women':
-        category += '여성';
+        category += c[0].desc;
         break;
       case 'Kid':
-        category += '주니어';
+        category += c[0].desc;
         break;
       default:
         category += c[0].value;
@@ -186,15 +186,19 @@ $bagBtn.addEventListener('click', async function () {
     window.alert('사이즈를 선택해 주세요.');
   } else {
     try {
+      const product_id =
+        product.item.options.length === 0
+          ? +productId
+          : +productId + currentOption.option + 1;
       const response = await myAxios.post('/carts', {
-        product_id:
-          product.item.options.length === 0
-            ? +productId
-            : +productId + currentOption.option + 1,
+        product_id,
         quantity: 1,
         size: currentOption.size,
       });
-      console.log(response);
+      alert(
+        `product id: ${product_id}, size: ${currentOption.size} 상품 1개 장바구니에 추가되었습니다.`,
+      );
+      // console.log(response);
     } catch (error) {
       console.log(error);
     }
