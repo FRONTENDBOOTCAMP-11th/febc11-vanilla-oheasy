@@ -70,6 +70,7 @@ const isItBest = function (answer) {
 
 const $productContainer = document.querySelector('.l_grid');
 const $countSpace = document.querySelector('.results__count');
+const $productsTitle = document.querySelector('.wall-header__title');
 
 // 📌 데이터를 배열 형태로 받아 위에 정의한 여러 함수를 이용해 데이터를 화면에 출력하는 함수
 const displayProduct = async function (items) {
@@ -155,10 +156,11 @@ const hideSpinner = async function () {
   document.querySelector('.spinner').style.display = 'none';
 };
 
-const $productsTitle = document.querySelector('.wall-header__title');
 // 📌 필터링 없이, 전체 상품리스트 로드하는 함수
 const showProductsAll = async function () {
   try {
+    $productsTitle.textContent = '모든 제품';
+
     // 1) Rendering spinner (In case the internet connection is slow.)
     renderSpinner($productContainer);
 
@@ -199,6 +201,7 @@ const getProductsNew = async function () {
 
     const productCount = items.length;
     $countSpace.textContent = productCount;
+    $productsTitle.textContent = '신제품';
 
     displayProduct(items);
   } catch (err) {
@@ -211,6 +214,20 @@ const getProductsNew = async function () {
 // 📌 메인 카테고리 기준으로 데이터를 분류하고, 비동기통신으로 가져온 데이터를 displayProduct()로 화면출력까지 담당하는 함수
 const getProductsByMain = async function (code) {
   try {
+    switch (code) {
+      case 'PC01':
+        $productsTitle.textContent = '남성 신발';
+        break;
+
+      case 'PC02':
+        $productsTitle.textContent = '여성 신발';
+        break;
+
+      case 'PC03':
+        $productsTitle.textContent = '주니어 신발';
+        break;
+    }
+
     // 1) Rendering spinner (In case the internet connection is slow.)
     renderSpinner($productContainer);
 
@@ -266,7 +283,7 @@ const loadComponentMain = async function () {
 
           const categoryId = e.target.closest('.item__new').dataset.category; // new
           updateCategoryUrl(categoryId);
-          $productsTitle.textContent = '신제품';
+          //   $productsTitle.textContent = '신제품';
         }
 
         if (e.target.closest('.link--men')) {
@@ -274,7 +291,7 @@ const loadComponentMain = async function () {
 
           const categoryId = e.target.closest('.item__men').dataset.category; // PC01
           updateCategoryUrl(categoryId);
-          $productsTitle.textContent = '남성 신발';
+          //   $productsTitle.textContent = '남성 신발';
         }
 
         if (e.target.closest('.link--women')) {
@@ -282,7 +299,7 @@ const loadComponentMain = async function () {
 
           const categoryId = e.target.closest('.item__women').dataset.category; // PC02
           updateCategoryUrl(categoryId);
-          $productsTitle.textContent = '여성 신발';
+          //   $productsTitle.textContent = '여성 신발';
         }
 
         if (e.target.closest('.link--kids')) {
