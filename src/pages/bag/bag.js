@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       items.forEach(cart => {
         const quantity = cart.quantity; // 수량
-        const size = cart.size;
+        const size = cart.size; //사이즈
         const productName = cart.product.name; // 상품명
         const productPrice = cart.product.price; // 가격
         const productImage = cart.product.image.name; // 이미지 파일의 이름
@@ -115,9 +115,9 @@ document.addEventListener('DOMContentLoaded', () => {
                   <div class="count_text">
                     <p>수량</p>
                     <div class="count_number">
-                      <img onclick="quantityMinus(this, '${cart._id}')" class="button" src="/src/assets/icons/minus.svg" alt="Decrease">
+                      <img id="quantityBtn" class="button minus" src="/src/assets/icons/minus.svg" alt="Decrease">
                       <p>${quantity}</p>
-                      <img onclick="quantityPlus(this, '${cart._id}')" class="button" src="/src/assets/icons/plus.svg" alt="Increase">
+                      <img id="quantityBtn" class="button plus" src="/src/assets/icons/plus.svg" alt="Increase">
                     </div>
                   </div>
                 </div>
@@ -164,3 +164,58 @@ document.addEventListener('DOMContentLoaded', () => {
   // 함수 호출
   fetchCart();
 });
+
+
+
+
+const quantityElement = document.getElementById('quantityBtn')
+
+const quantityPlusMinus = function(){
+  const quantityElement = element.parentElement.querySelector('p');
+  let quantity = parseInt(quantityElement.innerText);
+
+  if(tayget.matches('.button.plus')){
+    quantity++;
+    quantityElement.innerText = quantity;
+    patchQuantity()
+  }else if(tayget.matches('.button.minus')){
+    if(quantity > 1){
+      quantity--;
+      quantityElement.innerText = quantity;
+      patchQuantity()
+    }else{
+      alert('수량이 최소 1개는 있어야합니다.')
+    }
+  }
+}
+
+const patchQuantity = function(){
+  // 서버에 수량 업데이트 요청 (PATCH 방식)
+  try {
+   await axios.patch(
+     `https://11.fesp.shop/carts/${cartId}`,
+     { quantity },
+     {
+       headers: {
+         'client-id': 'vanilla05',
+         Authorization: myToken,
+       },
+     },
+   );
+ } catch (error) {
+   console.error('수량 변경 실패:', error);
+   alert('수량 변경에 실패했습니다.');
+ }
+}
+
+addEventListener('click',(quantityPlusMinus) );
+
+
+
+
+
+
+
+
+
+
