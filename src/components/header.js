@@ -1,162 +1,4 @@
-import loadHTML from '../utils/loadHTML';
-import axios from 'axios';
-
-// 📌 Functions for data formatting
-const formatPrice = function (price) {
-  const arr = String(price).split('');
-  let count = 0;
-  for (let i = arr.length; i >= 0; i--) {
-    if (i !== 0 && count !== 0 && count % 3 === 0) {
-      arr[i] = ',' + arr[i];
-    }
-    count++;
-  }
-  return arr.join('') + '원';
-};
-
-const getCategory = function (category) {
-  if (category === 'PC01') {
-    return '남성';
-  } else if (category === 'PC02') {
-    return '여성';
-  } else if (category === 'PC03') {
-    return '주니어';
-  }
-};
-
-const isItBest = function (answer) {
-  if (answer) {
-    return '베스트셀러';
-  } else {
-    return '';
-  }
-};
-
-const $productContainer = document.querySelector('.l_grid');
-const $countSpace = document.querySelector('.results__count');
-
-// 📌 데이터를 배열 형태로 받아 위에 정의한 여러 함수를 이용해 데이터를 화면에 출력하는 함수
-const displayProduct = function (items) {
-  const lists = items
-    .map(item => {
-      return `<li class="product">
-                    <div class="product-cover">
-                      <img src="https://11.fesp.shop/files/vanilla05/${
-                        item.mainImages[0].name
-                      }" />
-                    </div>
-    
-                    <div class="product-card">
-                     <div class="product-msg-info">
-                      <p class="product-card__messaging">${
-                        item.extra.isNew
-                          ? '신제품'
-                          : isItBest(item.extra.isBest)
-                      }</p>
-                      <div class="product-card__titles">
-                        <p class="title">${item.name}</p>
-                        <p class="subtitle">${getCategory(
-                          item.extra.category[0],
-                        )} 신발</p>
-                      </div>
-                     </div>
-    
-                     <div class="product-card__count-wrapper">
-                      <p class="count-item">${
-                        item.options === 0 ? 1 : item.options
-                      }개 색상</p>
-                     </div>
-    
-                     <div class="product-card__price-wrapper">
-                      <p class="price">${formatPrice(item.price)}</p>
-                     </div>
-                    </div>
-                  </li>`;
-    })
-    .join('');
-
-  $productContainer.innerHTML = '';
-  $productContainer.insertAdjacentHTML('beforeend', lists);
-};
-
-// 📌 유저에게 작업이 진행중임을 알리는 스피너 세팅 함수
-const renderSpinner = async function (parentEl) {
-  // 이전의 스피너가 있다면 제거
-  const existingSpinner = document.querySelector('.spinner');
-  if (existingSpinner) existingSpinner.remove();
-
-  const spinnerHTML = `
-                    <div class="spinner">
-                      <img src="./loader.svg" alt="spinner"/>
-                    </div>`;
-  parentEl.innerHTML = '';
-  parentEl.insertAdjacentHTML('beforebegin', spinnerHTML);
-};
-
-const hideSpinner = async function () {
-  document.querySelector('.spinner').style.display = 'none';
-};
-
-// 📌 필터링 없이, 전체 상품리스트 로드하는 함수
-const showProductAll = async function () {
-  try {
-    // 1) Rendering spinner (In case the internet connection is slow.)
-    renderSpinner($productContainer);
-
-    // 2) Loading the list of products
-    const res = await axios.get(`https://11.fesp.shop/products`, {
-      headers: {
-        'client-id': 'vanilla05',
-      },
-    });
-
-    const data = res.data;
-    const items = data.item;
-
-    // 메인 카테고리 클릭시, 그에 맞는 제품 결과 개수로 변경
-    const productCount = items.length;
-    $countSpace.textContent = productCount;
-
-    displayProduct(items);
-  } catch (err) {
-    alert(err);
-  } finally {
-    hideSpinner();
-  }
-};
-showProductAll();
-
-// 📌 메인 카테고리 클릭시 해당 데이터만 뽑아와 displayProduct()로 출력하는 함수
-const getProductByMain = async function (code) {
-  try {
-    // 1) Rendering spinner (In case the internet connection is slow.)
-    renderSpinner($productContainer);
-
-    // 2) Loading the list of products
-    const res = await axios.get(
-      `https://11.fesp.shop/products?custom={"extra.category.0":"${code}"}`,
-      {
-        headers: {
-          'client-id': 'vanilla05',
-        },
-      },
-    );
-
-    const data = res.data;
-    const items = data.item;
-
-    // 3) 메인 카테고리 클릭시, 그에 맞는 제품 결과 개수로 변경
-    const productCount = items.length;
-    $countSpace.textContent = productCount;
-
-    // 4) 상품리스트를 화면에 출력
-    displayProduct(items);
-  } catch (err) {
-    alert(err);
-  } finally {
-    hideSpinner();
-  }
-};
+import { loadHTML } from '../utils/loadHTML.js';
 
 // html 컴포넌트 파일을 불러와 콜백함수를 실행
 loadHTML('/src/components/header.html', function (response) {
@@ -165,42 +7,18 @@ loadHTML('/src/components/header.html', function (response) {
   const $headerBox = document.getElementById('header-box');
   const $sideBar = document.querySelector('.side-bar');
   const $xbutton = document.querySelector('.sidebar-xbtn');
+  const $overlay = document.querySelector('.overlay');
 
   $headerBox.addEventListener('click', function (event) {
     if (event.target.id === 'menuBtn') {
       $sideBar.classList.toggle('active');
+      $overlay.classList.toggle('active');
     }
   });
 
   /* 닫기를 클릭했을 때 .side-bar에 active 클래스를 제거한다.*/
   $xbutton.addEventListener('click', function () {
     $sideBar.classList.remove('active');
-  });
-
-  // 📌 사이드바 내부에 있는 메인 카테고리 선택 시, 사이드바를 자동으로 닫히도록
-  $sideBar.addEventListener('click', function (e) {
-    if (e.target.closest('.side-bar')) {
-      $sideBar.classList.remove('active');
-    }
-  });
-
-  const linkMen = document.querySelector('.link--men');
-  const linkWomen = document.querySelector('.link--women');
-  const linkKids = document.querySelector('.link--kids');
-
-  // 📌 getProductByMain()함수를 이용한 New / Men / Women / Kids 카테고리에 따른 상품리스트 조회
-  linkMen.addEventListener('click', function (e) {
-    e.preventDefault();
-    getProductByMain('PC01');
-  });
-
-  linkWomen.addEventListener('click', function (e) {
-    e.preventDefault();
-    getProductByMain('PC02');
-  });
-
-  linkKids.addEventListener('click', function (e) {
-    e.preventDefault();
-    getProductByMain('PC03');
+    $overlay.classList.toggle('active');
   });
 });
