@@ -590,7 +590,7 @@ export const initData = async (clientId, nextSeq) => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 9,
           size: [220, 225, 230, 235, 240, 245, 250, 255, 260],
           color: '화이트/바시티 블루/바시티 레드',
           styleNo: 'DN1791-108',
@@ -654,7 +654,7 @@ export const initData = async (clientId, nextSeq) => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 9,
           size: [220, 225, 230, 235, 240, 245, 250, 255, 260],
           color: '화이트/블랙',
           styleNo: 'DN1791-107',
@@ -718,7 +718,7 @@ export const initData = async (clientId, nextSeq) => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 9,
           size: [220, 225, 230, 235, 240, 245, 250, 255, 260],
           color: '세일/카키/화이트/코카오 와우',
           styleNo: 'DN1791-104',
@@ -782,7 +782,7 @@ export const initData = async (clientId, nextSeq) => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 9,
           size: [220, 225, 230, 235, 240, 245, 250, 255, 260],
           color: '블랙/화이트',
           styleNo: 'DN1791-001',
@@ -870,7 +870,7 @@ export const initData = async (clientId, nextSeq) => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 13,
           size: [220, 225, 230, 235, 240, 245, 250, 255, 260],
           color: '서밋 화이트/화이트/팬텀/라이트 스모크 그레이',
           styleNo: 'FZ2606-100',
@@ -929,7 +929,7 @@ export const initData = async (clientId, nextSeq) => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 13,
           size: [220, 225, 230, 235, 240, 245, 250, 255, 260],
           color: '헴프/세일/샌드드리프트/블랙',
           styleNo: 'FZ2606-200',
@@ -1092,7 +1092,7 @@ export const initData = async (clientId, nextSeq) => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 17,
           size: [220, 225, 230, 235, 240, 245, 250, 255, 260],
           color: '볼트/건메탈/블랙',
           styleNo: 'FJ7409-700',
@@ -1156,7 +1156,7 @@ export const initData = async (clientId, nextSeq) => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 17,
           size: [220, 225, 230, 235, 240, 245, 250, 255, 260],
           color: '화이트/화이트/메탈릭 실버/화이트',
           styleNo: 'FJ7409-100',
@@ -1220,7 +1220,7 @@ export const initData = async (clientId, nextSeq) => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 17,
           size: [220, 225, 230, 235, 240, 245, 250, 255, 260],
           color: '서밋 화이트/포톤 더스트/메탈릭 실버',
           styleNo: 'FJ7409-101',
@@ -1313,7 +1313,7 @@ export const initData = async (clientId, nextSeq) => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 21,
           size: [220, 225, 230, 235, 240, 245, 250, 255, 260],
           color: '화이트/라이트 본/라임스톤/미드나이트 네이비',
           styleNo: 'DZ2539-100',
@@ -1377,7 +1377,7 @@ export const initData = async (clientId, nextSeq) => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 21,
           size: [220, 225, 230, 235, 240, 245, 250, 255, 260],
           color: '버건디 크러시/다크 비트루트/러시 핑크/블랙',
           styleNo: 'DZ2539-600',
@@ -1525,7 +1525,7 @@ export const initData = async (clientId, nextSeq) => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 25,
           size: [220, 230, 240, 250, 260],
           color: '블랙/블랙',
           styleNo: 'FZ7939-001',
@@ -1579,7 +1579,7 @@ export const initData = async (clientId, nextSeq) => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 25,
           size: [220, 230, 240, 250, 260],
           color: '메탈릭 실버/라이트 오어우드 브라운',
           styleNo: 'FZ7939-002',
@@ -1633,7 +1633,7 @@ export const initData = async (clientId, nextSeq) => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 25,
           size: [220, 230, 240, 250, 260],
           color: '라이트 바이올렛 오어/라이트 바이올렛 오어',
           styleNo: 'FZ7939-200',
@@ -1726,7 +1726,7 @@ export const initData = async (clientId, nextSeq) => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 29,
           size: [220, 225, 230, 235, 240, 245, 250, 255, 260],
           color: '블랙/메탈릭 플래티넘/앤트러사이트',
           styleNo: 'FD5191-003',
@@ -1790,7 +1790,7 @@ export const initData = async (clientId, nextSeq) => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 29,
           size: [220, 225, 230, 235, 240, 245, 250, 255, 260],
           color: '제이드 호라이즌/사이버/크림슨 틴트/세일',
           styleNo: 'FD5191-300',
@@ -1854,7 +1854,7 @@ export const initData = async (clientId, nextSeq) => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 29,
           size: [220, 225, 230, 235, 240, 245, 250, 255, 260],
           color: '아머리 네이비/셀레스티얼 골드/빈티지 그린/메탈릭 실버',
           styleNo: 'FD5191-401',
@@ -1918,7 +1918,7 @@ export const initData = async (clientId, nextSeq) => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 29,
           size: [220, 225, 230, 235, 240, 245, 250, 255, 260],
           color: '블랙/울프 그레이/앤트러사이트/화이트',
           styleNo: 'FD5191-001',
@@ -2021,7 +2021,7 @@ export const initData = async (clientId, nextSeq) => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 34,
           size: [220, 225, 230, 235, 240, 245, 250, 255, 260],
           color: '블랙/앤트러사이트/블랙',
           styleNo: 'FQ0912-002',
@@ -2090,7 +2090,7 @@ export const initData = async (clientId, nextSeq) => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 34,
           size: [220, 225, 230, 235, 240, 245, 250, 255, 260],
           color: '샌드드리프트/사이버/라이프 라임/다크 포니',
           styleNo: 'FQ0912-101',
@@ -2154,7 +2154,7 @@ export const initData = async (clientId, nextSeq) => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 34,
           size: [220, 225, 230, 235, 240, 245, 250, 255, 260],
           color: '아머리 네이비/빈티지 그린/플래티넘 바이올렛/아머리 네이비',
           styleNo: 'FQ0912-400',
@@ -2247,7 +2247,7 @@ export const initData = async (clientId, nextSeq) => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 38,
           size: [220, 225, 230, 235, 240, 245, 250, 255, 260],
           color: '블랙/블랙/메탈릭 실버',
           styleNo: 'FZ5593-001',
@@ -2311,7 +2311,7 @@ export const initData = async (clientId, nextSeq) => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 38,
           size: [220, 225, 230, 235, 240, 245, 250, 255, 260],
           color: '엘리멘탈 핑크/검 미디엄 브라운/옵시디언',
           styleNo: ' FZ5593-600',
@@ -2526,7 +2526,7 @@ export const initData = async (clientId, nextSeq) => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 43,
           size: [
             240, 245, 250, 255, 260, 265, 270, 275, 280, 285, 290, 295, 300,
             305, 310,
@@ -2578,7 +2578,7 @@ export const initData = async (clientId, nextSeq) => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 43,
           size: [
             230, 235, 240, 245, 250, 255, 260, 265, 270, 275, 280, 285, 290,
             295, 300, 305, 310,
@@ -2630,7 +2630,7 @@ export const initData = async (clientId, nextSeq) => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 43,
           size: [
             240, 245, 250, 255, 260, 265, 270, 275, 280, 285, 290, 295, 300,
             305, 310,
@@ -2755,7 +2755,7 @@ export const initData = async (clientId, nextSeq) => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 48,
           size: [
             240, 245, 250, 255, 260, 265, 270, 275, 280, 285, 290, 295, 300,
             305, 310,
@@ -2797,7 +2797,7 @@ export const initData = async (clientId, nextSeq) => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 48,
           size: [
             240, 245, 250, 255, 260, 265, 270, 275, 280, 285, 290, 295, 300,
             305, 310,
@@ -2849,7 +2849,7 @@ export const initData = async (clientId, nextSeq) => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 48,
           size: [
             240, 245, 250, 255, 260, 265, 270, 275, 280, 285, 290, 295, 300,
           ],
@@ -3035,7 +3035,7 @@ export const initData = async (clientId, nextSeq) => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 54,
           size: [
             240, 245, 250, 255, 260, 265, 270, 275, 280, 285, 290, 295, 300,
             305, 310,
@@ -3087,7 +3087,7 @@ export const initData = async (clientId, nextSeq) => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 54,
           size: [
             245, 250, 255, 260, 265, 270, 275, 280, 285, 290, 295, 300, 305,
           ],
@@ -3138,7 +3138,7 @@ export const initData = async (clientId, nextSeq) => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 54,
           size: [250, 255, 260, 265, 270, 275, 280, 285, 290, 295, 300],
           color: '화이트/화이트/볼트',
           styleNo: 'FJ7127-104',
@@ -3211,12 +3211,12 @@ export const initData = async (clientId, nextSeq) => {
             originalname: 'M_NIKE_COURT_LITE_4_05.png   ',
           },
         ],
-        content: `나이키 프리 메트콘 6 흰색`,
+        content: `나이키코트 라이트 4 흰색`,
         createdAt: getTime(-41, -60 * 60 * 2),
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 58,
           size: [
             240, 245, 250, 255, 260, 265, 270, 275, 280, 285, 290, 295, 300,
             305, 310,
@@ -3268,7 +3268,7 @@ export const initData = async (clientId, nextSeq) => {
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 58,
           size: [
             240, 245, 250, 255, 260, 265, 270, 275, 280, 285, 290, 295, 300,
             305, 310,
@@ -3557,12 +3557,12 @@ export const initData = async (clientId, nextSeq) => {
             originalname: 'AIR_JORDAN_4RM_A_010.png',
           },
         ],
-        content: `에어 조던 4RM 블랙/화이트`,
+        content: `에어 조던 4RM 검은색`,
         createdAt: getTime(-41, -60 * 60 * 2),
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 64,
           size: [225, 230, 235, 240, 245, 250], // 1
           color: '블랙/화이트', // 1
           styleNo: 'FQ7938-004', // 1
@@ -3630,12 +3630,12 @@ export const initData = async (clientId, nextSeq) => {
             originalname: 'AIR_JORDAN_4RM_B_010.png',
           },
         ],
-        content: `에어 조던 4RM 블랙/다크 그레이/라이트 본`,
+        content: `에어 조던 4RM 흰색`,
         createdAt: getTime(-41, -60 * 60 * 2),
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 64,
           size: [230, 235, 240, 245], // 1
           color: '블랙/다크 그레이/라이트 본', // 1
           styleNo: 'FQ7938-001', // 1
@@ -3791,12 +3791,12 @@ export const initData = async (clientId, nextSeq) => {
             originalname: 'AIR_MAX_A_08.png',
           },
         ],
-        content: `에어맥스 1 스모크 그레이/울프 그레이/옵시디언/레이서 블루`,
+        content: `에어맥스 1 파란색`,
         createdAt: getTime(-41, -60 * 60 * 2),
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 68,
           size: [200, 205, 210, 220, 225, 230, 235, 240, 245, 250], // 1
           color: '스모크 그레이/울프 그레이/옵시디언/레이서 블루', // 1
           styleNo: 'DZ3307-007', // 1
@@ -3854,12 +3854,12 @@ export const initData = async (clientId, nextSeq) => {
             originalname: 'AIR_MAX_B_08.png',
           },
         ],
-        content: `에어맥스 1 페일 아이보리/화이트/바이코스털/빈티지 그린`,
+        content: `에어맥스 1 아이보리색`,
         createdAt: getTime(-41, -60 * 60 * 2),
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 68,
           size: [200, 205, 210, 220, 225, 230, 235, 240, 245, 250], // 1
           color: '페일 아이보리/화이트/바이코스털/빈티지 그린', // 1
           styleNo: 'DZ3307-113', // 1
@@ -3917,12 +3917,12 @@ export const initData = async (clientId, nextSeq) => {
             originalname: 'AIR_MAX_C_08.png',
           },
         ],
-        content: `에어맥스 1 서밋 화이트/울프 그레이/화이트/다크`,
+        content: `에어맥스 1 분홍색`,
         createdAt: getTime(-41, -60 * 60 * 2),
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 68,
           size: [200, 205, 210, 220, 225, 230, 235, 240, 245, 250], // 1
           color: '서밋 화이트/울프 그레이/화이트/다크', // 1
           styleNo: 'DZ3307-115', // 1
@@ -3980,12 +3980,12 @@ export const initData = async (clientId, nextSeq) => {
             originalname: 'AIR_MAX_D_08.png',
           },
         ],
-        content: `에어맥스 1 스모크 팬텀/라이트 오어우드 브라운/블랙/카키`,
+        content: `에어맥스 1 갈색`,
         createdAt: getTime(-41, -60 * 60 * 2),
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 68,
           size: [200, 205, 210, 220, 225, 230, 235, 240, 245, 250], // 1
           color: '스모크 팬텀/라이트 오어우드 브라운/블랙/카키', // 1
           styleNo: 'DZ3307-006', // 1
@@ -4271,12 +4271,12 @@ export const initData = async (clientId, nextSeq) => {
             originalname: 'NIKE_JUNIOR_PHANTOM_GX_2_ACADEMY_A_08.png',
           },
         ],
-        content: `나이키 주니어 팬텀 GX 2 아카데미 메탈릭 실버/볼트/블랙`,
+        content: `나이키 주니어 팬텀 희색`,
         createdAt: getTime(-41, -60 * 60 * 2),
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 76,
           size: [200, 205, 210, 220, 225, 230, 235, 240], // 1
           color: '메탈릭 실버/볼트/블랙', // 1
           styleNo: 'FJ2608-003', // 1
@@ -4334,12 +4334,12 @@ export const initData = async (clientId, nextSeq) => {
             originalname: 'NIKE_JUNIOR_PHANTOM_GX_2_ACADEMY_B_08.png',
           },
         ],
-        content: `나이키 주니어 팬텀 GX 2 아카데미 블루 퓨리/화이트`,
+        content: `나이키 주니어 팬텀 GX 2 아카데미 파란색`,
         createdAt: getTime(-41, -60 * 60 * 2),
         updatedAt: getTime(-40, -60 * 15),
         extra: {
           depth: 2,
-          parent: 1,
+          parent: 76,
           size: [200, 205, 210, 220, 225, 230, 235, 240], // 1
           color: '블루 퓨리/화이트', // 1
           styleNo: 'FJ2608-400', // 1
