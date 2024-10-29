@@ -303,7 +303,7 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: false,
           isBest: true,
-          category: ['PC02', 'PC0203'], // Women > 용품
+          category: ['PC02', 'PC0201'], // Women > 용품
           size: ['XS', 'S', 'M', 'L', 'XL'],
           color: '블랙/화이트',
           styleNo: 'DZ6021-010',
@@ -2376,7 +2376,7 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: false,
           isBest: true,
-          category: ['PC01', 'PC0101'], // Men > 신발
+          category: ['PC01', 'PC0102'], // Men > 신발
           size: [
             230, 235, 240, 245, 250, 255, 260, 265, 270, 275, 280, 285, 290,
             295, 300, 305, 310,
@@ -2444,7 +2444,7 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: false,
           isBest: true,
-          category: ['PC01', 'PC0101'], // Men > 용품
+          category: ['PC01', 'PC0102'], // Men > 용품
           size: [
             240, 245, 250, 255, 260, 265, 270, 275, 280, 285, 290, 295, 300,
             305, 310,
@@ -2479,7 +2479,7 @@ export const initData = async (clientId, nextSeq) => {
           depth: 1,
           isNew: false,
           isBest: false,
-          category: ['PC01', 'PC0101'], // Women > 신발
+          category: ['PC01', 'PC0102'], // Women > 신발
           primeCost: 139000,
           gender: 'men',
         },
@@ -2683,7 +2683,7 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: false,
           isBest: false,
-          category: ['PC01', 'PC0101'], // Men > 신발
+          category: ['PC01', 'PC0102'], // Men > 신발
           size: [
             240, 245, 250, 255, 260, 265, 270, 275, 280, 285, 290, 295, 300,
             305, 310,
@@ -2718,7 +2718,7 @@ export const initData = async (clientId, nextSeq) => {
           depth: 1,
           isNew: false,
           isBest: false,
-          category: ['PC01', 'PC0101'], // Women > 신발
+          category: ['PC01', 'PC0102'], // Women > 신발
           primeCost: 169000,
           gender: 'men',
         },
@@ -2900,7 +2900,7 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: false,
           isBest: false,
-          category: ['PC01', 'PC0101'], // Men > 신발
+          category: ['PC01', 'PC0102'], // Men > 신발
           size: [
             240, 245, 250, 255, 260, 265, 270, 275, 280, 285, 290, 295, 300,
             305, 310,
@@ -2953,7 +2953,7 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: false,
           isBest: true,
-          category: ['PC01', 'PC0101'], // Men > 용품
+          category: ['PC01', 'PC0102'], // Men > 용품
           size: [
             240, 245, 250, 255, 260, 265, 270, 275, 280, 285, 290, 295, 300,
             305, 310,
@@ -2988,7 +2988,7 @@ export const initData = async (clientId, nextSeq) => {
           depth: 1,
           isNew: false,
           isBest: false,
-          category: ['PC01', 'PC0101'], // Women > 신발
+          category: ['PC01', 'PC0102'], // Women > 신발
           primeCost: 139000,
           gender: 'men',
         },
@@ -3169,7 +3169,7 @@ export const initData = async (clientId, nextSeq) => {
           depth: 1,
           isNew: false,
           isBest: false,
-          category: ['PC01', 'PC0101'], // Women > 신발
+          category: ['PC01', 'PC0102'], // Women > 신발
           primeCost: 89000,
           gender: 'men',
         },
@@ -3320,7 +3320,7 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: false,
           isBest: true,
-          category: ['PC01', 'PC0101'], // Men > 신발
+          category: ['PC01', 'PC0102'], // Men > 신발
           size: [
             230, 235, 240, 245, 250, 255, 260, 265, 270, 275, 280, 285, 290,
             295, 300, 305, 310,
@@ -3460,7 +3460,7 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: false,
-          category: ['PC03', 'PC0302'], // 1
+          category: ['PC03', 'PC0301'], // 1
           size: [225, 230, 235, 240, 245, 250], // 1
           color: '씨폼/스프루스 아우라/아틱 오렌지/애프리캇 아게이트', // 1
           styleNo: 'HF3136-002', // 1
@@ -3491,7 +3491,7 @@ export const initData = async (clientId, nextSeq) => {
           depth: 1,
           isNew: true,
           isBest: false,
-          category: ['PC03', 'PC0303'], //1
+          category: ['PC03', 'PC0301'], //1
           gender: 'kids',
         },
       },
@@ -3704,7 +3704,7 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: false,
-          category: ['PC03', 'PC0304'], // 1
+          category: ['PC03', 'PC0301'], // 1
           size: [225, 230, 235, 240, 245, 250], // 1
           color: '유니버시티 레드/화이트/블랙', // 1
           styleNo: 'CD7782-602', // 1
@@ -3735,7 +3735,7 @@ export const initData = async (clientId, nextSeq) => {
           depth: 1,
           isNew: true,
           isBest: false,
-          category: ['PC03', 'PC0305'], // 1
+          category: ['PC03', 'PC0301'], // 1
           gender: 'kids',
         },
       },
@@ -4049,7 +4049,7 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: false,
-          category: ['PC03', 'PC0306'], // 1
+          category: ['PC03', 'PC0301'], // 1
           size: [225, 230, 235, 240, 245, 250], // 1
           color: '짐 레드/화이트/블랙', // 1
           styleNo: 'HF9980-600', // 1
@@ -4114,7 +4114,7 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: false,
-          category: ['PC03', 'PC0307'], // 1
+          category: ['PC03', 'PC0301'], // 1
           size: [225, 230, 235, 240, 245, 250], // 1
           color: '세일/화이트/게임 로얄/세일', // 1
           styleNo: 'FV7472-100', // 1
@@ -4184,7 +4184,7 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: false,
-          category: ['PC03', 'PC0308'], // 1
+          category: ['PC03', 'PC0301'], // 1
           size: [230, 235, 240, 245, 250], // 1
           color: '화이트/볼트 글로우/그린 글로우/블랙', // 1
           styleNo: 'HQ5058-107', // 1
@@ -4215,7 +4215,7 @@ export const initData = async (clientId, nextSeq) => {
           depth: 1,
           isNew: true,
           isBest: false,
-          category: ['PC03', 'PC0309'], // 1
+          category: ['PC03', 'PC0301'], // 1
           gender: 'kids',
         },
       },
@@ -4408,7 +4408,7 @@ export const initData = async (clientId, nextSeq) => {
         extra: {
           isNew: true,
           isBest: false,
-          category: ['PC03', 'PC03010'], // 1
+          category: ['PC03', 'PC0301'], // 1
           size: [200, 205, 210, 215, 220, 225, 230, 235, 240, 245, 250], // 1
           color: '휘트/블랙/휘트', // 1
           styleNo: 'HF0750-700', // 1
