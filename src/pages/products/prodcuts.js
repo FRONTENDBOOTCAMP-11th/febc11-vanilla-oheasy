@@ -1,5 +1,27 @@
 import axios from 'axios';
 
+const updateCategoryUrl = function (categoryId) {
+  const urlSearch = new URLSearchParams(location.search);
+  // urlSearch.set ... custom = {"extra.category.0": "PC01"}
+  //   urlSearch.set('custom', `{"extra.category.0": "${categoryId}"}`);
+  urlSearch.set('category', categoryId);
+
+  const newUrl = `${location.pathname}?${urlSearch.toString()}`;
+  history.pushState({}, '', newUrl);
+};
+
+const loadProductsFromUrlParams = function () {
+  const urlParams = new URLSearchParams(location.search);
+  const categoryParam = urlParams.get('category');
+
+  if (categoryParam);
+  {
+    getProductsByMain(categoryParam);
+  }
+};
+
+window.addEventListener('load', loadProductsFromUrlParams);
+
 // 📌 Functions for data formatting
 const formatPrice = function (price) {
   const arr = String(price).split('');
@@ -196,15 +218,6 @@ const getProductsByMain = async function (code) {
   } finally {
     hideSpinner();
   }
-};
-
-const updateCategoryUrl = function (categoryId) {
-  const urlSearch = new URLSearchParams(location.search);
-  // urlSearch.set ... custom = {"extra.category.0": "PC01"}
-  urlSearch.set('custom', `{"extra.category.0": "${categoryId}"}`);
-
-  const newUrl = `${location.pathname}?${urlSearch.toString()}`;
-  history.pushState({}, '', newUrl);
 };
 
 const loadComponentMain = async function () {
