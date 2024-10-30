@@ -25,6 +25,7 @@ loadHTML('/src/components/header.html', function (response) {
 
   $userIcon.addEventListener('click', function () {
     const accessToken = sessionStorage.getItem('accessToken');
+    const userName = sessionStorage.getItem('name');
 
     //세션에 토큰이 없는 상태: 로그인이 되어있지 않은 상태 -> 로그인 창으로 이동시킨다.
     if (!accessToken) {
@@ -59,6 +60,7 @@ loadHTML('/src/components/header.html', function (response) {
       } else {
         //세션에 토큰이 저장되어있고 만료되지 않은 상태
         console.log('성공');
+        alert(`안녕하세요 ${userName} 님!`);
       }
     }
   });

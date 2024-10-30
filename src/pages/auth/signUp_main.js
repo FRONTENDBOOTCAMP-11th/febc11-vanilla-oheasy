@@ -151,6 +151,7 @@ const signIn = async function (userEmail, pwd, userName) {
 
     const accessToken = response.data.item.token.accessToken;
     const refreshToken = response.data.item.token.refreshToken;
+    const currentPage = sessionStorage.getItem('currentPage');
 
     sessionStorage.setItem('accessToken', accessToken);
     sessionStorage.setItem('refreshToken', refreshToken);
@@ -159,7 +160,14 @@ const signIn = async function (userEmail, pwd, userName) {
     // console.log(refreshToken);
     // console.log(userName);
     alert(`${userName} 님 환영합니다`);
-    window.location.href = '/index.html';
+
+    if (currentPage) {
+      window.location.href = currentPage;
+      sessionStorage.removeItem('currentPage');
+    } else {
+      console.log('홈으로');
+      window.location.href = '/index.html';
+    }
   } catch (error) {
     console.log('실패', error.response.data);
     console.log('실패', error.message);

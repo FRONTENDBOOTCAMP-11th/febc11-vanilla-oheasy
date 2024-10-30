@@ -194,17 +194,22 @@ const getPwd = async function (userEmail, userPwd) {
       const accessToken = response.data.item.token.accessToken;
       const refreshToken = response.data.item.token.refreshToken;
       const userName = response.data.item.name;
+      const currentPage = sessionStorage.getItem('currentPage');
 
       sessionStorage.setItem('accessToken', accessToken);
       sessionStorage.setItem('refreshToken', refreshToken);
       sessionStorage.setItem('name', userName);
 
-      //home으로 이동한다
-      alert(`${userName}님 환영합니다`);
-      window.location.href = '/index.html';
-    } else {
-      //로그인 실패
-      printPwdResult('비밀번호가 일치하지 않습니다.');
+      alert(`${userName} 님 환영합니다`);
+
+      if (currentPage) {
+        window.localStorage.href = currentPage;
+      } else if (!currentPage) {
+        window.location.href = '/index.html';
+      } else {
+        //로그인 실패
+        printPwdResult('비밀번호가 일치하지 않습니다.');
+      }
     }
   } catch (error) {
     //422 에러처리: 비밀번호가 유효하지 않을 때
