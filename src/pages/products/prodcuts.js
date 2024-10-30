@@ -1,4 +1,3 @@
-import { doc } from 'prettier';
 import formatPrice from '../../utils/formatPrice';
 import myAxios from '../../utils/myAxios';
 
@@ -212,6 +211,7 @@ const getProductsNew = async function () {
   }
 };
 
+// 1️⃣ 메인 카테고리 클릭 시, 해당 리스트 출력
 // 📌 메인 카테고리 기준으로 데이터를 분류하고, 비동기통신으로 가져온 데이터를 displayProduct()로 화면출력까지 담당하는 함수
 const getProductsByMain = async function (code) {
   try {
@@ -321,7 +321,7 @@ const loadComponentMain = async function () {
 };
 loadComponentMain();
 
-// 2️⃣ 성별 체크박스 클릭시 해당 리스트 출력
+// 2️⃣ 성별 필터링 클릭 시, 해당 리스트 출력
 const $filterArea = document.querySelector('.filter-section');
 const $productsArea = document.querySelector('.products-section');
 const $applyFilter = document.querySelector('#apply-filter');
@@ -420,7 +420,9 @@ const filterProductsByPrices = async function (filters) {
     renderSpinner($productContainer);
 
     // 2) Loading the list of products
-    let customParams = filters.map(filter => `custom=${filter}`).join('&');
+    let customParams = filters
+      .map(filter => `custom=${JSON.stringify(filter)}`)
+      .join('&');
     console.log(customParams);
 
     const res = await myAxios.get(`/products?${customParams}`, {
@@ -446,10 +448,10 @@ const filterProductsByPrices = async function (filters) {
 const loadComponentPrices = async function () {
   try {
     const $priceFirst = document.querySelector('#price__first');
-    // const $priceSecond = document.querySelector('#price__second');
-    // const $priceThird = document.querySelector('#price__third');
-    // const $priceFourth = document.querySelector('#price__fourth');
-    // const $priceFifth = document.querySelector('#price__fifth');
+    const $priceSecond = document.querySelector('#price__second');
+    const $priceThird = document.querySelector('#price__third');
+    const $priceFourth = document.querySelector('#price__fourth');
+    const $priceFifth = document.querySelector('#price__fifth');
 
     // men 인풋을 선택하고(checked 속성 추가) 난 뒤에, 적용버튼을 눌렀을 때 필터링 되도록.
     $applyFilter.addEventListener('click', async function (e) {
@@ -460,41 +462,42 @@ const loadComponentPrices = async function () {
       if ($priceFirst.checked) {
         const filter = { price: { $lte: 50000 } };
         selectedFilters.push(filter);
-        // 💫 비동기통신 이용시 사용되는 url : JSON 일반 문자열로 바꿔야 하므로 JSON.stringify() 메소드 사용
+        // 💫 비동기통신 이용시 사용되는 url : JSON 일반 문자열로 바꿔야 하므로 JSON.stringify() 메소드 사용 ...
+        // console.log(customParams);
+        // 1) JSON.stringify() 적용🅾 -> ['{"price":{"$lte":50000}}']
+        // 2) JSON.stringify() 미적용❌ -> custom=[object Object] -> axios 요청불가
       }
 
-      //   if ($priceSecond.checked) {
-      //     const selectedFilter = {
-      //       $and: [{ price: { $gte: 50000 } }, { price: { $lte: 100000 } }],
-      //     };
+      // 💫 URL이나 HTTP 요청으로 객체를 직접 전달할 때: URL 쿼리 매개변수나 GET 요청에 객체를 넣으면 [object Object]로 변환되어 서버로 전달되기 때문에, 그전에 JSON.stringify() 함수로 문자열로의 변환이 필요하다.
+      // 💥 이때, 여러 개의 필터 조건을 배열에 넣고 Map 메서드를 사용해 각각의 객체(요소) 앞에 custom=을 붙인 후 join('&')을 사용해 최종적으로 URL에 추가하려면, 배열에 넣기 전에 각 객체를 문자열로 변환하는 것이 좋다.
 
-      //     await filterProductsByPrices(JSON.stringify(selectedFilter));
-      //   }
-
-      //   if ($priceThird.checked) {
-      //     const selectedFilter = {
-      //       $and: [{ price: { $gte: 100000 } }, { price: { $lte: 150000 } }],
-      //     };
-
-      //     await filterProductsByPrices(JSON.stringify(selectedFilter));
-      //   }
-
-      //   if ($priceFourth.checked) {
-      //     const selectedFilter = {
-      //       $and: [{ price: { $gte: 150000 } }, { price: { $lte: 200000 } }],
-      //     };
-
-      //     await filterProductsByPrices(JSON.stringify(selectedFilter));
-      //   }
-
-      //   if ($priceFifth.checked) {
-      //     const selectedFilter = { price: { $gte: 200000 } };
-      //     await filterProductsByPrices(JSON.stringify(selectedFilter));
-      //   }
-
-      if (selectedFilters.length > 0) {
-        await filterProductsByPrices(selectedFilters);
+      if ($priceSecond.checked) {
+        const filter = {
+          $and: [{ price: { $gte: 50000 } }, { price: { $lte: 100000 } }],
+        };
+        selectedFilters.push(filter);
       }
+
+      if ($priceThird.checked) {
+        const filter = {
+          $and: [{ price: { $gte: 100000 } }, { price: { $lte: 150000 } }],
+        };
+        selectedFilters.push(filter);
+      }
+
+      if ($priceFourth.checked) {
+        const filter = {
+          $and: [{ price: { $gte: 150000 } }, { price: { $lte: 200000 } }],
+        };
+        selectedFilters.push(filter);
+      }
+
+      if ($priceFifth.checked) {
+        const filter = { price: { $gte: 200000 } };
+        selectedFilters.push(filter);
+      }
+
+      await filterProductsByPrices(selectedFilters);
 
       $filterArea.classList.add('hidden');
       $productsArea.classList.remove('hidden');
