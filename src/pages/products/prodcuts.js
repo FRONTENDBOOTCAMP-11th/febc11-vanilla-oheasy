@@ -319,3 +319,92 @@ const loadComponentMain = async function () {
   }
 };
 loadComponentMain();
+
+// 2️⃣ 성별 체크박스 클릭시 해당 리스트 출력
+const $filterArea = document.querySelector('.filter-section');
+const $productsArea = document.querySelector('.products-section');
+const $applyFilter = document.querySelector('#apply-filter');
+const $cancelFilter = document.querySelector('#cancel-filter');
+
+// filter-section의 X 버튼 눌렀을 때, hidden 클래스 조정
+const $xbutton = document.querySelector('.btn--x');
+$xbutton.addEventListener('click', function () {
+  $filterArea.classList.add('hidden');
+  $productsArea.classList.remove('hidden');
+});
+
+// products-section의 필터 버튼 눌렀을 때, hidden 클래스 조정
+const $btnFilter = document.querySelector('.btn--filters');
+$btnFilter.addEventListener('click', function () {
+  $filterArea.classList.toggle('hidden');
+  $productsArea.classList.toggle('hidden');
+});
+
+// 📌 성별을 기준으로 데이터를 필터링하여, 비동기통신으로 가져온 데이터를 displayProduct()로 화면출력까지 담당하는 함수
+const filterProductsByGender = async function (filters) {
+  try {
+    // 1) Rendering spinner
+    renderSpinner($productContainer);
+
+    // 2) Loading the list of products
+    let customParams = filters
+      .map(filter => `custom={"extra.gender": "${filter}"}`)
+      .join('&');
+
+    console.log(customParams);
+    // custom={"extra.gender": "men"}
+    // custom={"extra.gender": "men"}&custom={"extra.gender": "women"}
+
+    const res = await myAxios.get(`/products?${customParams}`, {
+      headers: {
+        'client-id': 'vanilla05',
+      },
+    });
+    const data = res.data;
+    const items = data.item;
+
+    displayProduct(items);
+  } catch (err) {
+    alert(err);
+  } finally {
+    hideSpinner();
+  }
+};
+
+const loadComponentGender = async function () {
+  try {
+    const $men = document.querySelector('#men');
+    const $women = document.querySelector('#women');
+    const $unisex = document.querySelector('#unisex');
+
+    // men 인풋을 선택하고(checked 속성 추가) 난 뒤에, 적용버튼을 눌렀을 때 필터링 되도록.
+    $applyFilter.addEventListener('click', async function (e) {
+      e.preventDefault();
+
+      const selectedFilters = [];
+
+      if ($men.checked) selectedFilters.push('men');
+      if ($women.checked) selectedFilters.push('women');
+      if ($unisex.checked) selectedFilters.push('unisex');
+
+      if (selectedFilters.length > 0) {
+        console.log('필터가 체크됐습니다');
+        await filterProductsByGender(selectedFilters);
+      }
+
+      $filterArea.classList.add('hidden');
+      $productsArea.classList.remove('hidden');
+    });
+
+    // 만약, 취소버튼을 누르면 필터링 되지 않고 원래 그대로 상품리스트 유지.
+    $cancelFilter.addEventListener('click', function (e) {
+      e.preventDefault();
+      console.log('체크박스가 해제됐습니다.');
+      $filterArea.classList.add('hidden');
+      $productsArea.classList.remove('hidden');
+    });
+  } catch (err) {
+    alert(err);
+  }
+};
+loadComponentGender();
