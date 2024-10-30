@@ -183,10 +183,18 @@ const clickLoginBtn = function (event) {
 const getPwd = async function (userEmail, userPwd) {
   //비밀번호를 입력 받았을 때 로그인 시도를 함
   try {
-    const response = await myAxios.post('/users/login', {
-      email: userEmail,
-      password: userPwd,
-    });
+    const response = await myAxios.post(
+      '/users/login',
+      {
+        email: userEmail,
+        password: userPwd,
+      },
+      // {
+      //   params: {
+      //     expiresIn: '10s',
+      //   },
+      // },
+    );
 
     //로그인에 성공
     if (response.data.ok === 1) {
@@ -203,7 +211,8 @@ const getPwd = async function (userEmail, userPwd) {
       alert(`${userName} 님 환영합니다`);
 
       if (currentPage) {
-        window.localStorage.href = currentPage;
+        window.location.href = currentPage;
+        sessionStorage.removeItem('currentPage');
       } else if (!currentPage) {
         window.location.href = '/index.html';
       } else {

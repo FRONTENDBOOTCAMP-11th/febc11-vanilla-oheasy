@@ -144,10 +144,18 @@ const signUp = async function () {
 
 const signIn = async function (userEmail, pwd, userName) {
   try {
-    const response = await myAxios.post('/users/login', {
-      email: userEmail,
-      password: pwd,
-    });
+    const response = await myAxios.post(
+      '/users/login',
+      {
+        email: userEmail,
+        password: pwd,
+      },
+      // {
+      //   params: {
+      //     expiresIn: '10s',
+      //   },
+      // },
+    );
 
     const accessToken = response.data.item.token.accessToken;
     const refreshToken = response.data.item.token.refreshToken;
