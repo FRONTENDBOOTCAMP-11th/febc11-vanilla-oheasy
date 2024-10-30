@@ -1,3 +1,4 @@
+import { doc } from 'prettier';
 import formatPrice from '../../utils/formatPrice';
 import myAxios from '../../utils/myAxios';
 
@@ -244,7 +245,7 @@ const getProductsByMain = async function (code) {
     const data = res.data;
     const items = data.item;
 
-    // 메인 카테고리 클릭시, 그에 맞는 제품 결과 개수로 변경
+    // 필터링 적용 시, 그에 맞는 제품 결과 개수로 변경
     const productCount = items.length;
     $countSpace.textContent = productCount;
 
@@ -363,6 +364,10 @@ const filterProductsByGender = async function (filters) {
     const data = res.data;
     const items = data.item;
 
+    // 메인 카테고리 클릭시, 그에 맞는 제품 결과 개수로 변경
+    const productCount = items.length;
+    $countSpace.textContent = productCount;
+
     displayProduct(items);
   } catch (err) {
     alert(err);
@@ -388,7 +393,6 @@ const loadComponentGender = async function () {
       if ($unisex.checked) selectedFilters.push('unisex');
 
       if (selectedFilters.length > 0) {
-        console.log('필터가 체크됐습니다');
         await filterProductsByGender(selectedFilters);
       }
 
@@ -396,10 +400,10 @@ const loadComponentGender = async function () {
       $productsArea.classList.remove('hidden');
     });
 
-    // 만약, 취소버튼을 누르면 필터링 되지 않고 원래 그대로 상품리스트 유지.
+    // 만약, 지우기 버튼을 누르면 필터링 되지 않고 원래 그대로 상품리스트 유지.
     $cancelFilter.addEventListener('click', function (e) {
       e.preventDefault();
-      console.log('체크박스가 해제됐습니다.');
+
       $filterArea.classList.add('hidden');
       $productsArea.classList.remove('hidden');
     });
@@ -408,3 +412,103 @@ const loadComponentGender = async function () {
   }
 };
 loadComponentGender();
+
+// 📌 가격을 기준으로 데이터를 필터링하여, 비동기통신으로 가져온 데이터를 화면에 출력하는 함수
+const filterProductsByPrices = async function (filters) {
+  try {
+    // 1) Rendering spinner
+    renderSpinner($productContainer);
+
+    // 2) Loading the list of products
+    let customParams = filters.map(filter => `custom=${filter}`).join('&');
+    console.log(customParams);
+
+    const res = await myAxios.get(`/products?${customParams}`, {
+      headers: {
+        'client-id': 'vanilla05',
+      },
+    });
+    const data = res.data;
+    const items = data.item;
+
+    // 메인 카테고리 클릭시, 그에 맞는 제품 결과 개수로 변경
+    const productCount = items.length;
+    $countSpace.textContent = productCount;
+
+    displayProduct(items);
+  } catch (err) {
+    alert(err);
+  } finally {
+    hideSpinner();
+  }
+};
+
+const loadComponentPrices = async function () {
+  try {
+    const $priceFirst = document.querySelector('#price__first');
+    // const $priceSecond = document.querySelector('#price__second');
+    // const $priceThird = document.querySelector('#price__third');
+    // const $priceFourth = document.querySelector('#price__fourth');
+    // const $priceFifth = document.querySelector('#price__fifth');
+
+    // men 인풋을 선택하고(checked 속성 추가) 난 뒤에, 적용버튼을 눌렀을 때 필터링 되도록.
+    $applyFilter.addEventListener('click', async function (e) {
+      e.preventDefault();
+
+      const selectedFilters = [];
+
+      if ($priceFirst.checked) {
+        const filter = { price: { $lte: 50000 } };
+        selectedFilters.push(filter);
+        // 💫 비동기통신 이용시 사용되는 url : JSON 일반 문자열로 바꿔야 하므로 JSON.stringify() 메소드 사용
+      }
+
+      //   if ($priceSecond.checked) {
+      //     const selectedFilter = {
+      //       $and: [{ price: { $gte: 50000 } }, { price: { $lte: 100000 } }],
+      //     };
+
+      //     await filterProductsByPrices(JSON.stringify(selectedFilter));
+      //   }
+
+      //   if ($priceThird.checked) {
+      //     const selectedFilter = {
+      //       $and: [{ price: { $gte: 100000 } }, { price: { $lte: 150000 } }],
+      //     };
+
+      //     await filterProductsByPrices(JSON.stringify(selectedFilter));
+      //   }
+
+      //   if ($priceFourth.checked) {
+      //     const selectedFilter = {
+      //       $and: [{ price: { $gte: 150000 } }, { price: { $lte: 200000 } }],
+      //     };
+
+      //     await filterProductsByPrices(JSON.stringify(selectedFilter));
+      //   }
+
+      //   if ($priceFifth.checked) {
+      //     const selectedFilter = { price: { $gte: 200000 } };
+      //     await filterProductsByPrices(JSON.stringify(selectedFilter));
+      //   }
+
+      if (selectedFilters.length > 0) {
+        await filterProductsByPrices(selectedFilters);
+      }
+
+      $filterArea.classList.add('hidden');
+      $productsArea.classList.remove('hidden');
+    });
+
+    // 만약, 지우기 버튼을 누르면 필터링 되지 않고 원래 그대로 상품리스트 유지.
+    $cancelFilter.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      $filterArea.classList.add('hidden');
+      $productsArea.classList.remove('hidden');
+    });
+  } catch (err) {
+    alert(err);
+  }
+};
+loadComponentPrices();
