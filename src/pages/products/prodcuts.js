@@ -96,7 +96,7 @@ const displayProduct = async function (items) {
 
         // 👉 {categoryName} 대신에
         //   ${c1[0].value} ${c2[0] ? c2[0].value : ''}
-        return `<li class="product">
+        return `<a href="/src/pages/details/details.html?productId=${item._id}"><li class="product">
                     <div class="product-cover">
                       <img src="https://11.fesp.shop/files/vanilla05/${
                         item.mainImages[0].name
@@ -126,7 +126,7 @@ const displayProduct = async function (items) {
                       <p class="price">${formatPrice(item.price)}</p>
                      </div>
                     </div>
-                  </li>`;
+                  </li></a>`;
       })
       .join('');
 
