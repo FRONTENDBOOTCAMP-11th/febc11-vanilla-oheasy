@@ -71,7 +71,7 @@ const isItBest = function (answer) {
 const $productContainer = document.querySelector('.l_grid');
 const $countSpace = document.querySelector('.results__count');
 const $productsTitle = document.querySelector('.wall-header__title');
-
+console.log(location.pathname);
 // 📌 데이터를 배열 형태로 받아 위에 정의한 여러 함수를 이용해 데이터를 화면에 출력하는 함수
 const displayProduct = async function (items) {
   //   2️⃣ 동환님 방법
@@ -96,7 +96,7 @@ const displayProduct = async function (items) {
 
         // 👉 {categoryName} 대신에
         //   ${c1[0].value} ${c2[0] ? c2[0].value : ''}
-        return `<li class="product">
+        return `<a class="details" href="/src/pages/details/details.html/${item._id}"><li class="product">
                     <div class="product-cover">
                       <img src="https://11.fesp.shop/files/vanilla05/${
                         item.mainImages[0].name
@@ -126,7 +126,7 @@ const displayProduct = async function (items) {
                       <p class="price">${formatPrice(item.price)}</p>
                      </div>
                     </div>
-                  </li>`;
+                  </li></a>`;
       })
       .join('');
 
@@ -159,8 +159,6 @@ const hideSpinner = async function () {
 // 📌 필터링 없이, 전체 상품리스트 로드하는 함수
 const showProductsAll = async function () {
   try {
-    $productsTitle.textContent = '모든 제품';
-
     // 1) Rendering spinner (In case the internet connection is slow.)
     renderSpinner($productContainer);
 
@@ -292,7 +290,6 @@ const loadComponentMain = async function () {
 
           const categoryId = e.target.closest('.item__men').dataset.category; // PC01
           updateCategoryUrl(categoryId);
-          //   $productsTitle.textContent = '남성 신발';
         }
 
         if (e.target.closest('.link--women')) {
@@ -300,7 +297,6 @@ const loadComponentMain = async function () {
 
           const categoryId = e.target.closest('.item__women').dataset.category; // PC02
           updateCategoryUrl(categoryId);
-          //   $productsTitle.textContent = '여성 신발';
         }
 
         if (e.target.closest('.link--kids')) {
@@ -308,7 +304,6 @@ const loadComponentMain = async function () {
 
           const categoryId = e.target.closest('.item__kids').dataset.category; // PC03
           updateCategoryUrl(categoryId);
-          $productsTitle.textContent = '주니어 신발';
         }
       });
 
@@ -321,7 +316,8 @@ const loadComponentMain = async function () {
 };
 loadComponentMain();
 
-// 2️⃣ 성별 필터링 클릭 시, 해당 리스트 출력
+/////////////////////////////////////////////
+/////////////// FILTER
 const $filterArea = document.querySelector('.filter-section');
 const $productsArea = document.querySelector('.products-section');
 const $applyFilter = document.querySelector('#apply-filter');
@@ -341,33 +337,35 @@ $btnFilter.addEventListener('click', function () {
   $productsArea.classList.toggle('hidden');
 });
 
-// 📌 성별을 기준으로 데이터를 필터링하여, 비동기통신으로 가져온 데이터를 displayProduct()로 화면출력까지 담당하는 함수
-const filterProductsByGender = async function (filters) {
+// 📌 필터링된 데이터를 요청하여 화면에 출력하는 함수
+const filterProducts = async function (genderFilters, priceFilters) {
   try {
-    // 1) Rendering spinner
     renderSpinner($productContainer);
 
-    // 2) Loading the list of products
-    let customParams = filters
-      .map(filter => `custom={"extra.gender": "${filter}"}`)
+    // 성별과 가격 필터 조건 조합
+    const customGenderParams = genderFilters
+      .map(gender => `custom=${JSON.stringify({ 'extra.gender': gender })}`)
       .join('&');
 
-    console.log(customParams);
-    // custom={"extra.gender": "men"}
-    // custom={"extra.gender": "men"}&custom={"extra.gender": "women"}
+    const customPricesParams = priceFilters
+      .map(price => `custom=${JSON.stringify(price)}`)
+      .join('&');
 
-    const res = await myAxios.get(`/products?${customParams}`, {
+    const combinedParams = [customGenderParams, customPricesParams]
+      .filter(Boolean)
+      .join('&');
+
+    const res = await myAxios.get(`/products?${combinedParams}`, {
       headers: {
         'client-id': 'vanilla05',
       },
     });
+
     const data = res.data;
     const items = data.item;
-
-    // 메인 카테고리 클릭시, 그에 맞는 제품 결과 개수로 변경
     const productCount = items.length;
-    $countSpace.textContent = productCount;
 
+    $countSpace.textContent = productCount;
     displayProduct(items);
   } catch (err) {
     alert(err);
@@ -376,142 +374,66 @@ const filterProductsByGender = async function (filters) {
   }
 };
 
-const loadComponentGender = async function () {
+// 📌 필터링 요소 이벤트를 조작하고, 그에 맞는 쿼리 파라미터(custom)의 밸류를 설정하는 함수
+const loadComponent = async function () {
   try {
+    // 필터 요소들 선택
     const $men = document.querySelector('#men');
     const $women = document.querySelector('#women');
     const $unisex = document.querySelector('#unisex');
 
-    // men 인풋을 선택하고(checked 속성 추가) 난 뒤에, 적용버튼을 눌렀을 때 필터링 되도록.
-    $applyFilter.addEventListener('click', async function (e) {
-      e.preventDefault();
-
-      const selectedFilters = [];
-
-      if ($men.checked) selectedFilters.push('men');
-      if ($women.checked) selectedFilters.push('women');
-      if ($unisex.checked) selectedFilters.push('unisex');
-
-      if (selectedFilters.length > 0) {
-        await filterProductsByGender(selectedFilters);
-      }
-
-      $filterArea.classList.add('hidden');
-      $productsArea.classList.remove('hidden');
-    });
-
-    // 만약, 지우기 버튼을 누르면 필터링 되지 않고 원래 그대로 상품리스트 유지.
-    $cancelFilter.addEventListener('click', function (e) {
-      e.preventDefault();
-
-      $filterArea.classList.add('hidden');
-      $productsArea.classList.remove('hidden');
-    });
-  } catch (err) {
-    alert(err);
-  }
-};
-loadComponentGender();
-
-// 📌 가격을 기준으로 데이터를 필터링하여, 비동기통신으로 가져온 데이터를 화면에 출력하는 함수
-const filterProductsByPrices = async function (filters) {
-  try {
-    // 1) Rendering spinner
-    renderSpinner($productContainer);
-
-    // 2) Loading the list of products
-    let customParams = filters
-      .map(filter => `custom=${JSON.stringify(filter)}`)
-      .join('&');
-    console.log(customParams);
-
-    const res = await myAxios.get(`/products?${customParams}`, {
-      headers: {
-        'client-id': 'vanilla05',
-      },
-    });
-    const data = res.data;
-    const items = data.item;
-
-    // 메인 카테고리 클릭시, 그에 맞는 제품 결과 개수로 변경
-    const productCount = items.length;
-    $countSpace.textContent = productCount;
-
-    displayProduct(items);
-  } catch (err) {
-    alert(err);
-  } finally {
-    hideSpinner();
-  }
-};
-
-const loadComponentPrices = async function () {
-  try {
     const $priceFirst = document.querySelector('#price__first');
     const $priceSecond = document.querySelector('#price__second');
     const $priceThird = document.querySelector('#price__third');
     const $priceFourth = document.querySelector('#price__fourth');
     const $priceFifth = document.querySelector('#price__fifth');
 
-    // men 인풋을 선택하고(checked 속성 추가) 난 뒤에, 적용버튼을 눌렀을 때 필터링 되도록.
     $applyFilter.addEventListener('click', async function (e) {
       e.preventDefault();
 
-      const selectedFilters = [];
+      // 성별 필터 선택값 수집
+      const selectedGenderFilters = [];
+      if ($men.checked) selectedGenderFilters.push('men');
+      if ($women.checked) selectedGenderFilters.push('women');
+      if ($unisex.checked) selectedGenderFilters.push('unisex');
 
-      if ($priceFirst.checked) {
-        const filter = { price: { $lte: 50000 } };
-        selectedFilters.push(filter);
-        // 💫 비동기통신 이용시 사용되는 url : JSON 일반 문자열로 바꿔야 하므로 JSON.stringify() 메소드 사용 ...
-        // console.log(customParams);
-        // 1) JSON.stringify() 적용🅾 -> ['{"price":{"$lte":50000}}']
-        // 2) JSON.stringify() 미적용❌ -> custom=[object Object] -> axios 요청불가
-      }
-
-      // 💫 URL이나 HTTP 요청으로 객체를 직접 전달할 때: URL 쿼리 매개변수나 GET 요청에 객체를 넣으면 [object Object]로 변환되어 서버로 전달되기 때문에, 그전에 JSON.stringify() 함수로 문자열로의 변환이 필요하다.
-      // 💥 이때, 여러 개의 필터 조건을 배열에 넣고 Map 메서드를 사용해 각각의 객체(요소) 앞에 custom=을 붙인 후 join('&')을 사용해 최종적으로 URL에 추가하려면, 배열에 넣기 전에 각 객체를 문자열로 변환하는 것이 좋다.
-
-      if ($priceSecond.checked) {
-        const filter = {
+      // 가격 필터 선택값 수집
+      const selectedPriceFilters = [];
+      if ($priceFirst.checked)
+        selectedPriceFilters.push({ price: { $lte: 50000 } });
+      if ($priceSecond.checked)
+        selectedPriceFilters.push({
           $and: [{ price: { $gte: 50000 } }, { price: { $lte: 100000 } }],
-        };
-        selectedFilters.push(filter);
-      }
-
-      if ($priceThird.checked) {
-        const filter = {
+        });
+      if ($priceThird.checked)
+        selectedPriceFilters.push({
           $and: [{ price: { $gte: 100000 } }, { price: { $lte: 150000 } }],
-        };
-        selectedFilters.push(filter);
-      }
-
-      if ($priceFourth.checked) {
-        const filter = {
+        });
+      if ($priceFourth.checked)
+        selectedPriceFilters.push({
           $and: [{ price: { $gte: 150000 } }, { price: { $lte: 200000 } }],
-        };
-        selectedFilters.push(filter);
+        });
+      if ($priceFifth.checked)
+        selectedPriceFilters.push({ price: { $gte: 200000 } });
+
+      // 필터가 선택되었을 때만 호출
+      if (selectedGenderFilters.length > 0 || selectedPriceFilters.length > 0) {
+        await filterProducts(selectedGenderFilters, selectedPriceFilters);
       }
 
-      if ($priceFifth.checked) {
-        const filter = { price: { $gte: 200000 } };
-        selectedFilters.push(filter);
-      }
-
-      await filterProductsByPrices(selectedFilters);
-
+      // UI 전환
       $filterArea.classList.add('hidden');
       $productsArea.classList.remove('hidden');
-    });
 
-    // 만약, 지우기 버튼을 누르면 필터링 되지 않고 원래 그대로 상품리스트 유지.
-    $cancelFilter.addEventListener('click', function (e) {
-      e.preventDefault();
-
-      $filterArea.classList.add('hidden');
-      $productsArea.classList.remove('hidden');
+      // 필터 초기화 버튼 클릭 시
+      $cancelFilter.addEventListener('click', function (e) {
+        e.preventDefault();
+        $filterArea.classList.add('hidden');
+        $productsArea.classList.remove('hidden');
+      });
     });
   } catch (err) {
     alert(err);
   }
 };
-loadComponentPrices();
+loadComponent();
