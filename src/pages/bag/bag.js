@@ -1,28 +1,22 @@
-import axios from 'axios';
-
-let myToken =
-  'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjQsInR5cGUiOiJ1c2VyIiwibmFtZSI6IuygnOydtOyngCIsImVtYWlsIjoidTFAZ21haWwuY29tIiwiaW1hZ2UiOiIvZmlsZXMvdmFuaWxsYTA1L3VzZXItamF5Zy53ZWJwIiwibG9naW5UeXBlIjoiZW1haWwiLCJpYXQiOjE3MzAxODAzMTIsImV4cCI6MTczMDI2NjcxMiwiaXNzIjoiRkVTUCJ9.3JdLOSR7LXT2iYu4b1AcmRC-u8IqYbEYj9lBL07WBP0'; // 생략된 토큰
+import myAxios from '../../utils/myAxios';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const cartList = document.getElementById('cart-list');
-  const baginfo = document.getElementById('bag-info');
-  const pay = document.getElementById('pay');
+  const $cartList = document.getElementById('cart-list');
+  const $baginfo = document.getElementById('bag-info');
+  const $pay = document.getElementById('pay');
+  const $leftRight = document.getElementsByClassName('left_right');
 
   const fetchCart = async () => {
+    // html 변수 불러오기
     try {
-      const response = await axios.get('https://11.fesp.shop/carts', {
-        headers: {
-          'client-id': 'vanilla05',
-          Authorization: myToken,
-        },
-      });
-
+      const response = await myAxios.get('carts');
       const items = response.data.item;
 
       if (items.length === 0) {
-        cartList.innerHTML = '<p>장바구니에 상품이 없습니다.</p>';
-        baginfo.innerHTML = '';
-        pay.innerHTML = '';
+        $cartList.innerHTML =
+          '<p style="font-size: 14px;">장바구니에 상품이 없습니다.</p>';
+        $baginfo.innerHTML = '<p style="color: gray;"> 0 개의 제품 | ㅡ </p>';
+        $pay.innerHTML = '';
         return;
       }
 
@@ -74,13 +68,17 @@ document.addEventListener('DOMContentLoaded', () => {
             <img class="button" src="/src/assets/icons/heart.svg" alt="Add to Wishlist">
             <img class="move_icon button remove" src="/src/assets/icons/trash.svg" alt="Remove from Cart" data-cart-id="${cart._id}">
           </div>
+                    <div class="product_delivery_section">
+            <p class="product_delivery_text_title">무료 배송</p>
+            <p class="product_delivery_text">도착 예정일: 7월 26일 (토)배송 지역: 04628</p>
+          </div>
         </div>
         `;
       });
 
-      cartList.innerHTML = cartItemsHTML;
-      baginfo.innerHTML = `<p>${totalQuantity} 개의 제품 | ${totalPrice.toLocaleString()} 원</p>`;
-      pay.innerHTML = `
+      $cartList.innerHTML = cartItemsHTML;
+      $baginfo.innerHTML = `<p>${totalQuantity} 개의 제품 | ${totalPrice.toLocaleString()} 원</p>`;
+      $pay.innerHTML = `
           <div class="oder_list_section">
             <h1 class="oder_list_title_text">주문 내역</h1>
             <div class="oder_list_text">
@@ -101,26 +99,19 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>`;
     } catch (error) {
       console.error('Error:', error);
-      cartList.innerHTML = '<p>장바구니를 불러오는 데 실패했습니다.</p>';
-      baginfo.innerHTML = '';
-      pay.innerHTML = '<p>장바구니를 불러오는 데 실패했습니다.</p>';
+      $cartList.innerHTML =
+        '<p style="font-size:14px">장바구니를 불러오는 데 실패했습니다.</p>';
+      $baginfo.innerHTML = '';
+      $pay.innerHTML = '';
     }
   };
 
-  fetchCart(); // html 변수 호출
+  fetchCart(); // 최초 html 변수 호출
 
   const updateQuantity = async (cartId, quantity) => {
+    //  상품 수령 변경 요청
     try {
-      await axios.patch(
-        `https://11.fesp.shop/carts/${cartId}`,
-        { quantity },
-        {
-          headers: {
-            'client-id': 'vanilla05',
-            Authorization: myToken,
-          },
-        },
-      );
+      await myAxios.patch(`carts/${cartId}`, { quantity });
     } catch (error) {
       console.error('수량 변경 실패:', error);
       alert('수량 변경에 실패했습니다.');
@@ -128,19 +119,16 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const deleteProduct = async cartId => {
+    // 장바구니에서 상품 제거 요청
     try {
-      await axios.delete(`https://11.fesp.shop/carts/${cartId}`, {
-        headers: {
-          'client-id': 'vanilla05',
-          Authorization: myToken,
-        },
-      });
+      await myAxios.delete(`carts/${cartId}`);
     } catch (error) {
       console.error('상품 삭제 실패:', error);
     }
   };
 
-  cartList.addEventListener('click', async event => {
+  $cartList.addEventListener('click', async event => {
+    // 클릭시 장바구니에서 상품 제거
     const target = event.target;
 
     if (target.matches('.move_icon.button.remove')) {
@@ -152,9 +140,10 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchCart(); // html 변수 다시 불러오기
   });
 
-  cartList.addEventListener('click', async event => {
+  $cartList.addEventListener('click', async event => {
+    // 클릭시 상품 수량 증감
     const target = event.target;
-    // 수량 증감 버튼 클릭
+    // 수량 증가 버튼 클릭
     if (target.matches('.button.plus')) {
       const quantityElement = target.parentElement.querySelector('p'); // 수량 요소 선택
       const cartId = target.getAttribute('data-cart-id'); // data-cart-id 속성에서 cartId 가져오기
@@ -181,5 +170,18 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
     fetchCart(); // html 변수 다시 불러오기
+  });
+  $leftRight.addEventListener('click', event => {
+    // 클릭시 왼쪽 오른쪽 이동
+    const target = event.target;
+
+    // 왼쪽 이동 버튼 클릭
+    if (target.matches('.moveleft')) {
+      // 왼쪽 이동
+      console.log('123');
+    } else if (target.matches('.moveright')) {
+      // 오른쪽 이동
+      console.log('123');
+    }
   });
 });
