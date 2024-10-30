@@ -26,16 +26,27 @@ loadHTML('/src/components/header.html', function (response) {
   $userIcon.addEventListener('click', function () {
     const accessToken = sessionStorage.getItem('accessToken');
 
-    if (accessToken) {
-      const userName = sessionStorage.getItem('name');
-
-      if (userName) {
-        alert(`안녕하세요 ${userName} 님!`);
-      } else {
-        console.log(`등록되어있지 않은 사용자`);
-      }
-    } else {
+    if (!accessToken) {
       window.location.href = '/src/pages/auth/signIn_main.html';
+      return;
+    }
+
+    const tokenPart = accessToken.split('.');
+    if (accessToken) {
+      const payload = JSON.parse(atob(tokenPart[1]));
+      const currentTime = Math.floor(Date.now() / 1000);
+
+      if (payload.exp && payload.exp < currentTime) {
+        alert('세션이 만료되어 재로그인이 필요합니다.');
+        sessionStorage.removeItem('accessToken');
+        sessionStorage.removeItem('refreshToken');
+        sessionStorage.removeItem('name');
+
+        window.location.href = '/src/pages/auth/signIn_main.html';
+        return;
+      } else {
+        console.log('성공');
+      }
     }
   });
 });
