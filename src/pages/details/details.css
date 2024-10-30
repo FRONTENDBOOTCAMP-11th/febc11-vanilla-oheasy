@@ -324,9 +324,9 @@ body {
 
 .btn-bag {
   position: sticky;
-  bottom: 0;
-  min-width: 360px;
   margin-left: -24px;
+  bottom: 0;
+  width: calc(100% + 2 * var(--white-space-m));
   font-size: 1.6rem;
 
   background-color: var(--color-black);
@@ -335,5 +335,4 @@ body {
   height: 67px;
   line-height: 67px;
   font-weight: 500;
-  width: 100%;
 }
