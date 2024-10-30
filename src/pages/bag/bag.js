@@ -41,16 +41,16 @@ document.addEventListener('DOMContentLoaded', () => {
         <div>
           <div class="product_item_section">
             <div>
-              <a href="/src/pages/details/details.html">
+              <a href="/src/pages/details/details.html?productId=${cart.product._id}">
                 <img class="img_size" src="https://11.fesp.shop/files/vanilla05/${productImage}" alt="${productName}">
               </a>
             </div>
             <div class="product_text_section">
               <div class="black_text">
-                <a href="/src/pages/details/details.html">
+                <a href="/src/pages/details/details.html?productId=${cart.product._id}">
                   <p id="product_name">${productName}</p>
                 </a>
-                <p id="product_price">${productPrice.toLocaleString()} 원</p> 
+                <p id="product_price">${(productPrice * quantity).toLocaleString()} 원</p> 
               </div>  
               <div class="gray_text">
                 <p>사이즈: ${size}</p>
