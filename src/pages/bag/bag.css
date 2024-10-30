@@ -68,18 +68,18 @@ h1 {
   align-items: center;
 }
 
-.button{
+.button {
   border: none;
   background: none;
   padding: 0;
 }
 
-.button:hover{
-  background-color:var(--color-grey-60) ;
+.button:hover {
+  background-color: var(--color-grey-60);
   border-radius: 50%;
 }
 
-.img_size{
+.img_size {
   width: 154px;
   height: 154px;
   object-fit: cover;
@@ -213,6 +213,7 @@ h1 {
   border-top: 1px solid var(--color-grey-40);
 }
 .oder_list_title_text {
+  font-size: 24px;
   margin-bottom: 24px;
 }
 .oder_list_delivery_text_price {
