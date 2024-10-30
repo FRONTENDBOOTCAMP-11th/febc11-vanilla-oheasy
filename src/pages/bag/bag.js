@@ -71,8 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
           </div>
           <div class="product_icon_section">
-            <img onclick="wishAdd()" class="button" src="/src/assets/icons/heart.svg" alt="Add to Wishlist">
-            <img onclick="removeCart()" class="move_icon button" src="/src/assets/icons/trash.svg" alt="Remove from Cart">
+            <img class="button" src="/src/assets/icons/heart.svg" alt="Add to Wishlist">
+            <img class="move_icon button remove" src="/src/assets/icons/trash.svg" alt="Remove from Cart" data-cart-id="${cart._id}">
           </div>
         </div>
         `;
@@ -107,8 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // 함수 호출
-  fetchCart();
+  fetchCart(); // html 변수 호출
 
   const updateQuantity = async (cartId, quantity) => {
     try {
@@ -127,6 +126,31 @@ document.addEventListener('DOMContentLoaded', () => {
       alert('수량 변경에 실패했습니다.');
     }
   };
+
+  const deleteProduct = async cartId => {
+    try {
+      await axios.delete(`https://11.fesp.shop/carts/${cartId}`, {
+        headers: {
+          'client-id': 'vanilla05',
+          Authorization: myToken,
+        },
+      });
+    } catch (error) {
+      console.error('상품 삭제 실패:', error);
+    }
+  };
+
+  cartList.addEventListener('click', async event => {
+    const target = event.target;
+
+    if (target.matches('.move_icon.button.remove')) {
+      const cartId = target.getAttribute('data-cart-id'); // data-cart-id 속성에서 cartId 가져오기
+
+      // 서버에 장바구니에서 상품 삭제 요청
+      await deleteProduct(cartId);
+    }
+    fetchCart(); // html 변수 다시 불러오기
+  });
 
   cartList.addEventListener('click', async event => {
     const target = event.target;
@@ -156,6 +180,6 @@ document.addEventListener('DOMContentLoaded', () => {
         await updateQuantity(cartId, quantity);
       }
     }
-    fetchCart();
+    fetchCart(); // html 변수 다시 불러오기
   });
 });
