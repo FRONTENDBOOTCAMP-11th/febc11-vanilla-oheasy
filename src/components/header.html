@@ -145,6 +145,31 @@
     gap: 12px;
     padding: 10px 0;
   }
+  .side-bar-header-btn button {
+    all: unset;
+    border-radius: 30px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    box-sizing: border-box;
+    font-size: 1.6rem;
+    height: 40px;
+  }
+
+  .sign-up-btn.sign-up-btn {
+    background-color: #111;
+    color: var(--color-white);
+    width: 91px;
+  }
+
+  .sign-in-btn.sign-in-btn {
+    background-color: var(--color-white);
+    color: var(--color-black);
+    width: 77px;
+    border: 1px solid var(--color-grey-60);
+  }
 </style>
 
 <header class="header">
@@ -171,24 +196,10 @@
 
     <div class="side-bar-header-btn">
       <a href="/src/pages/auth/signUp_main.html"
-        ><div
-          class="button-box"
-          data-theme="black"
-          data-width="91px"
-          data-height="40px"
-        >
-          가입하기
-        </div></a
+        ><button class="sign-up-btn">가입하기</button></a
       >
       <a href="/src/pages/auth/signIn_main.html">
-        <div
-          class="button-box"
-          data-theme="white"
-          data-width="77px"
-          data-height="40px"
-        >
-          로그인
-        </div>
+        <button class="sign-in-btn">로그인</button>
       </a>
     </div>
   </div>
