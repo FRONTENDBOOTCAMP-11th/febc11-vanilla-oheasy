@@ -3394,6 +3394,7 @@ export const initData = async (clientId, nextSeq) => {
           size: [200, 205, 210, 215, 220, 225, 230, 235, 240, 245, 250], // 1
           color: '서밋 화이트/카키/코코넛 밀크/서밋 화이트', // 1
           styleNo: 'HF6924-100', // 1
+          primeCost: 119000,
           gender: 'kids',
         },
       },
@@ -3464,6 +3465,7 @@ export const initData = async (clientId, nextSeq) => {
           size: [225, 230, 235, 240, 245, 250], // 1
           color: '씨폼/스프루스 아우라/아틱 오렌지/애프리캇 아게이트', // 1
           styleNo: 'HF3136-002', // 1
+          primeCost: 109000,
           gender: 'kids',
         },
       },
@@ -3492,6 +3494,7 @@ export const initData = async (clientId, nextSeq) => {
           isNew: true,
           isBest: false,
           category: ['PC03', 'PC0301'], //1
+          primeCost: 109000,
           gender: 'kids',
         },
       },
@@ -3708,6 +3711,7 @@ export const initData = async (clientId, nextSeq) => {
           size: [225, 230, 235, 240, 245, 250], // 1
           color: '유니버시티 레드/화이트/블랙', // 1
           styleNo: 'CD7782-602', // 1
+          primeCost: 79000,
           gender: 'kids',
         },
       },
@@ -3736,6 +3740,7 @@ export const initData = async (clientId, nextSeq) => {
           isNew: true,
           isBest: false,
           category: ['PC03', 'PC0301'], // 1
+          primeCost: 119000,
           gender: 'kids',
         },
       },
@@ -4053,6 +4058,7 @@ export const initData = async (clientId, nextSeq) => {
           size: [225, 230, 235, 240, 245, 250], // 1
           color: '짐 레드/화이트/블랙', // 1
           styleNo: 'HF9980-600', // 1
+          primeCost: 99000,
           gender: 'kids',
         },
       },
@@ -4118,6 +4124,7 @@ export const initData = async (clientId, nextSeq) => {
           size: [225, 230, 235, 240, 245, 250], // 1
           color: '세일/화이트/게임 로얄/세일', // 1
           styleNo: 'FV7472-100', // 1
+          primeCost: 129000,
           gender: 'kids',
         },
       },
@@ -4188,6 +4195,7 @@ export const initData = async (clientId, nextSeq) => {
           size: [230, 235, 240, 245, 250], // 1
           color: '화이트/볼트 글로우/그린 글로우/블랙', // 1
           styleNo: 'HQ5058-107', // 1
+          primeCost: 119000,
           gender: 'kids',
         },
       },
@@ -4216,6 +4224,7 @@ export const initData = async (clientId, nextSeq) => {
           isNew: true,
           isBest: false,
           category: ['PC03', 'PC0301'], // 1
+          primeCost: 79000,
           gender: 'kids',
         },
       },
@@ -4412,6 +4421,7 @@ export const initData = async (clientId, nextSeq) => {
           size: [200, 205, 210, 215, 220, 225, 230, 235, 240, 245, 250], // 1
           color: '휘트/블랙/휘트', // 1
           styleNo: 'HF0750-700', // 1
+          primeCost: 109000,
           gender: 'kids',
         },
       },
