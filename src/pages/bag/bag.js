@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const $baginfo = document.getElementById('bag-info');
   const $pay = document.getElementById('pay');
   const $leftRight = document.getElementsByClassName('left_right');
+  const $scrollContainer = document.getElementById(
+    'recommended-products-container',
+  );
 
   const fetchCart = async () => {
     // html 변수 불러오기
@@ -38,16 +41,16 @@ document.addEventListener('DOMContentLoaded', () => {
         <div>
           <div class="product_item_section">
             <div>
-              <a href="/src/pages/details/details.html">
+              <a href="/src/pages/details/details.html?productId=${cart.product._id}">
                 <img class="img_size" src="https://11.fesp.shop/files/vanilla05/${productImage}" alt="${productName}">
               </a>
             </div>
             <div class="product_text_section">
               <div class="black_text">
-                <a href="/src/pages/details/details.html">
+                <a href="/src/pages/details/details.html?productId=${cart.product._id}">
                   <p id="product_name">${productName}</p>
                 </a>
-                <p id="product_price">${productPrice.toLocaleString()} 원</p> 
+                <p id="product_price">${(productPrice * quantity).toLocaleString()} 원</p> 
               </div>  
               <div class="gray_text">
                 <p>사이즈: ${size}</p>
@@ -171,17 +174,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     fetchCart(); // html 변수 다시 불러오기
   });
-  $leftRight.addEventListener('click', event => {
-    // 클릭시 왼쪽 오른쪽 이동
-    const target = event.target;
+  Array.from($leftRight).forEach(button => {
+    button.addEventListener('click', event => {
+      const target = event.target;
 
-    // 왼쪽 이동 버튼 클릭
-    if (target.matches('.moveleft')) {
-      // 왼쪽 이동
-      console.log('123');
-    } else if (target.matches('.moveright')) {
-      // 오른쪽 이동
-      console.log('123');
-    }
+      if (target.matches('.moveleft')) {
+        // 왼쪽으로 스크롤
+        $scrollContainer.scrollBy({
+          top: 0,
+          left: -200, // 원하는 스크롤 거리
+          behavior: 'smooth', // 부드러운 스크롤
+        });
+      } else if (target.matches('.moveright')) {
+        // 오른쪽으로 스크롤
+        $scrollContainer.scrollBy({
+          top: 0,
+          left: 200, // 원하는 스크롤 거리
+          behavior: 'smooth', // 부드러운 스크롤
+        });
+      }
+    });
   });
 });
