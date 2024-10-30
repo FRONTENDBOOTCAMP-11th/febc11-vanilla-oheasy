@@ -45,7 +45,7 @@ loadHTML('/src/components/header.html', function (response) {
       //세션에 토큰이 저장되어있지만 시간이 지나 토큰이 만료된 상태
       //payload.exp가 존재함, 만료시간이 현재 시간보다 작아 만료 시간이 지남
       if (payload.exp && payload.exp < currentTime) {
-        alert('세션이 만료되어 재로그인이 필요합니다.');
+        alert('로그인이 필요합니다.');
 
         //세션에 저장되어있는걸 지움
         sessionStorage.removeItem('accessToken');
