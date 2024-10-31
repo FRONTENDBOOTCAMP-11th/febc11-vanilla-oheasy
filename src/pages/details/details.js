@@ -213,12 +213,20 @@ $bagBtn.addEventListener('click', async function () {
         size: currentOption.size,
       });
 
-      const accessToken = sessionStorage.getItem('accessToken');
-      const tokenPart = accessToken.split('.');
-      const payload = JSON.parse(atob(tokenPart[1]));
-      const currentTime = Math.floor(Date.now() / 1000);
+      //💥
+      // const accessToken = sessionStorage.getItem('accessToken');
+      // const tokenPart = accessToken.split('.');
+      // const payload = JSON.parse(atob(tokenPart[1]));
+      // const currentTime = Math.floor(Date.now() / 1000);
 
-      if (accessToken || (payload.exp && payload.exp < currentTime)) {
+      // if (accessToken || (payload.exp && payload.exp < currentTime)) {
+      //   alert(
+      //     `product id: ${product_id}, size: ${currentOption.size} 상품 1개 장바구니에 추가되었습니다.`,
+      //   );
+      // }
+
+      //💥
+      if (sessionStorage.getItem('accessToken')) {
         alert(
           `product id: ${product_id}, size: ${currentOption.size} 상품 1개 장바구니에 추가되었습니다.`,
         );
