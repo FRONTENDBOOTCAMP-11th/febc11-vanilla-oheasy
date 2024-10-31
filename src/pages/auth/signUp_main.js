@@ -1,4 +1,6 @@
 import myAxios from '../../utils/myAxios';
+import checkIcon from '../../assets/icons/check.svg';
+import xRed from '../../assets/icons/x-red.svg';
 
 //필수 입력 필드
 const $requiredInputs = document.querySelectorAll('.required-input');
@@ -56,20 +58,20 @@ const pwdValid = function () {
   //1. 최소 8자
   if (pwd.length >= 8) {
     $minLength.style.color = 'green';
-    $pwdImg[1].src = '../../assets/icons/check.svg';
+    $pwdImg[1].src = checkIcon;
   } else {
     $minLength.style.color = 'red';
-    $pwdImg[1].src = '../../assets/icons/x-red.svg';
+    $pwdImg[1].src = xRed;
     pwdValid = false;
   }
 
   //2. 알파벳 대문자 및 소문자 조합이고 최소 1개 이상의 숫자를 갖기
   if (/[A-Z]/.test(pwd) && /[a-z]/.test(pwd) && /\d/.test(pwd)) {
     $pwdRequire.style.color = 'green';
-    $pwdImg[2].src = '../../assets/icons/check.svg';
+    $pwdImg[2].src = checkIcon;
   } else {
     $pwdRequire.style.color = 'red';
-    $pwdImg[2].src = '../../assets/icons/x-red.svg';
+    $pwdImg[2].src = xRed;
     pwdValid = false;
   }
 
