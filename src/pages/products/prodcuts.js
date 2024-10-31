@@ -316,7 +316,7 @@ const loadComponentMain = async function () {
 };
 loadComponentMain();
 
-/////////////////////////////////////////////
+// 💫 필터링 기능 구현
 const $filterArea = document.querySelector('.filter-section');
 const $productsArea = document.querySelector('.products-section');
 const $applyFilter = document.querySelector('#apply-filter');
