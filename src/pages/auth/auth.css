@@ -265,7 +265,7 @@ input:focus {
 input[type='date'] {
   position: relative;
   background: url(../../assets/icons/calendar.svg) no-repeat right 15px center;
-  padding-left: 10px;
+  padding-left: 20px;
   font-family: 'Pretendard';
 }
 
@@ -299,7 +299,7 @@ input[type='date']:valid::before {
 input[data-placeholder]::before {
   position: absolute;
   top: 50%;
-  left: 3%;
+  left: 1%;
   transform: translateY(-50%);
   background: url(../../assets/icons/calendar.svg) no-repeat right 26px center
     var(--color-white);
