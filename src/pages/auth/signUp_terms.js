@@ -8,9 +8,9 @@ const $chkbox3 = document.querySelector('#chkbox3');
 const $chkbox4 = document.querySelector('#chkbox4');
 
 //체크 박스 텍스트
-const $label2 = document.querySelector('#chkbox2 ~ p');
-const $label3 = document.querySelector('#chkbox3 ~ p');
-const $label4 = document.querySelector('#chkbox4 ~ p');
+const $label2 = document.querySelector('label[for="chkbox2"] p');
+const $label3 = document.querySelector('label[for="chkbox3"] p');
+const $label4 = document.querySelector('label[for="chkbox4"] p');
 
 //버튼
 const $cancelBtn = document.querySelector('.button-box[data-theme="white"]');
