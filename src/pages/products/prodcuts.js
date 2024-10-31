@@ -44,13 +44,6 @@ const getCategory = async function () {
       },
     });
 
-    // 1️⃣ Promise.all() 사용 방법
-    // const [target] = res.data.item.productCategory.codes.filter(
-    //   cat => cat.code === category,
-    // );
-    // console.log(target);
-    // return target.value; // Men, Women, Kids
-
     // 2️⃣ 동환님 방법
     return res.data.item.productCategory.codes;
   } catch (err) {
@@ -71,7 +64,6 @@ const isItBest = function (answer) {
 const $productContainer = document.querySelector('.l_grid');
 const $countSpace = document.querySelector('.results__count');
 const $productsTitle = document.querySelector('.wall-header__title');
-
 // 📌 데이터를 배열 형태로 받아 위에 정의한 여러 함수를 이용해 데이터를 화면에 출력하는 함수
 const displayProduct = async function (items) {
   //   2️⃣ 동환님 방법
@@ -159,8 +151,6 @@ const hideSpinner = async function () {
 // 📌 필터링 없이, 전체 상품리스트 로드하는 함수
 const showProductsAll = async function () {
   try {
-    $productsTitle.textContent = '모든 제품';
-
     // 1) Rendering spinner (In case the internet connection is slow.)
     renderSpinner($productContainer);
 
@@ -197,7 +187,6 @@ const getProductsNew = async function () {
       },
     });
     const items = res.data.item;
-    console.log(items);
 
     const productCount = items.length;
     $countSpace.textContent = productCount;
@@ -211,6 +200,7 @@ const getProductsNew = async function () {
   }
 };
 
+// 1️⃣ 메인 카테고리 클릭 시, 해당 리스트 출력
 // 📌 메인 카테고리 기준으로 데이터를 분류하고, 비동기통신으로 가져온 데이터를 displayProduct()로 화면출력까지 담당하는 함수
 const getProductsByMain = async function (code) {
   try {
@@ -244,7 +234,7 @@ const getProductsByMain = async function (code) {
     const data = res.data;
     const items = data.item;
 
-    // 메인 카테고리 클릭시, 그에 맞는 제품 결과 개수로 변경
+    // 필터링 적용 시, 그에 맞는 제품 결과 개수로 변경
     const productCount = items.length;
     $countSpace.textContent = productCount;
 
@@ -291,7 +281,6 @@ const loadComponentMain = async function () {
 
           const categoryId = e.target.closest('.item__men').dataset.category; // PC01
           updateCategoryUrl(categoryId);
-          //   $productsTitle.textContent = '남성 신발';
         }
 
         if (e.target.closest('.link--women')) {
@@ -299,7 +288,6 @@ const loadComponentMain = async function () {
 
           const categoryId = e.target.closest('.item__women').dataset.category; // PC02
           updateCategoryUrl(categoryId);
-          //   $productsTitle.textContent = '여성 신발';
         }
 
         if (e.target.closest('.link--kids')) {
@@ -307,7 +295,6 @@ const loadComponentMain = async function () {
 
           const categoryId = e.target.closest('.item__kids').dataset.category; // PC03
           updateCategoryUrl(categoryId);
-          $productsTitle.textContent = '주니어 신발';
         }
       });
 
@@ -319,3 +306,132 @@ const loadComponentMain = async function () {
   }
 };
 loadComponentMain();
+
+// 💫 필터링 기능 구현
+const $filterArea = document.querySelector('.filter-section');
+const $productsArea = document.querySelector('.products-section');
+const $applyFilter = document.querySelector('#apply-filter');
+const $cancelFilter = document.querySelector('#cancel-filter');
+
+// filter-section의 X 버튼 눌렀을 때, hidden 클래스 조정
+const $xbutton = document.querySelector('.btn--x');
+$xbutton.addEventListener('click', function () {
+  $filterArea.classList.add('hidden');
+  $productsArea.classList.remove('hidden');
+});
+
+// products-section의 필터 버튼 눌렀을 때, hidden 클래스 조정
+const $btnFilter = document.querySelector('.btn--filters');
+$btnFilter.addEventListener('click', function () {
+  $filterArea.classList.toggle('hidden');
+  $productsArea.classList.toggle('hidden');
+});
+
+// 📌 필터링된 데이터를 요청하여 화면에 출력하는 함수
+const filterProducts = async function (genderFilters, priceFilters) {
+  try {
+    renderSpinner($productContainer);
+
+    // 필터 객체 생성
+    const filter = [];
+
+    // 성별 필터가 있는 경우 추가
+    if (genderFilters.length > 0) {
+      filter.push({ 'extra.gender': { $in: genderFilters } });
+    }
+
+    // 가격 필터가 있는 경우 추가
+    if (priceFilters.length > 0) {
+      filter.push({ $or: priceFilters });
+    }
+
+    // $and 조건으로 모든 필터를 묶어서 적용
+    const combinedFilter =
+      filter.length > 1 ? { $and: filter } : filter[0] || {};
+
+    // 필터 객체를 URL 파라미터로 인코딩
+
+    const customParams = encodeURIComponent(JSON.stringify(combinedFilter));
+
+    const res = await myAxios.get(`/products?custom=${customParams}`, {
+      headers: {
+        'client-id': 'vanilla05',
+      },
+    });
+
+    const data = res.data;
+    const items = data.item;
+    const productCount = items.length;
+
+    $countSpace.textContent = productCount;
+    displayProduct(items);
+  } catch (err) {
+    alert(err);
+  } finally {
+    hideSpinner();
+  }
+};
+
+// 📌 필터링 요소 이벤트를 조작하고, 그에 맞는 쿼리 파라미터(custom)의 밸류를 설정하는 함수
+const loadComponent = async function () {
+  try {
+    // 필터 요소들 선택
+    const $men = document.querySelector('#men');
+    const $women = document.querySelector('#women');
+    const $unisex = document.querySelector('#unisex');
+
+    const $priceFirst = document.querySelector('#price__first');
+    const $priceSecond = document.querySelector('#price__second');
+    const $priceThird = document.querySelector('#price__third');
+    const $priceFourth = document.querySelector('#price__fourth');
+    const $priceFifth = document.querySelector('#price__fifth');
+
+    $applyFilter.addEventListener('click', async function (e) {
+      e.preventDefault();
+
+      // 성별 필터 선택값 수집
+      const selectedGenderFilters = [];
+      if ($men.checked) selectedGenderFilters.push('men');
+      if ($women.checked) selectedGenderFilters.push('women');
+      if ($unisex.checked) selectedGenderFilters.push('unisex');
+
+      // 가격 필터 선택값 수집
+      const selectedPriceFilters = [];
+      if ($priceFirst.checked)
+        selectedPriceFilters.push({ price: { $lte: 50000 } });
+      if ($priceSecond.checked)
+        selectedPriceFilters.push({
+          $and: [{ price: { $gte: 50000 } }, { price: { $lte: 100000 } }],
+        });
+      if ($priceThird.checked)
+        selectedPriceFilters.push({
+          $and: [{ price: { $gte: 100000 } }, { price: { $lte: 150000 } }],
+        });
+      if ($priceFourth.checked)
+        selectedPriceFilters.push({
+          $and: [{ price: { $gte: 150000 } }, { price: { $lte: 200000 } }],
+        });
+      if ($priceFifth.checked)
+        selectedPriceFilters.push({ price: { $gte: 200000 } });
+
+      // 필터가 선택되었을 때만 호출
+      if (selectedGenderFilters.length > 0 || selectedPriceFilters.length > 0) {
+        await filterProducts(selectedGenderFilters, selectedPriceFilters);
+      }
+
+      // UI 전환
+      $filterArea.classList.add('hidden');
+      $productsArea.classList.remove('hidden');
+
+      // 필터 초기화 버튼 클릭 시
+      $cancelFilter.addEventListener('click', function (e) {
+        e.preventDefault();
+        $filterArea.classList.add('hidden');
+        $productsArea.classList.remove('hidden');
+      });
+    });
+  } catch (err) {
+    alert(err);
+  }
+};
+loadComponent();

@@ -15,7 +15,6 @@ const getProduct = async function (productId) {
     const data = response.data;
 
     // depth가 1인 product
-    console.log(productId, currentOption.option);
 
     // depth가 2인 product
     if (data.item.extra.depth === 2) {
@@ -141,7 +140,6 @@ const $original = document.querySelector('.price .original');
 const $discount = document.querySelector('.price .discount');
 
 const product = await getProduct(productId);
-console.log(product);
 
 const category1 = await getCategory(product, 1);
 const category2 = await getCategory(product, 2, product.item.extra.category[0]);
@@ -198,7 +196,6 @@ const $bagBtn = document.querySelector(
   '.item-buttons .button-box:first-child button',
 );
 $bagBtn.addEventListener('click', async function () {
-  console.log(productId, currentOption.size);
   if (currentOption.size === null) {
     window.alert('사이즈를 선택해 주세요.');
   } else {

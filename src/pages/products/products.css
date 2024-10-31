@@ -67,7 +67,6 @@ input[type='checkbox'] {
 }
 
 .filter-section {
-  max-width: 360px;
   padding: 20px 20px 0 20px;
   box-sizing: border-box;
   margin: 0 auto;
@@ -191,7 +190,6 @@ input[type='checkbox'] {
 
 /* Components */
 .wrapper {
-  max-width: 360px;
   margin: 0 auto;
   background-color: var(--color-white);
 }

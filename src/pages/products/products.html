@@ -20,9 +20,7 @@
       <div class="filter-section hidden">
         <div class="filter-header">
           <h1 class="filter-header-title">필터</h1>
-          <button
-            onclick="document.querySelector('.products-section').classList.remove('hidden'); document.querySelector('.filter-section').classList.add('hidden');"
-          >
+          <button class="btn--x">
             <img src="../../assets/icons/xbtn-black.svg" />
           </button>
         </div>
@@ -77,25 +75,31 @@
             <div class="form-group">
               <label class="form-group-label">가격대</label>
               <div class="form-group-checkbox">
-                <label class="choice type_checkbox" for="first"
-                  ><input type="checkbox" name="price" id="first" />0 - 50,000
-                  원</label
+                <label class="choice type_checkbox" for="price__first"
+                  ><input type="checkbox" name="price" id="price__first" />0 -
+                  50,000 원</label
                 >
-                <label class="choice type_checkbox" for="second"
-                  ><input type="checkbox" name="price" id="second" /> 50,000 -
-                  100,000 원</label
+                <label class="choice type_checkbox" for="price__second"
+                  ><input type="checkbox" name="price" id="price__second" />
+                  50,000 - 100,000 원</label
                 >
-                <label class="choice type_checkbox" for="third"
-                  ><input type="checkbox" name="price" id="third" />100,000 -
-                  150,000 원</label
+                <label class="choice type_checkbox" for="price__third"
+                  ><input
+                    type="checkbox"
+                    name="price"
+                    id="price__third"
+                  />100,000 - 150,000 원</label
                 >
-                <label class="choice type_checkbox" for="fourth"
-                  ><input type="checkbox" name="price" id="fourth" /> 150,000 -
-                  200,000 원</label
+                <label class="choice type_checkbox" for="price__fourth"
+                  ><input type="checkbox" name="price" id="price__fourth" />
+                  150,000 - 200,000 원</label
                 >
-                <label class="choice type_checkbox" for="fifth"
-                  ><input type="checkbox" name="price" id="fifth" />200,000 원
-                  +</label
+                <label class="choice type_checkbox" for="price__fifth"
+                  ><input
+                    type="checkbox"
+                    name="price"
+                    id="price__fifth"
+                  />200,000 원 +</label
                 >
               </div>
             </div>
@@ -109,6 +113,7 @@
                 data-width="152px"
                 data-height="46px"
                 data-fontweight="400"
+                id="cancel-filter"
               >
                 지우기
               </div>
@@ -118,6 +123,7 @@
                 data-width="152px"
                 data-height="46px"
                 data-fontweight="400"
+                id="apply-filter"
               >
                 적용
               </div>
@@ -165,10 +171,7 @@
             <p class="results">
               <span class="results__count">0</span>개의 결과
             </p>
-            <button
-              onclick="document.querySelector('.products-section').classList.add('hidden'); document.querySelector('.filter-section').classList.remove('hidden');"
-              class="btn--filters"
-            >
+            <button class="btn--filters">
               <span>필터</span>
               <img src="../../assets/icons/filter.svg" />
             </button>
