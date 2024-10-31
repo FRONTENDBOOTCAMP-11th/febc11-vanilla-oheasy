@@ -183,10 +183,18 @@ const clickLoginBtn = function (event) {
 const getPwd = async function (userEmail, userPwd) {
   //비밀번호를 입력 받았을 때 로그인 시도를 함
   try {
-    const response = await myAxios.post('/users/login', {
-      email: userEmail,
-      password: userPwd,
-    });
+    const response = await myAxios.post(
+      '/users/login',
+      {
+        email: userEmail,
+        password: userPwd,
+      },
+      // {
+      //   params: {
+      //     expiresIn: '10s',
+      //   },
+      // },
+    );
 
     //로그인에 성공
     if (response.data.ok === 1) {
@@ -194,17 +202,23 @@ const getPwd = async function (userEmail, userPwd) {
       const accessToken = response.data.item.token.accessToken;
       const refreshToken = response.data.item.token.refreshToken;
       const userName = response.data.item.name;
+      const currentPage = sessionStorage.getItem('currentPage');
 
       sessionStorage.setItem('accessToken', accessToken);
       sessionStorage.setItem('refreshToken', refreshToken);
       sessionStorage.setItem('name', userName);
 
-      //home으로 이동한다
-      alert(`${userName}님 환영합니다`);
-      window.location.href = '/index.html';
-    } else {
-      //로그인 실패
-      printPwdResult('비밀번호가 일치하지 않습니다.');
+      alert(`${userName} 님 환영합니다`);
+
+      if (currentPage) {
+        window.location.href = currentPage;
+        sessionStorage.removeItem('currentPage');
+      } else if (!currentPage) {
+        window.location.href = '/index.html';
+      } else {
+        //로그인 실패
+        printPwdResult('비밀번호가 일치하지 않습니다.');
+      }
     }
   } catch (error) {
     //422 에러처리: 비밀번호가 유효하지 않을 때

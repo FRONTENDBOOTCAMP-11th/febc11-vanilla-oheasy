@@ -144,13 +144,22 @@ const signUp = async function () {
 
 const signIn = async function (userEmail, pwd, userName) {
   try {
-    const response = await myAxios.post('/users/login', {
-      email: userEmail,
-      password: pwd,
-    });
+    const response = await myAxios.post(
+      '/users/login',
+      {
+        email: userEmail,
+        password: pwd,
+      },
+      // {
+      //   params: {
+      //     expiresIn: '10s',
+      //   },
+      // },
+    );
 
     const accessToken = response.data.item.token.accessToken;
     const refreshToken = response.data.item.token.refreshToken;
+    const currentPage = sessionStorage.getItem('currentPage');
 
     sessionStorage.setItem('accessToken', accessToken);
     sessionStorage.setItem('refreshToken', refreshToken);
@@ -159,7 +168,14 @@ const signIn = async function (userEmail, pwd, userName) {
     // console.log(refreshToken);
     // console.log(userName);
     alert(`${userName} 님 환영합니다`);
-    window.location.href = '/index.html';
+
+    if (currentPage) {
+      window.location.href = currentPage;
+      sessionStorage.removeItem('currentPage');
+    } else {
+      console.log('홈으로');
+      window.location.href = '/index.html';
+    }
   } catch (error) {
     console.log('실패', error.response.data);
     console.log('실패', error.message);
