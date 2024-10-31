@@ -116,15 +116,28 @@ input:focus {
 }
 
 .check-label {
-  display: inline-block;
+  padding-left: 30px;
+  position: relative;
+  /* display: inline-block;
   width: 21px;
   height: 21px;
   padding-left: 10px;
-  background: url(../../assets/images/auth_checkbox_blank.svg) no-repeat;
+  background: url(../../assets/images/auth_checkbox_blank.svg) no-repeat; */
+}
+.check-label::before {
+  position: absolute;
+  content: '';
+  width: 20px;
+  height: 21px;
+  background: url(../../assets//images//auth_checkbox_blank.svg) no-repeat;
+  /* background-size: cover; */
+  left: 0;
+  top: -1px;
 }
 
 .check:checked + .check-label {
   background: url(../../assets/icons/checkbox.svg) no-repeat;
+  /* background-size: cover; */
 }
 
 .description {
