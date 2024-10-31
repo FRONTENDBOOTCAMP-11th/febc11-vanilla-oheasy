@@ -14,6 +14,7 @@ loadHTML('/src/components/button.html', function (response) {
     $button.innerHTML = contents; // 저장된 inner html 되돌리기
 
     const buttonTheme = buttonBox.dataset.theme;
+
     // color theme
     if (buttonTheme === 'black') {
       $button.style.color = '#fff';
