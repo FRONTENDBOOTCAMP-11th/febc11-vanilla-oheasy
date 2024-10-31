@@ -211,9 +211,11 @@ $bagBtn.addEventListener('click', async function () {
         quantity: 1,
         size: currentOption.size,
       });
-      alert(
-        `product id: ${product_id}, size: ${currentOption.size} 상품 1개 장바구니에 추가되었습니다.`,
-      );
+      if (sessionStorage.getItem('accessToken')) {
+        alert(
+          `product id: ${product_id}, size: ${currentOption.size} 상품 1개 장바구니에 추가되었습니다.`,
+        );
+      }
       // console.log(response);
     } catch (error) {
       console.log(error);
