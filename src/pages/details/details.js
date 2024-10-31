@@ -15,7 +15,6 @@ const getProduct = async function (productId) {
     const data = response.data;
 
     // depth가 1인 product
-    console.log(productId, currentOption.option);
 
     // depth가 2인 product
     if (data.item.extra.depth === 2) {
@@ -141,7 +140,6 @@ const $original = document.querySelector('.price .original');
 const $discount = document.querySelector('.price .discount');
 
 const product = await getProduct(productId);
-console.log(product);
 
 const category1 = await getCategory(product, 1);
 const category2 = await getCategory(product, 2, product.item.extra.category[0]);
@@ -198,7 +196,6 @@ const $bagBtn = document.querySelector(
   '.item-buttons .button-box:first-child button',
 );
 $bagBtn.addEventListener('click', async function () {
-  console.log(productId, currentOption.size);
   if (currentOption.size === null) {
     window.alert('사이즈를 선택해 주세요.');
   } else {
@@ -213,25 +210,11 @@ $bagBtn.addEventListener('click', async function () {
         size: currentOption.size,
       });
 
-      //💥
-      // const accessToken = sessionStorage.getItem('accessToken');
-      // const tokenPart = accessToken.split('.');
-      // const payload = JSON.parse(atob(tokenPart[1]));
-      // const currentTime = Math.floor(Date.now() / 1000);
-
-      // if (accessToken || (payload.exp && payload.exp < currentTime)) {
-      //   alert(
-      //     `product id: ${product_id}, size: ${currentOption.size} 상품 1개 장바구니에 추가되었습니다.`,
-      //   );
-      // }
-
-      //💥
       if (sessionStorage.getItem('accessToken')) {
         alert(
           `product id: ${product_id}, size: ${currentOption.size} 상품 1개 장바구니에 추가되었습니다.`,
         );
       }
-      // console.log(response);
     } catch (error) {
       console.log(error);
     }

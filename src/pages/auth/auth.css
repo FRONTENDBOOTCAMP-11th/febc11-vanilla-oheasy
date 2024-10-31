@@ -36,7 +36,6 @@ body {
 
 /* Layout */
 .wrapper {
-  max-width: 360px;
   margin: 0 auto;
   background-color: var(--color-white);
   min-height: 100vh;

@@ -44,13 +44,6 @@ const getCategory = async function () {
       },
     });
 
-    // 1️⃣ Promise.all() 사용 방법
-    // const [target] = res.data.item.productCategory.codes.filter(
-    //   cat => cat.code === category,
-    // );
-    // console.log(target);
-    // return target.value; // Men, Women, Kids
-
     // 2️⃣ 동환님 방법
     return res.data.item.productCategory.codes;
   } catch (err) {
@@ -71,7 +64,6 @@ const isItBest = function (answer) {
 const $productContainer = document.querySelector('.l_grid');
 const $countSpace = document.querySelector('.results__count');
 const $productsTitle = document.querySelector('.wall-header__title');
-console.log(location.pathname);
 // 📌 데이터를 배열 형태로 받아 위에 정의한 여러 함수를 이용해 데이터를 화면에 출력하는 함수
 const displayProduct = async function (items) {
   //   2️⃣ 동환님 방법
@@ -195,7 +187,6 @@ const getProductsNew = async function () {
       },
     });
     const items = res.data.item;
-    console.log(items);
 
     const productCount = items.length;
     $countSpace.textContent = productCount;
