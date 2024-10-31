@@ -1,11 +1,30 @@
 import formatPrice from '../../utils/formatPrice';
 import myAxios from '../../utils/myAxios';
 
+// url로부터 product id 획득
+const urlSearch = new URLSearchParams(location.search);
+const productId = urlSearch.get('productId');
+
+// 옵션 객체
+const currentOption = { option: 0, size: null };
+
 // 상품 객체를 리턴하는 함수
 const getProduct = async function (productId) {
   try {
     const response = await myAxios.get(`/products/${productId}`);
-    return response.data;
+    const data = response.data;
+
+    // depth가 1인 product
+    console.log(productId, currentOption.option);
+
+    // depth가 2인 product
+    if (data.item.extra.depth === 2) {
+      productId = data.item.extra.parent;
+      currentOption.option = data.item._id - data.item.extra.parent - 1;
+      // currentOption.option만 바꾼 후 부모 product로 getProduct 재귀 호출
+      return getProduct(productId);
+    }
+    return data;
   } catch (error) {
     console.error('Error:', error);
     return null;
@@ -114,9 +133,6 @@ const getDiscountRate = function (original, onSale) {
   return Math.trunc(((original - onSale) / original) * 100) + '% 할인';
 };
 
-const urlSearch = new URLSearchParams(location.search);
-const productId = urlSearch.get('productId');
-
 // item-info
 const $name = document.querySelector('.item-info .name');
 const $category = document.querySelector('.item-info .category');
@@ -152,14 +168,15 @@ product.item.options.map(
     ($coverThumbnails.innerHTML += `<img class='thumbnail' src='${import.meta.env.VITE_BASE_URL}/files/${import.meta.env.VITE_CLIENT_ID}/${e.mainImages[0].name}' />`),
 );
 
-// 옵션 객체
-const currentOption = { option: 0, size: null };
-
 renderImage(product, currentOption);
 renderSize(product, currentOption);
 renderDesc(product, currentOption);
 
 const thumbnails = [...$coverThumbnails.querySelectorAll('.thumbnail')];
+
+if (product.item.options.length !== 0) {
+  thumbnails[currentOption.option].classList.add('clicked');
+}
 thumbnails.forEach((e, i) => {
   e.addEventListener('click', function (e) {
     thumbnails.forEach(e => {
@@ -195,9 +212,11 @@ $bagBtn.addEventListener('click', async function () {
         quantity: 1,
         size: currentOption.size,
       });
-      alert(
-        `product id: ${product_id}, size: ${currentOption.size} 상품 1개 장바구니에 추가되었습니다.`,
-      );
+      if (sessionStorage.getItem('accessToken')) {
+        alert(
+          `product id: ${product_id}, size: ${currentOption.size} 상품 1개 장바구니에 추가되었습니다.`,
+        );
+      }
       // console.log(response);
     } catch (error) {
       console.log(error);

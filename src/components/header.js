@@ -8,6 +8,7 @@ loadHTML('/src/components/header.html', function (response) {
   const $sideBar = document.querySelector('.side-bar');
   const $xbutton = document.querySelector('.sidebar-xbtn');
   const $overlay = document.querySelector('.overlay');
+  const $userIcon = document.querySelector('.user');
 
   $headerBox.addEventListener('click', function (event) {
     if (event.target.id === 'menuBtn') {
@@ -20,5 +21,21 @@ loadHTML('/src/components/header.html', function (response) {
   $xbutton.addEventListener('click', function () {
     $sideBar.classList.remove('active');
     $overlay.classList.toggle('active');
+  });
+
+  $userIcon.addEventListener('click', function () {
+    const accessToken = sessionStorage.getItem('accessToken');
+
+    if (accessToken) {
+      const userName = sessionStorage.getItem('name');
+
+      if (userName) {
+        alert(`안녕하세요 ${userName} 님!`);
+      } else {
+        console.log(`등록되어있지 않은 사용자`);
+      }
+    } else {
+      window.location.href = '/src/pages/auth/signIn_main.html';
+    }
   });
 });

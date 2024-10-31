@@ -1,28 +1,25 @@
-import axios from 'axios';
-
-let myToken =
-  'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjQsInR5cGUiOiJ1c2VyIiwibmFtZSI6IuygnOydtOyngCIsImVtYWlsIjoidTFAZ21haWwuY29tIiwiaW1hZ2UiOiIvZmlsZXMvdmFuaWxsYTA1L3VzZXItamF5Zy53ZWJwIiwibG9naW5UeXBlIjoiZW1haWwiLCJpYXQiOjE3MzAxODAzMTIsImV4cCI6MTczMDI2NjcxMiwiaXNzIjoiRkVTUCJ9.3JdLOSR7LXT2iYu4b1AcmRC-u8IqYbEYj9lBL07WBP0'; // 생략된 토큰
+import myAxios from '../../utils/myAxios';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const cartList = document.getElementById('cart-list');
-  const baginfo = document.getElementById('bag-info');
-  const pay = document.getElementById('pay');
+  const $cartList = document.getElementById('cart-list');
+  const $baginfo = document.getElementById('bag-info');
+  const $pay = document.getElementById('pay');
+  const $leftRight = document.getElementsByClassName('left_right');
+  const $scrollContainer = document.getElementById(
+    'recommended-products-container',
+  );
 
   const fetchCart = async () => {
+    // html 변수 불러오기
     try {
-      const response = await axios.get('https://11.fesp.shop/carts', {
-        headers: {
-          'client-id': 'vanilla05',
-          Authorization: myToken,
-        },
-      });
-
+      const response = await myAxios.get('carts');
       const items = response.data.item;
 
       if (items.length === 0) {
-        cartList.innerHTML = '<p>장바구니에 상품이 없습니다.</p>';
-        baginfo.innerHTML = '';
-        pay.innerHTML = '';
+        $cartList.innerHTML =
+          '<p style="font-size: 14px;">장바구니에 상품이 없습니다.</p>';
+        $baginfo.innerHTML = '<p style="color: gray;"> 0 개의 제품 | ㅡ </p>';
+        $pay.innerHTML = '';
         return;
       }
 
@@ -44,16 +41,16 @@ document.addEventListener('DOMContentLoaded', () => {
         <div>
           <div class="product_item_section">
             <div>
-              <a href="/src/pages/details/details.html">
+              <a href="/src/pages/details/details.html?productId=${cart.product._id}">
                 <img class="img_size" src="https://11.fesp.shop/files/vanilla05/${productImage}" alt="${productName}">
               </a>
             </div>
             <div class="product_text_section">
               <div class="black_text">
-                <a href="/src/pages/details/details.html">
+                <a href="/src/pages/details/details.html?productId=${cart.product._id}">
                   <p id="product_name">${productName}</p>
                 </a>
-                <p id="product_price">${productPrice.toLocaleString()} 원</p> 
+                <p id="product_price">${(productPrice * quantity).toLocaleString()} 원</p> 
               </div>  
               <div class="gray_text">
                 <p>사이즈: ${size}</p>
@@ -71,16 +68,20 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
           </div>
           <div class="product_icon_section">
-            <img onclick="wishAdd()" class="button" src="/src/assets/icons/heart.svg" alt="Add to Wishlist">
-            <img onclick="removeCart()" class="move_icon button" src="/src/assets/icons/trash.svg" alt="Remove from Cart">
+            <img class="button" src="/src/assets/icons/heart.svg" alt="Add to Wishlist">
+            <img class="move_icon button remove" src="/src/assets/icons/trash.svg" alt="Remove from Cart" data-cart-id="${cart._id}">
+          </div>
+                    <div class="product_delivery_section">
+            <p class="product_delivery_text_title">무료 배송</p>
+            <p class="product_delivery_text">도착 예정일: 7월 26일 (토)배송 지역: 04628</p>
           </div>
         </div>
         `;
       });
 
-      cartList.innerHTML = cartItemsHTML;
-      baginfo.innerHTML = `<p>${totalQuantity} 개의 제품 | ${totalPrice.toLocaleString()} 원</p>`;
-      pay.innerHTML = `
+      $cartList.innerHTML = cartItemsHTML;
+      $baginfo.innerHTML = `<p>${totalQuantity} 개의 제품 | ${totalPrice.toLocaleString()} 원</p>`;
+      $pay.innerHTML = `
           <div class="oder_list_section">
             <h1 class="oder_list_title_text">주문 내역</h1>
             <div class="oder_list_text">
@@ -101,36 +102,51 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>`;
     } catch (error) {
       console.error('Error:', error);
-      cartList.innerHTML = '<p>장바구니를 불러오는 데 실패했습니다.</p>';
-      baginfo.innerHTML = '';
-      pay.innerHTML = '<p>장바구니를 불러오는 데 실패했습니다.</p>';
+      $cartList.innerHTML =
+        '<p style="font-size:14px">장바구니를 불러오는 데 실패했습니다.</p>';
+      $baginfo.innerHTML = '';
+      $pay.innerHTML = '';
     }
   };
 
-  // 함수 호출
-  fetchCart();
+  fetchCart(); // 최초 html 변수 호출
 
   const updateQuantity = async (cartId, quantity) => {
+    //  상품 수령 변경 요청
     try {
-      await axios.patch(
-        `https://11.fesp.shop/carts/${cartId}`,
-        { quantity },
-        {
-          headers: {
-            'client-id': 'vanilla05',
-            Authorization: myToken,
-          },
-        },
-      );
+      await myAxios.patch(`carts/${cartId}`, { quantity });
     } catch (error) {
       console.error('수량 변경 실패:', error);
       alert('수량 변경에 실패했습니다.');
     }
   };
 
-  cartList.addEventListener('click', async event => {
+  const deleteProduct = async cartId => {
+    // 장바구니에서 상품 제거 요청
+    try {
+      await myAxios.delete(`carts/${cartId}`);
+    } catch (error) {
+      console.error('상품 삭제 실패:', error);
+    }
+  };
+
+  $cartList.addEventListener('click', async event => {
+    // 클릭시 장바구니에서 상품 제거
     const target = event.target;
-    // 수량 증감 버튼 클릭
+
+    if (target.matches('.move_icon.button.remove')) {
+      const cartId = target.getAttribute('data-cart-id'); // data-cart-id 속성에서 cartId 가져오기
+
+      // 서버에 장바구니에서 상품 삭제 요청
+      await deleteProduct(cartId);
+    }
+    fetchCart(); // html 변수 다시 불러오기
+  });
+
+  $cartList.addEventListener('click', async event => {
+    // 클릭시 상품 수량 증감
+    const target = event.target;
+    // 수량 증가 버튼 클릭
     if (target.matches('.button.plus')) {
       const quantityElement = target.parentElement.querySelector('p'); // 수량 요소 선택
       const cartId = target.getAttribute('data-cart-id'); // data-cart-id 속성에서 cartId 가져오기
@@ -156,6 +172,27 @@ document.addEventListener('DOMContentLoaded', () => {
         await updateQuantity(cartId, quantity);
       }
     }
-    fetchCart();
+    fetchCart(); // html 변수 다시 불러오기
+  });
+  Array.from($leftRight).forEach(button => {
+    button.addEventListener('click', event => {
+      const target = event.target;
+
+      if (target.matches('.moveleft')) {
+        // 왼쪽으로 스크롤
+        $scrollContainer.scrollBy({
+          top: 0,
+          left: -200, // 원하는 스크롤 거리
+          behavior: 'smooth', // 부드러운 스크롤
+        });
+      } else if (target.matches('.moveright')) {
+        // 오른쪽으로 스크롤
+        $scrollContainer.scrollBy({
+          top: 0,
+          left: 200, // 원하는 스크롤 거리
+          behavior: 'smooth', // 부드러운 스크롤
+        });
+      }
+    });
   });
 });
