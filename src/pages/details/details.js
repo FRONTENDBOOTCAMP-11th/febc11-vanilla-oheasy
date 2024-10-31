@@ -174,8 +174,9 @@ renderDesc(product, currentOption);
 
 const thumbnails = [...$coverThumbnails.querySelectorAll('.thumbnail')];
 
-thumbnails[currentOption.option].classList.add('clicked');
-// thumbnails[currentOption].classList.add('clicked');
+if (product.item.options.length !== 0) {
+  thumbnails[currentOption.option].classList.add('clicked');
+}
 thumbnails.forEach((e, i) => {
   e.addEventListener('click', function (e) {
     thumbnails.forEach(e => {
