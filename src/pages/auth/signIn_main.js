@@ -1,4 +1,6 @@
 import myAxios from '../../utils/myAxios';
+import eyeHalf from '../../assets/icons/eye-half.svg';
+import eye from '../../assets/icons/eye.svg';
 
 //email-section
 const $emailSection = document.querySelector('.email-section');
@@ -138,10 +140,10 @@ const printPwdResult = function (msg) {
 const togglePwd = function () {
   if ($userPwd.type === 'password') {
     $userPwd.type = 'text';
-    $eyeIcon.src = '../../assets/icons/eye-half.svg';
+    $eyeIcon.src = eyeHalf;
   } else if ($userPwd.type === 'text') {
     $userPwd.type = 'password';
-    $eyeIcon.src = '../../assets/icons/eye.svg';
+    $eyeIcon.src = eye;
   }
 };
 

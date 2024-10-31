@@ -1,4 +1,8 @@
 import myAxios from '../../utils/myAxios';
+import heart from '../../assets/icons/heart.svg';
+import trash from '../../assets/icons/trash.svg';
+import plus from '../../assets/icons/plus.svg';
+import minus from '../../assets/icons/minus.svg';
 
 document.addEventListener('DOMContentLoaded', () => {
   const $cartList = document.getElementById('cart-list');
@@ -58,9 +62,9 @@ document.addEventListener('DOMContentLoaded', () => {
                   <div class="count_text">
                     <p>수량</p>
                     <div class="count_number">
-                      <img class="button minus" src="/src/assets/icons/minus.svg" alt="Decrease" data-cart-id="${cart._id}">
+                      <img class="button minus" src="${minus}" alt="Decrease" data-cart-id="${cart._id}">
                       <p>${quantity}</p>
-                      <img class="button plus" src="/src/assets/icons/plus.svg" alt="Increase" data-cart-id="${cart._id}">
+                      <img class="button plus" src="${plus}" alt="Increase" data-cart-id="${cart._id}">
                     </div>
                   </div>
                 </div>
@@ -68,8 +72,8 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
           </div>
           <div class="product_icon_section">
-            <img class="button" src="/src/assets/icons/heart.svg" alt="Add to Wishlist">
-            <img class="move_icon button remove" src="/src/assets/icons/trash.svg" alt="Remove from Cart" data-cart-id="${cart._id}">
+            <img class="button" src="${heart}" alt="Add to Wishlist">
+            <img class="move_icon button remove" src="${trash}" alt="Remove from Cart" data-cart-id="${cart._id}">
           </div>
                     <div class="product_delivery_section">
             <p class="product_delivery_text_title">무료 배송</p>
