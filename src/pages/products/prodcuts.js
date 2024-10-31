@@ -96,7 +96,7 @@ const displayProduct = async function (items) {
 
         // 👉 {categoryName} 대신에
         //   ${c1[0].value} ${c2[0] ? c2[0].value : ''}
-        return `<a class="details" href="/src/pages/details/details.html?productId=${item._id}"><li class="product">
+        return `<a href="/src/pages/details/details.html?productId=${item._id}"><li class="product">
                     <div class="product-cover">
                       <img src="https://11.fesp.shop/files/vanilla05/${
                         item.mainImages[0].name
@@ -317,7 +317,6 @@ const loadComponentMain = async function () {
 loadComponentMain();
 
 /////////////////////////////////////////////
-/////////////// FILTER
 const $filterArea = document.querySelector('.filter-section');
 const $productsArea = document.querySelector('.products-section');
 const $applyFilter = document.querySelector('#apply-filter');
@@ -342,20 +341,28 @@ const filterProducts = async function (genderFilters, priceFilters) {
   try {
     renderSpinner($productContainer);
 
-    // 성별과 가격 필터 조건 조합
-    const customGenderParams = genderFilters
-      .map(gender => `custom=${JSON.stringify({ 'extra.gender': gender })}`)
-      .join('&');
+    // 필터 객체 생성
+    const filter = [];
 
-    const customPricesParams = priceFilters
-      .map(price => `custom=${JSON.stringify(price)}`)
-      .join('&');
+    // 성별 필터가 있는 경우 추가
+    if (genderFilters.length > 0) {
+      filter.push({ 'extra.gender': { $in: genderFilters } });
+    }
 
-    const combinedParams = [customGenderParams, customPricesParams]
-      .filter(Boolean)
-      .join('&');
+    // 가격 필터가 있는 경우 추가
+    if (priceFilters.length > 0) {
+      filter.push({ $or: priceFilters });
+    }
 
-    const res = await myAxios.get(`/products?${combinedParams}`, {
+    // $and 조건으로 모든 필터를 묶어서 적용
+    const combinedFilter =
+      filter.length > 1 ? { $and: filter } : filter[0] || {};
+
+    // 필터 객체를 URL 파라미터로 인코딩
+
+    const customParams = encodeURIComponent(JSON.stringify(combinedFilter));
+
+    const res = await myAxios.get(`/products?custom=${customParams}`, {
       headers: {
         'client-id': 'vanilla05',
       },
