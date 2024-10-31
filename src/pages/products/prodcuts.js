@@ -1,5 +1,6 @@
 import formatPrice from '../../utils/formatPrice';
 import myAxios from '../../utils/myAxios';
+import loader from '../../assets/images/loader.svg';
 
 // 📌 카테고리 변경 시, url도 함께 업데이트하는 함수 - URLSearchParams 객체의 set 함수 활용
 const updateCategoryUrl = function (categoryId) {
@@ -138,7 +139,7 @@ const renderSpinner = async function (parentEl) {
 
   const spinnerHTML = `
                     <div class="spinner">
-                      <img src="../../assets/images/loader.svg" alt="spinner"/>
+                      <img src="${loader}" alt="spinner"/>
                     </div>`;
   parentEl.innerHTML = '';
   parentEl.insertAdjacentHTML('beforebegin', spinnerHTML);

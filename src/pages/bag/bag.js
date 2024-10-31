@@ -3,6 +3,7 @@ import heart from '../../assets/icons/heart.svg';
 import trash from '../../assets/icons/trash.svg';
 import plus from '../../assets/icons/plus.svg';
 import minus from '../../assets/icons/minus.svg';
+import question from '../../assets/icons/question.svg';
 
 document.addEventListener('DOMContentLoaded', () => {
   const $cartList = document.getElementById('cart-list');
@@ -91,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="oder_list_text">
               <div class="oder_list_text_icon">
                 <p>상품 금액</p>
-                <img class="question_icon" src="/src/assets/icons/question.svg" alt="">
+                <img class="question_icon" src="${question}" alt="">
               </div>
               <p>${totalPrice.toLocaleString()} 원</p>
             </div>
