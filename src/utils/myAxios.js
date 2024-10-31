@@ -28,10 +28,9 @@ myAxios.interceptors.response.use(
       //현재 페이지 저장
       sessionStorage.setItem('currentPage', currentPage);
       window.location.href = '/src/pages/auth/signIn_main.html';
-    } else {
-      //그 외 에러: 에러가 호출된 곳으로 이동
-      return Promise.reject(error);
     }
+    //그 외 에러: 에러가 호출된 곳으로 이동
+    return Promise.reject(error);
   },
 );
 
