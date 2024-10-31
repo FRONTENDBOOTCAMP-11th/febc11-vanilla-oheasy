@@ -134,10 +134,14 @@ a {
 
 /* feature-2-item-1 */
 .feature-2-item-1 {
-  margin: 24px 0 129px 15px;
+  margin: 24px 0 129px;
   display: flex;
   overflow-x: scroll;
   gap: 12px;
+}
+
+.card-description {
+  margin-left: 15px;
 }
 
 .feature-2-item-1::-webkit-scrollbar {
